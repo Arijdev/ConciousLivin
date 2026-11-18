@@ -152,14 +152,14 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
 
   if (!pdfUrl) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 max-w-md text-center">
-          <FileText className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">No PDF Available</h3>
-          <p className="text-slate-500 dark:text-slate-400 mt-2">This resource doesn&apos;t have a PDF file attached.</p>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1E293B]">
+        <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-8 max-w-md text-center">
+          <FileText className="w-16 h-16 text-[#64748B] dark:text-[#94A3B8] mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-[#1E293B] dark:text-[#E2E8F0]">No PDF Available</h3>
+          <p className="text-[#64748B] dark:text-[#94A3B8] mt-2">This resource doesn&apos;t have a PDF file attached.</p>
           <button 
             onClick={onClose}
-            className="mt-4 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+            className="mt-4 px-4 py-2 bg-[#0F766E] text-white rounded-lg hover:bg-[#115E59]"
           >
             Close
           </button>
@@ -169,21 +169,21 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-fadeIn">
-      <div className={`relative w-full h-full max-w-6xl max-h-[95vh] flex flex-col bg-white dark:bg-slate-950 rounded-2xl overflow-hidden shadow-2xl ${isFullscreen ? 'fixed inset-0 max-w-full max-h-full rounded-none' : ''}`}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0F172A]/90 animate-fadeIn">
+      <div className={`relative w-full h-full max-w-6xl max-h-[95vh] flex flex-col bg-white dark:bg-[#1E293B] rounded-2xl overflow-hidden ${isFullscreen ? 'fixed inset-0 max-w-full max-h-full rounded-none' : ''}`}>
         
         {/* Top Bar */}
-        <div className="flex items-center justify-between px-4 py-3 bg-slate-900 text-white border-b border-slate-800">
+        <div className="flex items-center justify-between px-4 py-3 bg-[#1E293B] text-white border-b border-[#E2E8F0] dark:border-[#334155]">
           <div className="flex items-center gap-3 min-w-0">
-            <FileText className="w-6 h-6 text-emerald-400" />
-            <h3 className="text-sm font-bold truncate text-white">{title}</h3>
+            <FileText className="w-6 h-6 text-[#0F766E] dark:text-[#14B8A6]" />
+            <h3 className="text-sm font-semibold truncate text-white">{title}</h3>
           </div>
           
           <div className="flex items-center gap-2">
             {!isFullscreen && (
               <button
                 onClick={() => setIsFullscreen(true)}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
                 title="Fullscreen"
               >
                 <Maximize2 className="w-5 h-5" />
@@ -193,7 +193,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             {isFullscreen && (
               <button
                 onClick={() => setIsFullscreen(false)}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
                 title="Exit Fullscreen"
               >
                 <Minimize2 className="w-5 h-5" />
@@ -202,7 +202,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             
             <button
               onClick={onDownload}
-              className="p-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-colors"
+              className="p-1.5 rounded-lg bg-[#0F766E] hover:bg-[#115E59] text-white transition-colors"
               title="Download PDF"
             >
               <Download className="w-5 h-5" />
@@ -210,7 +210,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+              className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
               title="Close"
             >
               <X className="w-5 h-5" />
@@ -220,7 +220,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
 
         {/* Error Display */}
         {error && (
-          <div className="px-4 py-2 bg-red-50 dark:bg-red-950/40 border-b border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-sm text-center">
+          <div className="px-4 py-2 bg-[#F1F5F9] dark:bg-[#1E293B] border-b border-[#E2E8F0] dark:border-[#334155] text-[#1E293B] dark:text-[#E2E8F0] text-sm text-center">
             {error}
           </div>
         )}
@@ -229,12 +229,12 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
         <div className="flex-1 flex overflow-hidden">
           {/* Thumbnail Sidebar */}
           {(showThumbnails || thumbnailUrls.length > 0) && (
-            <div className={`hidden lg:flex flex-col w-48 bg-slate-100 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ${!showThumbnails ? 'w-0 overflow-hidden' : ''}`}>
-              <div className="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Pages ({numPages})</span>
+            <div className={`hidden lg:flex flex-col w-48 bg-[#F1F5F9] dark:bg-[#1E293B] border-r border-[#E2E8F0] dark:border-[#334155] transition-all duration-300 ${!showThumbnails ? 'w-0 overflow-hidden' : ''}`}>
+              <div className="p-3 border-b border-[#E2E8F0] dark:border-[#334155] flex items-center justify-between">
+                <span className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0]">Pages ({numPages})</span>
                 <button
                   onClick={() => setShowThumbnails(false)}
-                  className="p-1 rounded text-slate-400 hover:text-slate-600"
+                  className="p-1 rounded text-[#64748B] dark:text-[#94A3B8] hover:text-[#64748B] dark:hover:text-[#94A3B8]"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -245,10 +245,10 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
                     key={idx}
                     onClick={() => goToPage(idx + 1)}
                     className={`w-full aspect-[3/4] rounded overflow-hidden border-2 transition-all ${
-                      pageNumber === idx + 1 
-                        ? 'border-emerald-500 shadow-lg' 
-                        : 'border-transparent hover:border-slate-300'
-                    }`}>
+pageNumber === idx + 1 
+? 'border-[#0F766E]' 
+: 'border-transparent hover:border-[#E2E8F0] dark:hover:border-[#334155]'
+}`}>
                     <Image src={thumb} alt={`Page ${idx + 1}`} fill className="object-cover" />
                   </button>
                 ))}
@@ -258,11 +258,11 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
                       <button
                         key={page}
                         onClick={() => goToPage(page)}
-                        className={`w-full aspect-[3/4] rounded border-2 flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 text-xs font-medium transition-all ${
-                          pageNumber === page 
-                            ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950 text-emerald-600' 
-                            : 'border-transparent hover:border-slate-300'
-                        }`}>
+                        className={`w-full aspect-[3/4] rounded border-2 flex items-center justify-center bg-[#F1F5F9] dark:bg-[#1E293B] text-[#64748B] dark:text-[#94A3B8] text-xs font-normal transition-all ${
+pageNumber === page 
+? 'border-[#0F766E] bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]' 
+: 'border-transparent hover:border-[#E2E8F0] dark:hover:border-[#334155]'
+}`}>
                         Page {page}
                       </button>
                     ))}
@@ -273,20 +273,20 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
           )}
 
           {/* PDF Canvas Area */}
-          <div className="flex-1 flex items-center justify-center overflow-auto p-4 bg-slate-100 dark:bg-slate-900">
-            <div className="relative bg-white shadow-xl">
+          <div className="flex-1 flex items-center justify-center overflow-auto p-4 bg-[#F1F5F9] dark:bg-[#1E293B]">
+            <div className="relative bg-white">
               {loading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-slate-900">
+                <div className="absolute inset-0 flex items-center justify-center bg-white">
                   <div className="text-center space-y-2">
-                    <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                    <p className="text-sm text-slate-500">Loading PDF...</p>
+                    <div className="w-8 h-8 border-4 border-[#0F766E] border-t-transparent rounded-full mx-auto" />
+                    <p className="text-sm text-[#64748B] dark:text-[#94A3B8]">Loading PDF...</p>
                   </div>
                 </div>
               )}
               
               <canvas
                 ref={canvasRef}
-                className="max-w-full max-h-[80vh] shadow-lg"
+                className="max-w-full max-h-[80vh]"
                 style={{ display: loading ? 'none' : 'block' }}
               />
             </div>
@@ -294,12 +294,12 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
         </div>
 
         {/* Bottom Controls */}
-        <div className="flex items-center justify-between px-4 py-3 bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between px-4 py-3 bg-[#F1F5F9] dark:bg-[#1E293B] border-t border-[#E2E8F0] dark:border-[#334155]">
           <div className="flex items-center gap-2">
             <button
               onClick={() => goToPage(1)}
               disabled={pageNumber === 1 || loading}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] disabled:opacity-40 hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="First Page"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -309,20 +309,20 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             <button
               onClick={() => goToPage(pageNumber - 1)}
               disabled={pageNumber === 1 || loading}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] disabled:opacity-40 hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="Previous Page"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             
-            <span className="px-3 py-1.5 text-sm font-mono font-bold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg min-w-[80px] text-center">
+            <span className="px-3 py-1.5 text-sm font-mono font-semibold text-[#1E293B] dark:text-[#E2E8F0] bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-lg min-w-[80px] text-center">
               {pageNumber} / {numPages}
             </span>
             
             <button
               onClick={() => goToPage(pageNumber + 1)}
               disabled={pageNumber === numPages || loading}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] disabled:opacity-40 hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="Next Page"
             >
               <ChevronRight className="w-5 h-5" />
@@ -331,7 +331,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             <button
               onClick={() => goToPage(numPages)}
               disabled={pageNumber === numPages || loading}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] disabled:opacity-40 hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="Last Page"
             >
               <ChevronRight className="w-5 h-5" />
@@ -343,20 +343,20 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             <button
               onClick={zoomOut}
               disabled={scale <= 0.5 || loading}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] disabled:opacity-40 hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="Zoom Out"
             >
               <ZoomOut className="w-5 h-5" />
             </button>
             
-            <span className="px-3 py-1.5 text-sm font-mono font-bold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg min-w-[60px] text-center">
+            <span className="px-3 py-1.5 text-sm font-mono font-semibold text-[#1E293B] dark:text-[#E2E8F0] bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-lg min-w-[60px] text-center">
               {Math.round(scale * 100)}%
             </span>
             
             <button
               onClick={zoomIn}
               disabled={scale >= 3 || loading}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] disabled:opacity-40 hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="Zoom In"
             >
               <ZoomIn className="w-5 h-5" />
@@ -364,7 +364,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             
             <button
               onClick={() => setScale(1.5)}
-              className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700"
+              className="p-2 rounded-lg bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]"
               title="Reset Zoom"
             >
               <RotateCcw className="w-5 h-5" />
@@ -374,7 +374,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowThumbnails(!showThumbnails)}
-              className={`p-2 rounded-lg transition-colors ${showThumbnails ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700' : 'bg-white dark:bg-slate-800 text-slate-600 hover:bg-slate-100'} border border-slate-200 dark:border-slate-700`}
+              className={`p-2 rounded-lg transition-colors ${showThumbnails ? 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]' : 'bg-white dark:bg-[#1E293B] text-[#64748B] dark:text-[#94A3B8] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B]'} border border-[#E2E8F0] dark:border-[#334155]`}
               title={showThumbnails ? 'Hide Thumbnails' : 'Show Thumbnails'}
             >
               <FileText className="w-5 h-5" />

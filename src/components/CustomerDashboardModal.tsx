@@ -91,13 +91,13 @@ export const CustomerDashboardModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 my-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#1E293B] animate-fadeIn overflow-y-auto">
+      <div className="relative w-full max-w-4xl bg-white dark:bg-[#1E293B] rounded-3xl overflow-hidden border border-[#E2E8F0] dark:border-[#334155] my-auto">
         
         {/* Top Header */}
-        <div className="p-6 bg-linear-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white flex items-center justify-between">
+        <div className="p-6 bg-[#1E293B] text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/60 shadow shrink-0">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/60 shrink-0">
               <Image
                 src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'}
                 alt={user.name}
@@ -108,12 +108,12 @@ export const CustomerDashboardModal: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold text-white">{user.name}</h3>
-                <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-extrabold uppercase tracking-wider">
+                <h3 className="text-lg font-semibold text-white">{user.name}</h3>
+                <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-semibold uppercase tracking-wider">
                   Verified Patient
                 </span>
               </div>
-              <p className="text-xs text-emerald-100">{user.email}</p>
+              <p className="text-xs text-[#CBD5E1]">{user.email}</p>
             </div>
           </div>
 
@@ -122,14 +122,14 @@ export const CustomerDashboardModal: React.FC = () => {
               onClick={() => {
                 logout();
               }}
-              className="px-3 py-1.5 rounded-lg bg-black/20 hover:bg-black/40 text-xs font-semibold text-white transition-colors flex items-center gap-1"
+              className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition-colors flex items-center gap-1"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Logout</span>
             </button>
             <button
               onClick={() => setIsCustomerDashboardOpen(false)}
-              className="p-1.5 rounded-lg bg-black/20 hover:bg-black/40 text-white transition-colors"
+              className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -137,14 +137,14 @@ export const CustomerDashboardModal: React.FC = () => {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-xs font-bold overflow-x-auto">
+        <div className="flex items-center gap-2 px-6 py-3 bg-[#F9FAFB] dark:bg-[#0F172A] border-b border-[#E2E8F0] dark:border-[#334155] text-xs font-semibold overflow-x-auto">
           <button
             onClick={() => setActiveTab('library')}
             className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'library'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
+activeTab === 'library'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:bg-[#E2E8F0]'
+}`}
           >
             <BookOpen className="w-3.5 h-3.5" />
             <span>My Unlocked Library ({unlockedList.length})</span>
@@ -153,10 +153,10 @@ export const CustomerDashboardModal: React.FC = () => {
           <button
             onClick={() => setActiveTab('downloads')}
             className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'downloads'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
+activeTab === 'downloads'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:bg-[#E2E8F0]'
+}`}
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download History ({downloadHistory.length})</span>
@@ -165,10 +165,10 @@ export const CustomerDashboardModal: React.FC = () => {
           <button
             onClick={() => setActiveTab('orders')}
             className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'orders'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
+activeTab === 'orders'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:bg-[#E2E8F0]'
+}`}
           >
             <Receipt className="w-3.5 h-3.5" />
             <span>Purchase Invoices ({purchaseHistory.length})</span>
@@ -177,10 +177,10 @@ export const CustomerDashboardModal: React.FC = () => {
           <button
             onClick={() => setActiveTab('profile')}
             className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === 'profile'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
+activeTab === 'profile'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:bg-[#E2E8F0]'
+}`}
           >
             <User className="w-3.5 h-3.5" />
             <span>Patient Profile</span>
@@ -195,10 +195,10 @@ export const CustomerDashboardModal: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                  <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                     Available Health Guides & Masterclasses
                   </h4>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
                     Access your free and purchased digital guides anytime.
                   </p>
                 </div>
@@ -208,10 +208,10 @@ export const CustomerDashboardModal: React.FC = () => {
                 {unlockedList.map(resource => (
                   <div
                     key={resource.id}
-                    className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex flex-col justify-between space-y-3"
+                    className="p-4 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] flex flex-col justify-between space-y-3"
                   >
                     <div className="flex gap-3">
-                      <div className="relative w-14 h-18 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-700 shrink-0 shadow">
+                      <div className="relative w-14 h-18 rounded-lg overflow-hidden bg-[#E2E8F0] shrink-0">
                         <Image
                           src={resource.coverImage}
                           alt={resource.title}
@@ -220,27 +220,27 @@ export const CustomerDashboardModal: React.FC = () => {
                         />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
-                          resource.isFree ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-teal-100 text-teal-700 dark:bg-teal-950 dark:text-teal-300'
-                        }`}>
+                        <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full ${
+resource.isFree ? 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]' : 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]'
+}`}>
                           {resource.isFree ? 'Free Digital Guide' : 'Purchased Masterclass'}
                         </span>
-                        <h5 className="text-xs font-bold text-slate-900 dark:text-white mt-1 line-clamp-1">
+                        <h5 className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mt-1 line-clamp-1">
                           {resource.title}
                         </h5>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                        <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
                           {resource.pages} Pages • Full Access
                         </p>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200/60 dark:border-slate-700/60">
+                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
                       <button
                         onClick={() => {
                           openReader(resource);
                           setIsCustomerDashboardOpen(false);
                         }}
-                        className="py-2 px-3 rounded-xl bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-slate-100 border border-slate-200 dark:border-slate-600 transition-colors flex items-center justify-center gap-1"
+                        className="py-2 px-3 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] transition-colors flex items-center justify-center gap-1"
                       >
                         <BookOpen className="w-3.5 h-3.5" />
                         <span>Read</span>
@@ -248,7 +248,7 @@ export const CustomerDashboardModal: React.FC = () => {
 
                       <button
                         onClick={() => downloadResourceDoc(resource)}
-                        className="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
+                        className="py-2 px-3 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-all flex items-center justify-center gap-1"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>Save PDF</span>
@@ -264,23 +264,23 @@ export const CustomerDashboardModal: React.FC = () => {
           {activeTab === 'downloads' && (
             <div className="space-y-4">
               <div>
-                <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   Your Download History Log
                 </h4>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
                   Every guide you&apos;ve downloaded is permanently archived here for instant 1-click re-download.
                 </p>
               </div>
 
               {downloadHistory.length === 0 ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 space-y-3">
-                  <Download className="w-10 h-10 text-slate-400 mx-auto" />
-                  <p className="text-xs text-slate-500 font-medium">
+                <div className="text-center py-12 bg-[#F9FAFB] dark:bg-[#0F172A] rounded-2xl border border-[#E2E8F0] dark:border-[#334155] p-6 space-y-3">
+                  <Download className="w-10 h-10 text-[#64748B] dark:text-[#94A3B8] mx-auto" />
+                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-normal">
                     You have not downloaded any guides yet.
                   </p>
                   <button
                     onClick={() => setActiveTab('library')}
-                    className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
+                    className="px-4 py-2 rounded-xl bg-[#0F766E] text-white text-xs font-semibold"
                   >
                     Explore Free Library
                   </button>
@@ -292,17 +292,17 @@ export const CustomerDashboardModal: React.FC = () => {
                     return (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 gap-3"
+                        className="flex items-center justify-between p-3.5 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] gap-3"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                          <div className="w-9 h-9 rounded-xl bg-[#0F766E]/10 text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center shrink-0">
                             <Download className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
-                            <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                            <h5 className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] truncate">
                               {item.resourceTitle}
                             </h5>
-                            <div className="flex items-center gap-2 text-[11px] text-slate-500 mt-0.5">
+                            <div className="flex items-center gap-2 text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
                               <span>Downloaded: {item.downloadedAt}</span>
                               <span>•</span>
                               <span>{item.fileFormat}</span>
@@ -313,7 +313,7 @@ export const CustomerDashboardModal: React.FC = () => {
                         {resourceObj && (
                           <button
                             onClick={() => downloadResourceDoc(resourceObj)}
-                            className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1 shrink-0"
+                            className="px-3.5 py-1.5 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-all flex items-center gap-1 shrink-0"
                           >
                             <Download className="w-3.5 h-3.5" />
                             <span>Download Again</span>
@@ -331,18 +331,18 @@ export const CustomerDashboardModal: React.FC = () => {
           {activeTab === 'orders' && (
             <div className="space-y-4">
               <div>
-                <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   Purchase Orders & Tax Receipts
                 </h4>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
                   Detailed receipts for your transactions with Dr. Arif Chowdhury&apos;s academy.
                 </p>
               </div>
 
               {purchaseHistory.length === 0 ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 space-y-3">
-                  <Receipt className="w-10 h-10 text-slate-400 mx-auto" />
-                  <p className="text-xs text-slate-500 font-medium">
+                <div className="text-center py-12 bg-[#F9FAFB] dark:bg-[#0F172A] rounded-2xl border border-[#E2E8F0] dark:border-[#334155] p-6 space-y-3">
+                  <Receipt className="w-10 h-10 text-[#64748B] dark:text-[#94A3B8] mx-auto" />
+                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-normal">
                     No orders on record for this account.
                   </p>
                 </div>
@@ -351,22 +351,22 @@ export const CustomerDashboardModal: React.FC = () => {
                   {purchaseHistory.map(order => (
                     <div
                       key={order.orderId}
-                      className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3"
+                      className="p-5 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] space-y-3"
                     >
-                      <div className="flex flex-wrap items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3 gap-2">
+                      <div className="flex flex-wrap items-center justify-between border-b border-[#E2E8F0] dark:border-[#334155] pb-3 gap-2">
                         <div>
-                          <span className="text-xs font-bold font-mono text-emerald-600">
+                          <span className="text-xs font-semibold font-mono text-[#0F766E] dark:text-[#14B8A6]">
                             {order.orderId}
                           </span>
-                          <p className="text-[11px] text-slate-500 mt-0.5">
+                          <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
                             Date: {order.purchasedAt}
                           </p>
                         </div>
                         <div className="text-right">
-                          <span className="text-base font-extrabold text-slate-900 dark:text-white">
+                          <span className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                             {formatPrice(order.totalPaid)}
                           </span>
-                          <span className="text-[10px] block text-emerald-600 font-bold">
+                          <span className="text-[10px] block text-[#0F766E] dark:text-[#14B8A6] font-semibold">
                             PAID • INSTANT DISPATCH
                           </span>
                         </div>
@@ -377,18 +377,18 @@ export const CustomerDashboardModal: React.FC = () => {
                           const resObj = resources.find(r => r.id === it.resourceId);
                           return (
                             <div key={it.resourceId} className="flex items-center justify-between text-xs">
-                              <span className="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-sm">
+                              <span className="font-semibold text-[#1E293B] dark:text-[#E2E8F0] truncate max-w-sm">
                                 • {it.title}
                               </span>
                               {it.appointmentDate && it.appointmentTime ? (
-                                <span className="text-[11px] text-slate-500">
+                                <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">
                                   {it.appointmentDate} at {it.appointmentTime}
                                 </span>
                               ) : null}
                               {resObj && (
                                 <button
                                   onClick={() => downloadResourceDoc(resObj)}
-                                  className="text-emerald-600 hover:underline font-bold flex items-center gap-1 shrink-0"
+                                  className="text-[#0F766E] dark:text-[#14B8A6] hover:underline font-semibold flex items-center gap-1 shrink-0"
                                 >
                                   <Download className="w-3 h-3" />
                                   <span>Download PDF</span>
@@ -408,17 +408,17 @@ export const CustomerDashboardModal: React.FC = () => {
           {/* TAB 4: PATIENT PROFILE */}
           {activeTab === 'profile' && (
             <div className="space-y-6">
-              <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-800/60">
+              <section className="rounded-2xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] p-5">
                 <div className="mb-5 flex items-center justify-between gap-3">
                   <div>
-                    <h4 className="text-base font-bold text-slate-900 dark:text-white">Profile details</h4>
-                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Update your display name and profile photo.</p>
+                    <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">Profile details</h4>
+                    <p className="mt-1 text-xs text-[#64748B] dark:text-[#94A3B8]">Update your display name and profile photo.</p>
                   </div>
                   {!isEditingProfile && (
                     <button
                       type="button"
                       onClick={() => { setEditName(user.name); setProfileError(''); setProfileSaved(false); setIsEditingProfile(true); }}
-                      className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:text-emerald-400"
+                      className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] px-3 py-2 text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] transition hover:border-[#0F766E] hover:text-[#0F766E] dark:hover:text-[#14B8A6]"
                     >
                       <Pencil className="h-4 w-4" />
                       <span>Edit profile</span>
@@ -429,7 +429,7 @@ export const CustomerDashboardModal: React.FC = () => {
                 {isEditingProfile ? (
                   <form onSubmit={saveProfile} className="space-y-5">
                     <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-white bg-slate-200 shadow dark:border-slate-700 dark:bg-slate-700">
+                      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-white bg-[#E2E8F0]">
                         <Image
                           src={photoPreview || user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80'}
                           alt="Profile photo preview"
@@ -440,7 +440,7 @@ export const CustomerDashboardModal: React.FC = () => {
                         />
                       </div>
                       <div>
-                        <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:text-emerald-400">
+                        <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] px-3 py-2 text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] transition hover:border-[#0F766E] hover:text-[#0F766E] dark:hover:text-[#14B8A6]">
                           <Camera className="h-4 w-4" />
                           <span>Choose photo</span>
                           <input
@@ -455,12 +455,12 @@ export const CustomerDashboardModal: React.FC = () => {
                             }}
                           />
                         </label>
-                        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">JPG, PNG, or WebP. Maximum 5 MB.</p>
-                        {selectedPhoto ? <p className="mt-1 max-w-xs truncate text-xs text-slate-600 dark:text-slate-300">{selectedPhoto.name}</p> : null}
+                        <p className="mt-2 text-xs text-[#64748B] dark:text-[#94A3B8]">JPG, PNG, or WebP. Maximum 5 MB.</p>
+                        {selectedPhoto ? <p className="mt-1 max-w-xs truncate text-xs text-[#64748B] dark:text-[#94A3B8]">{selectedPhoto.name}</p> : null}
                       </div>
                     </div>
 
-                    <label className="block max-w-xl text-sm font-medium text-slate-700 dark:text-slate-200">
+                    <label className="block max-w-xl text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                       Display name
                       <input
                         type="text"
@@ -468,16 +468,16 @@ export const CustomerDashboardModal: React.FC = () => {
                         onChange={(event) => setEditName(event.target.value)}
                         maxLength={80}
                         required
-                        className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-emerald-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                        className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] px-3 py-2.5 text-sm outline-none focus:border-[#0F766E]"
                       />
                     </label>
 
-                    {profileError ? <p role="alert" className="text-sm text-rose-600 dark:text-rose-400">{profileError}</p> : null}
+                    {profileError ? <p role="alert" className="text-sm text-[#1E293B] dark:text-[#E2E8F0]">{profileError}</p> : null}
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="submit"
                         disabled={profileSaving}
-                        className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="inline-flex items-center gap-2 rounded-xl bg-[#0F766E] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#115E59] disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         <Save className="h-4 w-4" />
                         <span>{profileSaving ? 'Saving…' : 'Save changes'}</span>
@@ -486,7 +486,7 @@ export const CustomerDashboardModal: React.FC = () => {
                         type="button"
                         disabled={profileSaving}
                         onClick={cancelProfileEdit}
-                        className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-700"
+                        className="rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] px-4 py-2.5 text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] transition hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] disabled:opacity-60"
                       >
                         Cancel
                       </button>
@@ -494,7 +494,7 @@ export const CustomerDashboardModal: React.FC = () => {
                   </form>
                 ) : (
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-white bg-slate-200 shadow dark:border-slate-700 dark:bg-slate-700">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-white bg-[#E2E8F0]">
                       <Image
                         src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80'}
                         alt={user.name}
@@ -505,41 +505,41 @@ export const CustomerDashboardModal: React.FC = () => {
                       />
                     </div>
                     <div className="min-w-0">
-                      <p className="wrap-break-word text-lg font-bold text-slate-900 dark:text-white">{user.name}</p>
-                      <p className="break-all text-sm text-slate-500 dark:text-slate-400">{user.email}</p>
-                      {profileSaved ? <p role="status" className="mt-2 text-sm font-medium text-emerald-700 dark:text-emerald-400">Profile updated.</p> : null}
+                      <p className="wrap-break-word text-lg font-semibold text-[#1E293B] dark:text-[#E2E8F0]">{user.name}</p>
+                      <p className="break-all text-sm text-[#64748B] dark:text-[#94A3B8]">{user.email}</p>
+                      {profileSaved ? <p role="status" className="mt-2 text-sm font-normal text-[#0F766E] dark:text-[#14B8A6]">Profile updated.</p> : null}
                     </div>
                   </div>
                 )}
               </section>
 
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-4">
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <div className="p-5 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] space-y-4">
+                <h4 className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
                   <span>Verified Medical Account Status</span>
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <span className="text-slate-500 block">Full Name:</span>
-                    <span className="font-bold text-slate-900 dark:text-white">{user.name}</span>
+                    <span className="text-[#64748B] dark:text-[#94A3B8] block">Full Name:</span>
+                    <span className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">{user.name}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block">Registered Email:</span>
-                    <span className="font-bold text-slate-900 dark:text-white">{user.email}</span>
+                    <span className="text-[#64748B] dark:text-[#94A3B8] block">Registered Email:</span>
+                    <span className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">{user.email}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block">Account Tier:</span>
-                    <span className="font-bold text-emerald-600">Full Access Patient & Student</span>
+                    <span className="text-[#64748B] dark:text-[#94A3B8] block">Account Tier:</span>
+                    <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6]">Full Access Patient & Student</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block">Member Since:</span>
-                    <span className="font-bold text-slate-900 dark:text-white">{user.createdAt}</span>
+                    <span className="text-[#64748B] dark:text-[#94A3B8] block">Member Since:</span>
+                    <span className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">{user.createdAt}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+              <div className="p-4 rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] text-xs text-[#1E293B] dark:text-[#E2E8F0] leading-relaxed">
                 🩺 <strong>Need to consult with Dr. Arif Chowdhury?</strong> You can schedule a 1-on-1 virtual medical audit at any time with direct video consultation.
               </div>
 
@@ -548,7 +548,7 @@ export const CustomerDashboardModal: React.FC = () => {
                   onClick={() => {
                     logout();
                   }}
-                  className="px-4 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 text-xs font-bold transition-colors flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-[#F1F5F9] dark:bg-[#1E293B] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold transition-colors flex items-center gap-1.5"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   <span>Log Out of My Account</span>
@@ -556,7 +556,7 @@ export const CustomerDashboardModal: React.FC = () => {
 
                 <button
                   onClick={() => setIsCustomerDashboardOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold"
+                  className="px-5 py-2.5 rounded-xl bg-[#1E293B] text-white text-xs font-semibold"
                 >
                   Close Dashboard
                 </button>

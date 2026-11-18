@@ -7,8 +7,8 @@ $tokenPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureTok
 try {
   $accessToken = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($tokenPointer)
   $template = @{
-    mailer_subjects_confirmation = 'Your Zelovita verification code'
-    mailer_templates_confirmation_content = '<h2>Confirm your email</h2><p>Enter this 6-digit code in the Zelovita signup screen:</p><p style="font-size:28px;font-weight:bold;letter-spacing:6px">{{ .Token }}</p><p>This code expires according to your Supabase Auth email OTP settings.</p>'
+    mailer_subjects_confirmation = 'Your ConciousLivin verification code'
+    mailer_templates_confirmation_content = '<h2>Confirm your email</h2><p>Enter this 6-digit code in the ConciousLivin signup screen:</p><p style="font-size:28px;font-weight:bold;letter-spacing:6px">{{ .Token }}</p><p>This code expires according to your Supabase Auth email OTP settings.</p>'
   } | ConvertTo-Json -Compress
 
   Invoke-RestMethod `

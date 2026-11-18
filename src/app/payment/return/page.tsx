@@ -63,29 +63,29 @@ function PaymentReturnContent() {
 
   return (
     <main className="flex min-h-[70vh] items-center justify-center px-4 py-16">
-      <section className="w-full max-w-xl rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        {state === 'loading' ? <LoaderCircle className="mx-auto h-10 w-10 animate-spin text-emerald-600" /> : null}
-        {state === 'success' ? <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-600" /> : null}
-        {state === 'error' ? <CircleAlert className="mx-auto h-10 w-10 text-rose-600" /> : null}
-        <h1 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
+      <section className="w-full max-w-xl rounded-2xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] p-8 text-center">
+        {state === 'loading' ? <LoaderCircle className="mx-auto h-10 w-10 text-[#0F766E] dark:text-[#14B8A6]" /> : null}
+        {state === 'success' ? <CheckCircle2 className="mx-auto h-10 w-10 text-[#0F766E] dark:text-[#14B8A6]" /> : null}
+        {state === 'error' ? <CircleAlert className="mx-auto h-10 w-10 text-[#1E293B] dark:text-[#E2E8F0]" /> : null}
+        <h1 className="mt-4 text-2xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
           {state === 'loading' ? 'Confirming payment' : state === 'success' ? 'Payment complete' : 'Payment needs attention'}
         </h1>
-        <p role="status" className="mt-3 text-sm text-slate-600 dark:text-slate-300">{message}</p>
+        <p role="status" className="mt-3 text-sm text-[#64748B] dark:text-[#94A3B8]">{message}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {state === 'success' ? (
             <button
               onClick={() => setIsCustomerDashboardOpen(true)}
-              className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-700"
+              className="rounded-xl bg-[#0F766E] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#115E59]"
             >
               View purchase history
             </button>
           ) : null}
-          <Link href="/guides" className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
+          <Link href="/guides" className="rounded-xl border border-[#E2E8F0] dark:border-[#334155] px-4 py-2.5 text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#F9FAFB] dark:hover:bg-[#0F172A]">
             Return to health guides
           </Link>
         </div>
         {state === 'error' ? (
-          <p className="mt-5 text-xs text-slate-500">Do not pay again if your PayPal activity already shows a completed charge. Contact support with your PayPal receipt.</p>
+          <p className="mt-5 text-xs text-[#64748B] dark:text-[#94A3B8]">Do not pay again if your PayPal activity already shows a completed charge. Contact support with your PayPal receipt.</p>
         ) : null}
       </section>
     </main>

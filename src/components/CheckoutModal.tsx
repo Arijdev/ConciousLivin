@@ -83,19 +83,19 @@ export const CheckoutModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 my-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#1E293B] animate-fadeIn overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl overflow-hidden border border-[#E2E8F0] dark:border-[#334155] my-auto">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-slate-900 text-white border-b border-slate-800">
+        <div className="flex items-center justify-between px-6 py-4 bg-[#1E293B] text-white border-b border-[#E2E8F0] dark:border-[#334155]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#0F766E]/20 text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center">
               <Lock className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-base font-bold">Secure PayPal Checkout</h3>
-              <p className="text-xs text-slate-400">
-                Dr. Arif Chowdhury — Zelovita Health Academy
+              <h3 className="text-base font-semibold">Secure PayPal Checkout</h3>
+              <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+                Dr. Arif Chowdhury — ConciousLivin Health Academy
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@ export const CheckoutModal: React.FC = () => {
           <button
             onClick={handleClose}
             aria-label="Close checkout"
-            className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -114,14 +114,14 @@ export const CheckoutModal: React.FC = () => {
             
             {/* Customer Information */}
             <div className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                <Mail className="w-4 h-4 text-emerald-500" />
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1.5">
+                <Mail className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
                 <span>1. Digital Delivery Details</span>
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
                     Full Name
                   </label>
                   <input
@@ -129,13 +129,13 @@ export const CheckoutModal: React.FC = () => {
                     required
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] focus:ring-2 focus:ring-[#0F766E] outline-none"
                     placeholder="e.g. Alex Rahman"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
                     Email for Instant PDF Delivery
                   </label>
                   <input
@@ -143,7 +143,7 @@ export const CheckoutModal: React.FC = () => {
                     required
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] focus:ring-2 focus:ring-[#0F766E] outline-none"
                     placeholder="alex@example.com"
                   />
                 </div>
@@ -151,46 +151,46 @@ export const CheckoutModal: React.FC = () => {
             </div>
 
             {/* Payment Method Selector */}
-            <div className="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                <CreditCard className="w-4 h-4 text-emerald-500" />
+            <div className="space-y-4 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1.5">
+                <CreditCard className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
                 <span>2. Pay securely with PayPal</span>
               </h4>
 
-              <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-700 dark:bg-slate-800">
-                <Globe className="h-5 w-5 shrink-0 text-blue-600" />
+              <div className="flex items-center gap-3 rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] p-4 text-sm">
+                <Globe className="h-5 w-5 shrink-0 text-[#1E293B] dark:text-[#E2E8F0]" />
                 <div>
-                  <p className="font-bold text-slate-800 dark:text-slate-100">PayPal</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Secure payment approval through your PayPal account.</p>
+                  <p className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">PayPal</p>
+                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">Secure payment approval through your PayPal account.</p>
                 </div>
               </div>
             </div>
 
             {paymentError && (
-              <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
+              <p role="alert" className="rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F1F5F9] dark:bg-[#1E293B] px-4 py-3 text-sm text-[#1E293B] dark:text-[#E2E8F0]">
                 {paymentError}
               </p>
             )}
 
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
               Local currency is an estimate. PayPal currently charges the order in USD ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total)}).
             </p>
 
             {/* Order Summary Pill */}
-            <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 space-y-2">
-              <div className="flex justify-between items-center text-xs text-slate-700 dark:text-slate-300">
+            <div className="p-4 rounded-2xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] space-y-2">
+              <div className="flex justify-between items-center text-xs text-[#1E293B] dark:text-[#E2E8F0]">
                 <span>Items in Order:</span>
-                <span className="font-bold">{cart.length} eBooks / Guides</span>
+                <span className="font-semibold">{cart.length} eBooks / Guides</span>
               </div>
               {appliedCoupon && (
-                <div className="flex justify-between items-center text-xs text-emerald-700 dark:text-emerald-400 font-semibold">
+                <div className="flex justify-between items-center text-xs text-[#0F766E] dark:text-[#14B8A6] font-semibold">
                   <span>Coupon ({appliedCoupon.code}):</span>
                   <span>-{formatPrice(discountAmount)}</span>
                 </div>
               )}
-              <div className="flex justify-between items-center text-sm font-extrabold text-slate-900 dark:text-white pt-2 border-t border-emerald-200 dark:border-emerald-800">
+              <div className="flex justify-between items-center text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] pt-2 border-t border-[#0F766E]">
                 <span>Total Amount Due:</span>
-                <span className="text-emerald-600 dark:text-emerald-400 text-base">{formatPrice(total)}</span>
+                <span className="text-[#0F766E] dark:text-[#14B8A6] text-base">{formatPrice(total)}</span>
               </div>
             </div>
 
@@ -198,16 +198,16 @@ export const CheckoutModal: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white font-bold text-sm shadow-xl shadow-emerald-600/30 active:scale-98 transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-2xl bg-[#1E293B] hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2"
             >
               <Lock className="w-4 h-4" />
               <span>{isSubmitting ? 'Connecting to PayPal…' : `Continue to PayPal (${formatPrice(total)})`}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400 font-medium pt-1">
+            <div className="flex items-center justify-center gap-4 text-[11px] text-[#64748B] dark:text-[#94A3B8] font-normal pt-1">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#0F766E] dark:text-[#14B8A6]" />
                 256-Bit SSL Encrypted
               </span>
               <span>•</span>

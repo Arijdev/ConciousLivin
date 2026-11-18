@@ -112,40 +112,40 @@ export const HealthQuiz: React.FC = () => {
   const currentQ = QUIZ_QUESTIONS[currentStep];
 
   return (
-    <section id="quiz" className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 scroll-mt-20">
+    <section id="quiz" className="py-20 bg-[#F9FAFB] dark:bg-[#0F172A] border-t border-[#E2E8F0] dark:border-[#334155] scroll-mt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center space-y-3 mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F1F5F9] dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
             <span>DR. ARIF'S 60-SECOND HEALTH ASSESSMENT</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] tracking-tight">
             Discover Your Personalized Wellness Protocol
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+          <p className="text-[#64748B] dark:text-[#94A3B8] text-sm sm:text-base max-w-xl mx-auto">
             Answer 5 quick clinical questions to diagnose your metabolic profile and uncover the optimal guide tailored to your unique biology.
           </p>
         </div>
 
         {/* Quiz Card Box */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] dark:border-[#334155]">
           
           {!isFinished ? (
             <div className="space-y-6">
               
               {/* Progress Bar */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs font-semibold text-slate-500 dark:text-slate-400">
+                <div className="flex justify-between items-center text-xs font-semibold text-[#64748B] dark:text-[#94A3B8]">
                   <span>Question {currentStep + 1} of {QUIZ_QUESTIONS.length}</span>
-                  <span className="font-bold text-emerald-600">
+                  <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6]">
                     {Math.round(((currentStep + 1) / QUIZ_QUESTIONS.length) * 100)}% Completed
                   </span>
                 </div>
-                <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-[#F1F5F9] dark:bg-[#1E293B] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300"
+                    className="h-full bg-[#0F766E] transition-all duration-300"
                     style={{ width: `${((currentStep + 1) / QUIZ_QUESTIONS.length) * 100}%` }}
                   />
                 </div>
@@ -153,10 +153,10 @@ export const HealthQuiz: React.FC = () => {
 
               {/* Question Text */}
               <div className="space-y-1.5 pt-2">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   {currentQ.question}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-xs sm:text-sm text-[#64748B] dark:text-[#94A3B8]">
                   {currentQ.subtitle}
                 </p>
               </div>
@@ -169,12 +169,12 @@ export const HealthQuiz: React.FC = () => {
                     <button
                       key={idx}
                       onClick={() => handleSelectOption(opt.points)}
-                      className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50 hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-left transition-all duration-200 flex items-start gap-3 group"
+                      className="p-4 rounded-2xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A]/70 hover:border-[#0F766E] hover:bg-[#E6F4F1] dark:hover:bg-[#134E4A]/50 text-left transition-all duration-200 flex items-start gap-3 group"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center shrink-0 group-hover:bg-[#0F766E] group-hover:text-white transition-colors">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-900 dark:group-hover:text-emerald-200 leading-snug pt-1">
+                      <span className="text-xs sm:text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] group-hover:text-[#0F766E] dark:hover:text-[#14B8A6] leading-snug pt-1">
                         {opt.text}
                       </span>
                     </button>
@@ -189,13 +189,13 @@ export const HealthQuiz: React.FC = () => {
               
               {/* Result Header */}
               <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full bg-[#0F766E]/10 text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center mx-auto">
                   <Award className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                <h3 className="text-2xl sm:text-3xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   Your Personalized Health Blueprint is Ready
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-[#64748B] dark:text-[#94A3B8] max-w-md mx-auto">
                   Based on your metabolic audit, Dr. Arif Chowdhury recommends the following primary protocol for rapid results:
                 </p>
               </div>
@@ -204,24 +204,24 @@ export const HealthQuiz: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 {/* 1. Free Recommended Guide */}
-                <div className="p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex flex-col justify-between space-y-4">
+                <div className="p-5 rounded-2xl bg-[#E6F4F1] dark:bg-[#134E4A]/70 border border-[#0F766E] flex flex-col justify-between space-y-4">
                   <div>
-                    <div className="inline-block px-2.5 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-extrabold uppercase mb-2">
+                    <div className="inline-block px-2.5 py-0.5 rounded-full bg-[#0F766E] text-white text-[10px] font-semibold uppercase mb-2">
                       FREE FOUNDATIONAL COMPONENT
                     </div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <h4 className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                       {recommendedFreeResource.title}
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    <p className="text-xs text-[#64748B] dark:text-[#94A3B8] mt-1 line-clamp-2">
                       {recommendedFreeResource.subtitle}
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
-                    <span className="text-xs font-bold text-emerald-600">100% FREE</span>
+                    <span className="text-xs font-semibold text-[#0F766E] dark:text-[#14B8A6]">100% FREE</span>
                     <button
                       onClick={() => openReader(recommendedFreeResource)}
-                      className="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors"
+                      className="px-3.5 py-1.5 rounded-xl bg-[#0F766E] text-white text-xs font-semibold hover:bg-[#115E59] transition-colors"
                     >
                       Read Now
                     </button>
@@ -229,26 +229,26 @@ export const HealthQuiz: React.FC = () => {
                 </div>
 
                 {/* 2. Premium Recommended Masterclass */}
-                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex flex-col justify-between space-y-4">
+                <div className="p-5 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] flex flex-col justify-between space-y-4">
                   <div>
-                    <div className="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-amber-300 text-[10px] font-extrabold uppercase mb-2">
+                    <div className="inline-block px-2.5 py-0.5 rounded-full bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-[10px] font-semibold uppercase mb-2">
                       RECOMMENDED CLINICAL MASTERCLASS
                     </div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <h4 className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                       {recommendedPaidResource.title}
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    <p className="text-xs text-[#64748B] dark:text-[#94A3B8] mt-1 line-clamp-2">
                       {recommendedPaidResource.subtitle}
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
-                    <span className="text-sm font-bold text-slate-900 dark:text-white">
+                    <span className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                       {formatPrice(recommendedPaidResource.price)}
                     </span>
                     <button
                       onClick={() => addToCart(recommendedPaidResource)}
-                      className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold hover:from-emerald-700 transition-colors shadow-sm flex items-center gap-1"
+                      className="px-3.5 py-1.5 rounded-xl bg-[#0F766E] text-white text-xs font-semibold hover: transition-colors flex items-center gap-1"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />
                       <span>Add to Cart</span>
@@ -262,7 +262,7 @@ export const HealthQuiz: React.FC = () => {
               <div className="text-center pt-2">
                 <button
                   onClick={handleReset}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Retake Health Quiz</span>

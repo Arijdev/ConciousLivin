@@ -74,17 +74,3 @@ export function getPasswordStrengthLabel(score: number): string {
   if (score <= 4) return 'Good';
   return 'Strong';
 }
-
-export function getPasswordStrengthColor(score: number): string {
-  if (score <= 2) return 'text-red-500';
-  if (score <= 3) return 'text-yellow-500';
-  if (score <= 4) return 'text-blue-500';
-  return 'text-green-500';
-}
-
-export function getPasswordStrengthBgColor(score: number): string {
-  if (score <= 2) return 'bg-red-500';
-  if (score <= 3) return 'bg-yellow-500';
-  if (score <= 4) return 'bg-blue-500';
-  return 'bg-green-500';
-}

@@ -113,7 +113,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const saveResourcesToStorage = (newList: HealthResource[]) => {
     setResources(newList);
     try {
-      localStorage.setItem('zelovita_resources', JSON.stringify(newList));
+      localStorage.setItem('conciouslivin_resources', JSON.stringify(newList));
     } catch (e) {
       console.error('Error saving resources', e);
     }
@@ -141,17 +141,17 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     try {
-      const savedCart = localStorage.getItem('zelovita_cart');
+      const savedCart = localStorage.getItem('conciouslivin_cart');
       if (savedCart) setCart(JSON.parse(savedCart));
 
-      const savedUnlocked = localStorage.getItem('zelovita_unlocked');
+      const savedUnlocked = localStorage.getItem('conciouslivin_unlocked');
       if (savedUnlocked) {
         setUnlockedResources(JSON.parse(savedUnlocked));
       } else {
         // Automatically unlock all free guides by default
         const freeIds = HEALTH_RESOURCES.filter(r => r.isFree).map(r => r.id);
         setUnlockedResources(freeIds);
-        localStorage.setItem('zelovita_unlocked', JSON.stringify(freeIds));
+        localStorage.setItem('conciouslivin_unlocked', JSON.stringify(freeIds));
       }
     } catch (e) {
       console.error('Error loading cart from storage', e);
@@ -172,7 +172,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Save cart changes
   useEffect(() => {
     try {
-      localStorage.setItem('zelovita_cart', JSON.stringify(cart));
+      localStorage.setItem('conciouslivin_cart', JSON.stringify(cart));
     } catch (e) {
       console.error('Error saving cart to storage', e);
     }
@@ -182,7 +182,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   useEffect(() => {
     try {
       if (unlockedResources.length > 0) {
-        localStorage.setItem('zelovita_unlocked', JSON.stringify(unlockedResources));
+        localStorage.setItem('conciouslivin_unlocked', JSON.stringify(unlockedResources));
       }
     } catch (e) {
       console.error('Error saving unlocked resources', e);
@@ -349,7 +349,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       recordDownload(resource);
       unlockResource(resource.id);
-      addToast('Download Started!', `"${resource.title}" PDF is opening from Zelovita Vault.`, 'success');
+      addToast('Download Started!', `"${resource.title}" PDF is opening from ConciousLivin Vault.`, 'success');
       return;
     }
 
@@ -358,7 +358,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
-        <title>${resource.title} — Dr. Arif Chowdhury (Zelovita Health Academy)</title>
+        <title>${resource.title} — Dr. Arif Chowdhury (ConciousLivin Health Academy)</title>
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
           body {
@@ -456,7 +456,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       </head>
       <body>
         <div class="header">
-          <div class="badge">ZELOVITA HEALTH ACADEMY • OFFICIAL CLINICAL GUIDE</div>
+          <div class="badge">ConciousLivin HEALTH ACADEMY • OFFICIAL CLINICAL GUIDE</div>
           <h1 class="title">${resource.title}</h1>
           <div class="subtitle">${resource.subtitle}</div>
           <div class="author">Authored by Dr. Arif Chowdhury, MBBS, M.S. Clinical Nutrition</div>
@@ -504,7 +504,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         <div class="footer">
           <p><strong>Medical Disclaimer:</strong> This publication is for educational purposes and is not a substitute for individualized clinical diagnosis. Always consult your qualified healthcare practitioner before implementing new protocols.</p>
-          <p>© ${new Date().getFullYear()} Zelovita Health Academy — Dr. Arif Chowdhury. All Rights Reserved.</p>
+          <p>© ${new Date().getFullYear()} ConciousLivin Health Academy — Dr. Arif Chowdhury. All Rights Reserved.</p>
         </div>
       </body>
       </html>

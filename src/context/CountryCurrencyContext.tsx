@@ -109,8 +109,8 @@ export function CountryCurrencyProvider({ children }: { children: ReactNode }) {
   const countryConfig = COUNTRY_CURRENCIES.find((item) => item.country === selectedCountry) || COUNTRY_CURRENCIES[0];
 
   useEffect(() => {
-    const manualCountry = localStorage.getItem('zelovita_country_manual');
-    const savedCountry = localStorage.getItem('zelovita_country');
+    const manualCountry = localStorage.getItem('conciouslivin_country_manual');
+    const savedCountry = localStorage.getItem('conciouslivin_country');
     const detectedCountry = detectBrowserCountry();
     const preferredCountry = manualCountry || detectedCountry || savedCountry;
     if (preferredCountry && COUNTRY_CURRENCIES.some((item) => item.country === preferredCountry)) {
@@ -121,13 +121,13 @@ export function CountryCurrencyProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (hasLoadedPreference) {
-      localStorage.setItem('zelovita_country', selectedCountry);
+      localStorage.setItem('conciouslivin_country', selectedCountry);
     }
   }, [hasLoadedPreference, selectedCountry]);
 
   const chooseCountry = (country: string) => {
     if (COUNTRY_CURRENCIES.some((item) => item.country === country)) {
-      localStorage.setItem('zelovita_country_manual', country);
+      localStorage.setItem('conciouslivin_country_manual', country);
       setSelectedCountry(country);
     }
   };

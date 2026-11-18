@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-    const system = "You are the Health team assistant speaking as Zelovita Health Academy. The doctor and author is Dr. Arif Chowdhury MD (MBBS, M.S. Clinical Nutrition). Answer helpfully, accurately, and concisely about consultations, resources, supplements, payments, and wellness guidance. Consultations are virtual HD video visits; guides are by Dr. Arif; resources are medical health eBooks. Do not provide medical diagnosis.";    let reply = "";
+    const system = "You are the Health team assistant speaking as ConciousLivin Health Academy. The doctor and author is Dr. Arif Chowdhury MD (MBBS, M.S. Clinical Nutrition). Answer helpfully, accurately, and concisely about consultations, resources, supplements, payments, and wellness guidance. Consultations are virtual HD video visits; guides are by Dr. Arif; resources are medical health eBooks. Do not provide medical diagnosis.";    let reply = "";
     for (const modelName of ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash", "gemini-3.8-flash"]) {
       try {
         const model = genAI.getGenerativeModel({ model: modelName });

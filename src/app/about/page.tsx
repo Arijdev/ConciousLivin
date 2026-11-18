@@ -33,19 +33,19 @@ const philosophy = [
 
 export default function AboutPage() {
   return (
-    <section className="py-20 bg-slate-50 dark:bg-slate-950/50 min-h-screen">
+    <section className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A] pt-28 pb-20 sm:pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F1F5F9] dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5" />
             <span>ABOUT DR. ARIF CHOWDHURY MD</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] tracking-tight">
             Clinical Excellence Meets Root Cause Medicine
           </h1>
-          <p className="text-slate-600 dark:text-slate-300 text-lg">
+          <p className="text-[#64748B] dark:text-[#94A3B8] text-lg">
             Bridging conventional internal medicine with cutting-edge functional nutrition for sustainable health transformation.
           </p>
         </div>
@@ -53,10 +53,10 @@ export default function AboutPage() {
         {/* Credentials */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-16">
           {credentials.map((item, i) => (
-            <div key={i} className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center hover:border-amber-500/50 transition-colors">
-              <item.icon className="w-6 h-6 text-amber-600 mx-auto mb-2" />
-              <h3 className="font-bold text-slate-900 dark:text-white">{item.title}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{item.desc}</p>
+            <div key={i} className="p-5 rounded-xl bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] text-center hover:border-[#E2E8F0] dark:hover:border-[#334155] transition-colors">
+              <item.icon className="w-6 h-6 text-[#1E293B] dark:text-[#E2E8F0] mx-auto mb-2" />
+              <h3 className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">{item.title}</h3>
+              <p className="text-sm text-[#64748B] dark:text-[#94A3B8] mt-1">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -64,28 +64,28 @@ export default function AboutPage() {
         {/* Clinical Philosophy */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h2 className="text-3xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
               Clinical Philosophy
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 mt-2">
+            <p className="text-[#64748B] dark:text-[#94A3B8] mt-2">
               Six pillars that guide every patient interaction and protocol design
             </p>
           </div>
           <div className="space-y-4">
             {philosophy.map((item, i) => (
-              <div key={i} className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-950/30 flex items-center justify-center">
-                  <span className="text-amber-600 dark:text-amber-400 font-bold text-lg">{i + 1}</span>
+              <div key={i} className="p-5 rounded-xl bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#F1F5F9] dark:bg-[#1E293B] flex items-center justify-center">
+                  <span className="text-[#1E293B] dark:text-[#E2E8F0] font-semibold text-lg">{i + 1}</span>
                 </div>
-                <p className="text-slate-700 dark:text-slate-300 pt-1">{item}</p>
+                <p className="text-[#1E293B] dark:text-[#E2E8F0] pt-1">{item}</p>
               </div>
             ))}
           </div>
         </div>
-
-        {/* About Doctor Component */}
-        <AboutDoctor />
       </div>
+
+      {/* About Doctor Component */}
+      <AboutDoctor />
     </section>
   );
 }

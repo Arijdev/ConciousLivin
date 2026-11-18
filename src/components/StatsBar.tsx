@@ -47,24 +47,24 @@ export const StatsBar: React.FC<StatsBarProps> = ({ stats: customStats }) => {
   const stats = customStats || defaultStats;
 
   return (
-    <section className="border-y border-slate-200/80 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/30 py-10">
+    <section className="border-y border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A]/50 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center text-center p-4 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/50 dark:border-slate-800/50 hover:border-emerald-500/40 transition-all duration-300 group"
+                className="flex flex-col items-center text-center p-4 rounded-2xl bg-white/60 border border-[#E2E8F0] dark:border-[#334155] hover:border-[#0F766E] transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center mb-3 group-hover:bg-[#0F766E] group-hover:text-white transition-all">
                   <stat.icon className="w-6 h-6" />
                 </div>
-                <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <span className="text-2xl sm:text-3xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] tracking-tight">
                   {stat.value}
                 </span>
-                <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-1">
+                <span className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] mt-1">
                   {stat.label}
                 </span>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                <span className="text-xs text-[#64748B] dark:text-[#94A3B8] mt-0.5">
                   {stat.desc}
                 </span>
               </div>

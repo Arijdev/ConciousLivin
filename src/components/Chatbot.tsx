@@ -53,25 +53,25 @@ export function Chatbot() {
   return (
     <div className="fixed bottom-5 right-5 z-50">
       {open && (
-        <div className="mb-3 w-80 rounded-2xl border border-slate-200 bg-white shadow-xl">
-          <div className="flex items-center justify-between rounded-t-2xl bg-emerald-600 px-4 py-2 text-white">
-            <span className="text-sm font-medium">Health Team</span>
+        <div className="mb-3 w-80 rounded-2xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B]">
+          <div className="flex items-center justify-between rounded-t-2xl bg-[#0F766E] px-4 py-2 text-white">
+            <span className="text-sm font-normal">Health Team</span>
             <button onClick={() => setOpen(false)}>✕</button>
           </div>
           <div className="h-64 overflow-y-auto px-3 py-2 text-sm">
             {msgs.map((m, i) => (
               <div key={i} className={`mb-2 ${m.role === 'user' ? 'text-right' : ''}`}>
-                <span className={`inline-block rounded-lg px-3 py-2 ${m.role === 'user' ? 'bg-emerald-100' : 'bg-slate-100'}`}>{m.text}</span>
+                <span className={`inline-block rounded-lg px-3 py-2 ${m.role === 'user' ? 'bg-[#E6F4F1] dark:bg-[#134E4A]' : 'bg-[#F1F5F9] dark:bg-[#1E293B]'}`}>{m.text}</span>
               </div>
             ))}
           </div>
           <div className="flex gap-2 border-t px-3 py-2">
             <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') send(); }} className="flex-1 rounded-lg border px-3 py-2 text-sm" placeholder="Type a question..." />
-            <button onClick={send} className="rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white">Send</button>
+            <button onClick={send} className="rounded-lg bg-[#0F766E] px-3 py-2 text-sm text-white">Send</button>
           </div>
         </div>
       )}
-      <button onClick={() => setOpen(!open)} className="h-14 w-14 rounded-full bg-emerald-600 text-2xl text-white shadow-xl">💬</button>
+      <button onClick={() => setOpen(!open)} className="h-14 w-14 rounded-full bg-[#0F766E] text-2xl text-white">💬</button>
     </div>
   );
 }

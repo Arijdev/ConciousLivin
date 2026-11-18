@@ -1,5 +1,5 @@
 -- =====================================================================
--- ZELOVITA HEALTH ACADEMY — SUPABASE DATABASE SETUP
+-- ConciousLivin HEALTH ACADEMY — SUPABASE DATABASE SETUP
 -- Copy and run this in your Supabase SQL Editor (https://supabase.com/dashboard/project/YOUR_PROJECT_ID/sql/new)
 -- =====================================================================
 
@@ -265,4 +265,4 @@ CREATE POLICY "Doctors can upload thumbnails" ON storage.objects
 -- 9. TO MAKE AN ACCOUNT A DOCTOR:
 -- After Dr. Arif registers with his email, run:
 -- ===========================
--- UPDATE public.profiles SET role = 'doctor' WHERE email = 'dr.arif@zelovita.health';
+-- UPDATE public.profiles SET role = 'doctor' WHERE email = 'dr.arif@conciouslivin.in';

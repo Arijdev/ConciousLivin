@@ -143,7 +143,7 @@ export async function POST(request: NextRequest) {
           amount: { currency_code: 'USD', value: amount.toFixed(2) },
         }],
         application_context: {
-          brand_name: 'Zelovita Health Academy',
+          brand_name: 'ConciousLivin Health Academy',
           user_action: 'PAY_NOW',
           return_url: `${origin}/payment/return?draft_id=${paymentDraft.id}`,
           cancel_url: `${origin}/payment/cancel?draft_id=${paymentDraft.id}`,

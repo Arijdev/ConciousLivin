@@ -11,7 +11,7 @@ type AuthTab = 'customer-login' | 'customer-register' | 'doctor-login' | 'reset-
 
 // Tracks which recovery session has already been completed so the
 // set-new-password form isn't re-opened after the user finishes.
-const PASSWORD_RESET_GUARD_KEY = 'zelovita_password_reset_handled_at';
+const PASSWORD_RESET_GUARD_KEY = 'conciouslivin_password_reset_handled_at';
 
 // Snapshot of auth params in the URL at module load. The Supabase client
 // processes a recovery redirect (PKCE ?code= / hash tokens) during init and

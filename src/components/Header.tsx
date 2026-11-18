@@ -49,9 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
   }, []);
 
   useEffect(() => {
-    // Check local storage for user's explicit preference; default to clean Light Mode
-    const savedTheme = localStorage.getItem('zelovita_theme');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    const savedTheme = localStorage.getItem('conciouslivin_theme');
     if (savedTheme === 'dark') {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -64,11 +62,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
   const toggleTheme = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('zelovita_theme', 'light');
+      localStorage.setItem('conciouslivin_theme', 'light');
       setIsDarkMode(false);
     } else {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('zelovita_theme', 'dark');
+      localStorage.setItem('conciouslivin_theme', 'dark');
       setIsDarkMode(true);
     }
   };
@@ -90,17 +88,17 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
           {/* Backdrop */}
           <div
             onClick={() => setIsMobileMenuOpen(false)}
-            className="xl:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 animate-fadeIn"
+            className="xl:hidden fixed inset-0 bg-[#1E293B] z-40 animate-fadeIn"
           />
           {/* Drawer - Full Screen on Mobile */}
-          <div className="xl:hidden fixed inset-0 z-50 bg-white dark:bg-slate-950 shadow-2xl animate-slideInRight overflow-y-auto flex flex-col">
+          <div className="xl:hidden fixed inset-0 z-50 bg-white dark:bg-[#0F172A] animate-slideInRight overflow-y-auto flex flex-col">
             <div className="p-4 pb-6 space-y-3 flex-1">
               {/* Close button at top */}
               <div className="flex justify-end mb-2">
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   aria-label="Close menu"
-                  className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  className="p-2 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -111,9 +109,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                   setIsMobileMenuOpen(false);
                   onOpenSearch();
                 }}
-                className="flex w-full items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-left text-sm font-semibold text-slate-700 dark:border-slate-800 dark:text-slate-200"
+                className="flex w-full items-center gap-3 rounded-xl border border-[#E2E8F0] dark:border-[#334155] px-4 py-3 text-left text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#F9FAFB] dark:hover:bg-[#0F172A]"
               >
-                <Search className="h-4 w-4 text-emerald-600" />
+                <Search className="h-4 w-4 text-[#0F766E] dark:text-[#14B8A6]" />
                 <span>Search health guides and articles</span>
               </button>
               
@@ -124,19 +122,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
+                    className="block px-4 py-3 rounded-xl text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#F9FAFB] dark:hover:bg-[#0F172A] transition-colors"
                   >
                     {link.name}
                   </a>
                 ))}
               </nav>
 
-              <label className="block px-4 pt-3 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <label className="block px-4 pt-3 text-xs font-semibold text-[#64748B] dark:text-[#94A3B8]">
                 Country / currency
                 <select
                   value={selectedCountry}
                   onChange={(event) => setSelectedCountry(event.target.value)}
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] px-3 py-2.5 text-sm text-[#1E293B] dark:text-[#E2E8F0]"
                 >
                   {countries.map((item) => (
                     <option key={item.country} value={item.country}>
@@ -146,7 +144,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                 </select>
               </label>
 
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+              <div className="pt-4 border-t border-[#E2E8F0] dark:border-[#334155] space-y-3">
                 {isAuthenticated ? (
                   <button
                     onClick={() => {
@@ -154,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                       if (isDoctor) setIsDoctorPortalOpen(true);
                       else setIsCustomerDashboardOpen(true);
                     }}
-                    className="w-full py-3 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-sm font-bold border border-emerald-300 flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] text-sm font-semibold border border-[#0F766E] flex items-center justify-center gap-2"
                   >
                     <User className="w-5 h-5" />
                     <span>{isDoctor ? 'Doctor Admin Portal' : 'My Account & History'}</span>
@@ -166,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                         setIsMobileMenuOpen(false);
                         openAuthModal('customer-login');
                       }}
-                      className="py-3 rounded-xl bg-emerald-600 text-white text-sm font-bold"
+                      className="py-3 rounded-xl bg-[#0F766E] text-white text-sm font-semibold hover:bg-[#115E59]"
                     >
                       Patient Sign In
                     </button>
@@ -175,7 +173,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                         setIsMobileMenuOpen(false);
                         openAuthModal('doctor-login');
                       }}
-                      className="py-3 rounded-xl bg-slate-900 text-white text-sm font-bold"
+                      className="py-3 rounded-xl bg-[#1E293B] text-white text-sm font-semibold hover:bg-[#334155] dark:hover:bg-[#0F172A]"
                     >
                       Doctor Login
                     </button>
@@ -191,26 +189,26 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 dark:bg-slate-950/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800 py-3'
-            : 'bg-white/90 dark:bg-slate-950/70 backdrop-blur-sm py-4'
+            ? 'bg-white/95 dark:bg-[#0F172A]/95 border-b border-[#E2E8F0] dark:border-[#334155] py-3'
+            : 'bg-white/90 dark:bg-[#0F172A]/90 py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand / Doctor Title */}
-          <Link href="/" className="group flex min-w-0 items-center gap-2 sm:shrink-0 sm:gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-tr from-emerald-600 via-teal-500 to-cyan-500 text-white shadow-md shadow-emerald-500/20 transition-transform group-hover:scale-105 sm:h-10 sm:w-10">
-              <HeartPulse className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
+          <Link href="/" className="flex min-w-0 items-center gap-2 sm:shrink-0 sm:gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0F766E] text-white sm:h-10 sm:w-10">
+              <HeartPulse className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div className="flex min-w-0 flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-base tracking-tight text-slate-950 dark:text-white sm:text-lg">
-                  ZELOVITA
+                <span className="truncate font-semibold text-base tracking-tight text-[#1E293B] dark:text-[#E2E8F0] sm:text-lg">
+                  ConciousLivin
                 </span>
-                <span className="hidden rounded-full border border-emerald-300 bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:border-emerald-800/60 dark:bg-emerald-950/70 dark:text-emerald-300 xl:inline-flex">
+                <span className="hidden rounded-full border border-[#0F766E] bg-[#E6F4F1] dark:bg-[#134E4A] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#0F766E] dark:text-[#14B8A6] xl:inline-flex">
                   DR. ARIF MD
                 </span>
               </div>
-              <span className="hidden text-xs font-semibold text-slate-600 dark:text-slate-400 xl:inline">
+              <span className="hidden text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] xl:inline">
                 Clinical Health & Longevity Academy
               </span>
             </div>
@@ -222,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
               <a
                 key={link.name}
                 href={link.href}
-                className="whitespace-nowrap text-[13px] font-semibold text-slate-700 transition-colors hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+                className="whitespace-nowrap text-[13px] font-semibold text-[#1E293B] dark:text-[#E2E8F0] transition-colors hover:text-[#0F766E] dark:hover:text-[#14B8A6]"
               >
                 {link.name}
               </a>
@@ -231,8 +229,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
 
           {/* Action Controls */}
           <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-0.5 sm:gap-2.5">
-            <label className="hidden xl:flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-2 py-1.5 text-xs text-slate-700 dark:text-slate-200">
-              <Globe2 className="h-4 w-4 text-emerald-600" />
+            <label className="hidden xl:flex items-center gap-1.5 rounded-lg border border-[#E2E8F0] dark:border-[#334155] px-2 py-1.5 text-xs text-[#1E293B] dark:text-[#E2E8F0]">
+              <Globe2 className="h-4 w-4 text-[#0F766E] dark:text-[#14B8A6]" />
               <span className="sr-only">Country and currency</span>
               <select
                 aria-label="Country and currency"
@@ -248,22 +246,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
               </select>
             </label>
 
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-pressed={isDarkMode}
+              className="p-2 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
+            >
+              {isDarkMode ? <Sun className="w-5 h-5 text-[#E2E8F0]" /> : <Moon className="w-5 h-5" />}
+            </button>
+
             {/* Quick Search */}
             <button
               onClick={onOpenSearch}
               aria-label="Search resources"
-              className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors"
+              className="hidden sm:inline-flex p-2 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
             >
               <Search className="w-5 h-5" />
-            </button>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle dark mode"
-              className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors"
-            >
-              {isDarkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
             </button>
 
             {/* Auth & Account Button */}
@@ -273,18 +272,18 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                   /* Doctor Badge Button */
                   <button
                     onClick={() => setIsDoctorPortalOpen(true)}
-                    className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-2 rounded-xl bg-slate-900 dark:bg-emerald-950/80 text-white border border-emerald-500/40 text-xs font-bold shadow-md hover:bg-slate-800 transition-all"
+                    className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-2 rounded-xl bg-[#1E293B] text-white border border-[#334155] text-xs font-semibold hover:bg-[#334155] dark:hover:bg-[#0F172A] transition-colors"
                   >
-                    <Stethoscope className="w-4 h-4 text-emerald-400" />
+                    <Stethoscope className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
                     <span className="hidden sm:inline">Doctor Portal</span>
                   </button>
                 ) : (
                   /* Customer Account Button */
                   <button
                     onClick={() => setIsCustomerDashboardOpen(true)}
-                    className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 text-xs font-bold transition-all"
+                    className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-[#F1F5F9] dark:bg-[#1E293B] hover:bg-[#E2E8F0] text-[#1E293B] dark:text-[#E2E8F0] border border-[#E2E8F0] dark:border-[#334155] text-xs font-semibold transition-colors"
                   >
-                    <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden shrink-0 border border-emerald-500">
+                    <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden shrink-0 border border-[#0F766E]">
                       <Image
                         src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'}
                         alt={user.name}
@@ -294,7 +293,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                       />
                     </div>
                     <span className="hidden sm:inline">{user.name.split(' ')[0]}</span>
-                    <span className="hidden md:inline px-1.5 py-0.2 bg-emerald-500 text-white rounded-full text-[10px]">
+                    <span className="hidden md:inline px-1.5 py-0.5 bg-[#0F766E] text-white rounded-full text-[10px]">
                       History
                     </span>
                   </button>
@@ -305,9 +304,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
               <div className="hidden items-center gap-1.5 xl:flex">
                 <button
                   onClick={() => openAuthModal('customer-login')}
-                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] transition-colors"
                 >
-                  <User className="w-3.5 h-3.5 text-emerald-600" />
+                  <User className="w-3.5 h-3.5 text-[#0F766E] dark:text-[#14B8A6]" />
                   <span className="hidden sm:inline">Sign In</span>
                 </button>
               </div>
@@ -317,12 +316,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
             <button
               onClick={() => setIsCartOpen(true)}
               aria-label="Shopping Cart"
-              className="relative flex items-center gap-1.5 rounded-xl bg-linear-to-r from-emerald-600 to-teal-600 px-2.5 py-2 text-sm font-bold text-white shadow-md shadow-emerald-600/25 transition-all hover:from-emerald-700 hover:to-teal-700 active:scale-95 sm:gap-2 sm:px-3.5"
+              className="relative flex items-center gap-1.5 rounded-xl bg-[#0F766E] px-2.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#115E59] sm:gap-2 sm:px-3.5"
             >
               <ShoppingBag className="w-4 h-4" />
               <span className="hidden sm:inline">Cart</span>
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-rose-500 text-white text-[11px] font-bold flex items-center justify-center border-2 border-white dark:border-slate-900 animate-bounce">
+                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#1E293B] text-white text-[11px] font-semibold flex items-center justify-center border-2 border-white">
                   {cartCount}
                 </span>
               )}
@@ -332,7 +331,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle Navigation Menu"
-              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors -ml-1"
+              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] transition-colors -ml-1"
             >
               {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </button>

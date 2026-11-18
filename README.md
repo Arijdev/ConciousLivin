@@ -1,4 +1,4 @@
-# 🌿 ZeloVita — Dr. Arif Chowdhury's Clinical Health Ecosystem
+# 🌿 ConciousLivin — Dr. Arif Chowdhury's Clinical Health Ecosystem
 
 A modern, high-performance, full-stack digital health platform and e-commerce clinical library developed for **Dr. Arif Chowdhury**. Built with **Next.js 16 (Turbopack)**, **React 19**, **Tailwind CSS v4**, and **Supabase**.
 
@@ -97,7 +97,7 @@ health/
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/zelovita.git
+git clone https://github.com/your-username/conciouslivin.git
 cd health
 npm install
 ```
@@ -134,7 +134,7 @@ In Supabase Dashboard, open **Authentication → Email Templates → Confirm sig
 Example template body:
 
 ```html
-<h2>Your Zelovita verification code</h2>
+<h2>Your ConciousLivin verification code</h2>
 <p>Enter this 6-digit code in the signup screen:</p>
 <p style="font-size: 28px; font-weight: bold; letter-spacing: 6px">{{ .Token }}</p>
 <p>This code expires according to your Supabase email OTP settings.</p>
@@ -172,4 +172,4 @@ Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📄 License
 
-Private & Proprietary © 2026 Dr. Arif Chowdhury / ZeloVita. All Rights Reserved.
+Private & Proprietary © 2026 Dr. Arif Chowdhury / ConciousLivin. All Rights Reserved.

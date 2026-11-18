@@ -52,20 +52,20 @@ export const HealthCalculators: React.FC = () => {
     const maxHealthy = +(24.9 * heightInMeters * heightInMeters).toFixed(1);
 
     let category = 'Normal Weight';
-    let color = 'text-emerald-500';
+    let color = 'text-[#0F766E] dark:text-[#14B8A6]';
     let recommendation = 'Maintain your balanced nutrient intake and resistance training routines.';
 
     if (bmi < 18.5) {
       category = 'Underweight';
-      color = 'text-amber-500';
+      color = 'text-[#1E293B] dark:text-[#E2E8F0]';
       recommendation = 'Focus on nutrient-dense healthy fats, quality proteins, and digestive enzyme support.';
     } else if (bmi >= 25 && bmi < 29.9) {
       category = 'Overweight';
-      color = 'text-amber-500';
+      color = 'text-[#1E293B] dark:text-[#E2E8F0]';
       recommendation = 'Implement 16:8 time-restricted feeding and eliminate ultra-processed carbohydrates.';
     } else if (bmi >= 30) {
       category = 'Obesity (Elevated Risk)';
-      color = 'text-rose-500';
+      color = 'text-[#1E293B] dark:text-[#E2E8F0]';
       recommendation = 'Consider a 7-day metabolic reset followed by our Clinical Nutrition & Gut Mastery protocol.';
     }
 
@@ -154,33 +154,33 @@ export const HealthCalculators: React.FC = () => {
   const sleepTimes = calculateSleepTimes();
 
   return (
-    <section id="calculators" className="py-20 bg-white dark:bg-slate-900 scroll-mt-20">
+    <section id="calculators" className="py-20 bg-white dark:bg-[#1E293B] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] text-xs font-semibold uppercase tracking-wider">
             <Activity className="w-3.5 h-3.5" />
             <span>INTERACTIVE CLINICAL DIAGNOSTICS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] tracking-tight">
             Personalized Health & Metabolism Calculators
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-base">
+          <p className="text-[#64748B] dark:text-[#94A3B8] text-base">
             Input your personal biometrics to receive instant science-backed targets for body composition, hydration, daily macronutrients, and circadian sleep cycles.
           </p>
         </div>
 
         {/* Tab Switcher */}
         <div className="flex justify-center mb-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 w-full max-w-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-[#F1F5F9] dark:bg-[#1E293B] p-1.5 rounded-2xl border border-[#E2E8F0] dark:border-[#334155] w-full max-w-2xl">
             <button
               onClick={() => setActiveTab('bmi')}
-              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                activeTab === 'bmi'
-                  ? 'bg-emerald-600 text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900'
-              }`}
+              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-semibold transition-colors ${
+activeTab === 'bmi'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+}`}
             >
               <Scale className="w-4 h-4" />
               <span>Smart BMI & Body</span>
@@ -188,11 +188,11 @@ export const HealthCalculators: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('water')}
-              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                activeTab === 'water'
-                  ? 'bg-emerald-600 text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900'
-              }`}
+              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-semibold transition-colors ${
+activeTab === 'water'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+}`}
             >
               <Droplet className="w-4 h-4" />
               <span>Hydration Tracker</span>
@@ -200,11 +200,11 @@ export const HealthCalculators: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('macros')}
-              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                activeTab === 'macros'
-                  ? 'bg-emerald-600 text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900'
-              }`}
+              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-semibold transition-colors ${
+activeTab === 'macros'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+}`}
             >
               <Flame className="w-4 h-4" />
               <span>TDEE & Macros</span>
@@ -212,11 +212,11 @@ export const HealthCalculators: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('sleep')}
-              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                activeTab === 'sleep'
-                  ? 'bg-emerald-600 text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900'
-              }`}
+              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-semibold transition-colors ${
+activeTab === 'sleep'
+? 'bg-[#0F766E] text-white'
+: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+}`}
             >
               <Moon className="w-4 h-4" />
               <span>Sleep Cycles</span>
@@ -226,22 +226,22 @@ export const HealthCalculators: React.FC = () => {
 
         {/* TAB 1: SMART BMI CALCULATOR */}
         {activeTab === 'bmi' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50 dark:bg-slate-950/60 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F9FAFB] dark:bg-[#0F172A] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] dark:border-[#334155]">
             <div className="lg:col-span-6 space-y-5">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   Biometric Parameters
                 </h3>
-                <div className="flex bg-slate-200 dark:bg-slate-800 rounded-lg p-0.5 text-xs font-bold">
+                <div className="flex bg-[#E2E8F0] rounded-lg p-0.5 text-xs font-semibold">
                   <button
                     onClick={() => setUnit('metric')}
-                    className={`px-3 py-1 rounded ${unit === 'metric' ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`}
+                    className={`px-3 py-1 rounded ${unit === 'metric' ? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]' : 'text-[#64748B] dark:text-[#94A3B8]'}`}
                   >
                     Metric (kg / cm)
                   </button>
                   <button
                     onClick={() => setUnit('imperial')}
-                    className={`px-3 py-1 rounded ${unit === 'imperial' ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`}
+                    className={`px-3 py-1 rounded ${unit === 'imperial' ? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]' : 'text-[#64748B] dark:text-[#94A3B8]'}`}
                   >
                     Imperial (lbs / ft)
                   </button>
@@ -251,27 +251,27 @@ export const HealthCalculators: React.FC = () => {
               {/* Input Fields */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] mb-1">
                     Gender
                   </label>
                   <select
                     value={gender}
                     onChange={e => setGender(e.target.value as 'male' | 'female')}
-                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs border border-slate-200 dark:border-slate-700 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] outline-none"
                   >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] mb-1">
                     Age
                   </label>
                   <input
                     type="number"
                     value={age}
                     onChange={e => setAge(Number(e.target.value))}
-                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs border border-slate-200 dark:border-slate-700 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] outline-none"
                   />
                 </div>
               </div>
@@ -279,8 +279,8 @@ export const HealthCalculators: React.FC = () => {
               {/* Weight Slider */}
               <div className="space-y-1">
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-slate-600 dark:text-slate-400">Weight</span>
-                  <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                  <span className="text-[#64748B] dark:text-[#94A3B8]">Weight</span>
+                  <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6]">
                     {weight} {unit === 'metric' ? 'kg' : 'lbs'}
                   </span>
                 </div>
@@ -298,8 +298,8 @@ export const HealthCalculators: React.FC = () => {
               {unit === 'metric' ? (
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs font-semibold">
-                    <span className="text-slate-600 dark:text-slate-400">Height</span>
-                    <span className="font-bold text-emerald-600 dark:text-emerald-400">{heightCm} cm</span>
+                    <span className="text-[#64748B] dark:text-[#94A3B8]">Height</span>
+                    <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6]">{heightCm} cm</span>
                   </div>
                   <input
                     type="range"
@@ -313,21 +313,21 @@ export const HealthCalculators: React.FC = () => {
               ) : (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Feet</label>
+                    <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] mb-1">Feet</label>
                     <input
                       type="number"
                       value={heightFt}
                       onChange={e => setHeightFt(Number(e.target.value))}
-                      className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 text-xs border border-slate-200 dark:border-slate-700"
+                      className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1E293B] text-xs border border-[#E2E8F0] dark:border-[#334155]"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Inches</label>
+                    <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] mb-1">Inches</label>
                     <input
                       type="number"
                       value={heightIn}
                       onChange={e => setHeightIn(Number(e.target.value))}
-                      className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 text-xs border border-slate-200 dark:border-slate-700"
+                      className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1E293B] text-xs border border-[#E2E8F0] dark:border-[#334155]"
                     />
                   </div>
                 </div>
@@ -335,17 +335,17 @@ export const HealthCalculators: React.FC = () => {
             </div>
 
             {/* BMI Output Card */}
-            <div className="lg:col-span-6 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 space-y-5">
-              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div className="lg:col-span-6 bg-white dark:bg-[#1E293B] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0] dark:border-[#334155] space-y-5">
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-[#334155] pb-4">
                 <div>
-                  <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                  <span className="text-xs uppercase font-semibold text-[#64748B] dark:text-[#94A3B8] tracking-wider">
                     Calculated Body Mass Index
                   </span>
                   <div className="flex items-baseline gap-3 mt-1">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">
+                    <span className="text-4xl sm:text-5xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                       {bmiResult.bmi}
                     </span>
-                    <span className={`text-base font-bold ${bmiResult.color}`}>
+                    <span className={`text-base font-semibold ${bmiResult.color}`}>
                       {bmiResult.category}
                     </span>
                   </div>
@@ -354,15 +354,15 @@ export const HealthCalculators: React.FC = () => {
 
               {/* Healthy Weight Range */}
               <div className="space-y-1">
-                <span className="text-xs text-slate-500">Ideal Healthy Weight for Your Height:</span>
-                <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">Ideal Healthy Weight for Your Height:</span>
+                <p className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   {bmiResult.minHealthy} kg — {bmiResult.maxHealthy} kg
                 </p>
               </div>
 
               {/* Dr. Arif's recommendation */}
-              <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/80 text-xs leading-relaxed">
-                <strong className="text-emerald-900 dark:text-emerald-300 block mb-1">
+              <div className="p-4 rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] text-xs leading-relaxed">
+                <strong className="text-[#0F766E] dark:text-[#14B8A6] block mb-1">
                   🩺 Dr. Arif's Clinical Action Advice:
                 </strong>
                 {bmiResult.recommendation}
@@ -374,7 +374,7 @@ export const HealthCalculators: React.FC = () => {
                     const freeGuide = HEALTH_RESOURCES.find(r => r.id === '7-day-metabolic-reset');
                     if (freeGuide) openReader(freeGuide);
                   }}
-                  className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center justify-center gap-2"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Open Free 7-Day Reset Guide for This Range</span>
@@ -386,16 +386,16 @@ export const HealthCalculators: React.FC = () => {
 
         {/* TAB 2: WATER HYDRATION TRACKER */}
         {activeTab === 'water' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50 dark:bg-slate-950/60 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F9FAFB] dark:bg-[#0F172A] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] dark:border-[#334155]">
             <div className="lg:col-span-6 space-y-5">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+              <h3 className="text-xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                 Hydration Factors
               </h3>
 
               <div className="space-y-1">
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-slate-600 dark:text-slate-400">Your Body Weight</span>
-                  <span className="font-bold text-cyan-600">{waterWeightKg} kg</span>
+                  <span className="text-[#64748B] dark:text-[#94A3B8]">Your Body Weight</span>
+                  <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6]">{waterWeightKg} kg</span>
                 </div>
                 <input
                   type="range"
@@ -409,13 +409,13 @@ export const HealthCalculators: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] mb-1">
                     Daily Exercise Intensity
                   </label>
                   <select
                     value={activityLevel}
                     onChange={e => setActivityLevel(e.target.value as 'sedentary' | 'moderate' | 'intense')}
-                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 text-xs border border-slate-200 dark:border-slate-700 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1E293B] text-xs border border-[#E2E8F0] dark:border-[#334155] outline-none"
                   >
                     <option value="sedentary">Light / Desk Work</option>
                     <option value="moderate">Moderate (30-45m exercise)</option>
@@ -423,13 +423,13 @@ export const HealthCalculators: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8] mb-1">
                     Climate / Weather
                   </label>
                   <select
                     value={climate}
                     onChange={e => setClimate(e.target.value as 'normal' | 'hot')}
-                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 text-xs border border-slate-200 dark:border-slate-700 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1E293B] text-xs border border-[#E2E8F0] dark:border-[#334155] outline-none"
                   >
                     <option value="normal">Normal / Air Conditioned</option>
                     <option value="hot">Hot, Humid or Dry Summer</option>
@@ -437,49 +437,49 @@ export const HealthCalculators: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800 text-xs text-cyan-900 dark:text-cyan-200 leading-relaxed">
+              <div className="p-4 rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] text-xs text-[#0F766E] dark:text-[#14B8A6] leading-relaxed">
                 💡 <strong>Clinical Tip:</strong> Add a pinch of unrefined Celtic or Himalayan salt to your morning 500ml water to optimize cellular electrolyte absorption.
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 space-y-6 text-center">
+            <div className="lg:col-span-6 bg-white dark:bg-[#1E293B] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0] dark:border-[#334155] space-y-6 text-center">
               <div>
-                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                <span className="text-xs uppercase font-semibold text-[#64748B] dark:text-[#94A3B8] tracking-wider">
                   Target Daily Fluid Volume
                 </span>
-                <div className="text-4xl sm:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mt-2">
+                <div className="text-4xl sm:text-5xl font-semibold text-[#0F766E] dark:text-[#14B8A6] mt-2">
                   {waterTarget.liters} Liters
                 </div>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-[#64748B] dark:text-[#94A3B8] mt-1">
                   Equivalent to approx. {waterTarget.glasses} standard glasses (250ml each)
                 </p>
               </div>
 
               {/* Interactive Glass Counter */}
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-3">
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+              <div className="p-5 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] space-y-3">
+                <span className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                   Track Today's Intake:
                 </span>
                 <div className="flex items-center justify-center gap-4">
                   <button
                     onClick={() => setGlassesDrank(prev => Math.max(0, prev - 1))}
-                    className="w-9 h-9 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white flex items-center justify-center font-bold"
+                    className="w-9 h-9 rounded-xl bg-[#E2E8F0] text-[#1E293B] dark:text-[#E2E8F0] flex items-center justify-center font-semibold"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="text-2xl font-extrabold text-cyan-600">
+                  <span className="text-2xl font-semibold text-[#0F766E] dark:text-[#14B8A6]">
                     {glassesDrank} / {waterTarget.glasses}
                   </span>
                   <button
                     onClick={() => setGlassesDrank(prev => prev + 1)}
-                    className="w-9 h-9 rounded-xl bg-cyan-600 text-white flex items-center justify-center font-bold shadow-sm"
+                    className="w-9 h-9 rounded-xl bg-[#0F766E] text-white flex items-center justify-center font-semibold"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
                 </div>
-                <div className="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#E2E8F0] h-2 rounded-full overflow-hidden">
                   <div
-                    className="bg-cyan-500 h-full transition-all duration-300"
+                    className="bg-[#0F766E] h-full transition-all duration-300"
                     style={{ width: `${Math.min(100, (glassesDrank / waterTarget.glasses) * 100)}%` }}
                   />
                 </div>
@@ -490,44 +490,44 @@ export const HealthCalculators: React.FC = () => {
 
         {/* TAB 3: TDEE & MACRO BREAKDOWN */}
         {activeTab === 'macros' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50 dark:bg-slate-950/60 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F9FAFB] dark:bg-[#0F172A] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] dark:border-[#334155]">
             <div className="lg:col-span-6 space-y-5">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+              <h3 className="text-xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                 Nutritional Goal & Intake
               </h3>
 
               <div className="space-y-1">
-                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400">
+                <label className="block text-xs font-semibold text-[#64748B] dark:text-[#94A3B8]">
                   Select Primary Health Objective
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   <button
                     onClick={() => setGoal('loss')}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all ${
-                      goal === 'loss'
-                        ? 'bg-emerald-600 text-white border-emerald-600'
-                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700'
-                    }`}
+                    className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-colors ${
+goal === 'loss'
+? 'bg-[#0F766E] text-white border-[#0F766E]'
+: 'bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] border-[#E2E8F0] dark:border-[#334155]'
+}`}
                   >
                     Fat Loss
                   </button>
                   <button
                     onClick={() => setGoal('maintenance')}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all ${
-                      goal === 'maintenance'
-                        ? 'bg-emerald-600 text-white border-emerald-600'
-                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700'
-                    }`}
+                    className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-colors ${
+goal === 'maintenance'
+? 'bg-[#0F766E] text-white border-[#0F766E]'
+: 'bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] border-[#E2E8F0] dark:border-[#334155]'
+}`}
                   >
                     Vitality / Maintain
                   </button>
                   <button
                     onClick={() => setGoal('muscle')}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all ${
-                      goal === 'muscle'
-                        ? 'bg-emerald-600 text-white border-emerald-600'
-                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700'
-                    }`}
+                    className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-colors ${
+goal === 'muscle'
+? 'bg-[#0F766E] text-white border-[#0F766E]'
+: 'bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] border-[#E2E8F0] dark:border-[#334155]'
+}`}
                   >
                     Lean Muscle
                   </button>
@@ -536,8 +536,8 @@ export const HealthCalculators: React.FC = () => {
 
               <div className="space-y-1">
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-slate-600 dark:text-slate-400">Estimated Maintenance Energy</span>
-                  <span className="font-bold text-emerald-600">{calorieIntake} kcal/day</span>
+                  <span className="text-[#64748B] dark:text-[#94A3B8]">Estimated Maintenance Energy</span>
+                  <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6]">{calorieIntake} kcal/day</span>
                 </div>
                 <input
                   type="range"
@@ -550,52 +550,52 @@ export const HealthCalculators: React.FC = () => {
                 />
               </div>
 
-              <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+              <div className="p-4 rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] text-xs text-[#1E293B] dark:text-[#E2E8F0] leading-relaxed">
                 🥑 <strong>Dr. Arif's Rule:</strong> Never sacrifice protein quality. Target 1.6g to 2.2g of high-bioavailability protein per kilogram of ideal lean body mass.
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 space-y-5">
-              <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
-                <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+            <div className="lg:col-span-6 bg-white dark:bg-[#1E293B] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0] dark:border-[#334155] space-y-5">
+              <div className="border-b border-[#E2E8F0] dark:border-[#334155] pb-4">
+                <span className="text-xs uppercase font-semibold text-[#64748B] dark:text-[#94A3B8] tracking-wider">
                   Target Daily Energy
                 </span>
-                <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">
-                  {macroResult.targetCalories} <span className="text-lg font-medium text-slate-500">kcal/day</span>
+                <div className="text-3xl sm:text-4xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] mt-1">
+                  {macroResult.targetCalories} <span className="text-lg font-normal text-[#64748B] dark:text-[#94A3B8]">kcal/day</span>
                 </div>
               </div>
 
               {/* Macro Bars */}
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-blue-600 flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
+                  <span className="font-semibold text-[#1E293B] dark:text-[#E2E8F0] flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#1E293B]" />
                     Clean Protein ({macroResult.proteinGrams}g)
                   </span>
-                  <span className="text-slate-500">{Math.round(macroResult.proteinPct * 100)}%</span>
+                  <span className="text-[#64748B] dark:text-[#94A3B8]">{Math.round(macroResult.proteinPct * 100)}%</span>
                 </div>
 
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-amber-600 flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                  <span className="font-semibold text-[#1E293B] dark:text-[#E2E8F0] flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#1E293B]" />
                     Healthy Fats ({macroResult.fatGrams}g)
                   </span>
-                  <span className="text-slate-500">{Math.round(macroResult.fatPct * 100)}%</span>
+                  <span className="text-[#64748B] dark:text-[#94A3B8]">{Math.round(macroResult.fatPct * 100)}%</span>
                 </div>
 
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-emerald-600 flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="font-semibold text-[#0F766E] dark:text-[#14B8A6] flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#0F766E]" />
                     Complex Carbs & Fiber ({macroResult.carbGrams}g)
                   </span>
-                  <span className="text-slate-500">{Math.round(macroResult.carbPct * 100)}%</span>
+                  <span className="text-[#64748B] dark:text-[#94A3B8]">{Math.round(macroResult.carbPct * 100)}%</span>
                 </div>
               </div>
 
-              <div className="h-3 rounded-full overflow-hidden flex bg-slate-200 dark:bg-slate-800">
-                <div style={{ width: `${macroResult.proteinPct * 100}%` }} className="bg-blue-500 h-full" />
-                <div style={{ width: `${macroResult.fatPct * 100}%` }} className="bg-amber-500 h-full" />
-                <div style={{ width: `${macroResult.carbPct * 100}%` }} className="bg-emerald-500 h-full" />
+              <div className="h-3 rounded-full overflow-hidden flex bg-[#E2E8F0]">
+                <div style={{ width: `${macroResult.proteinPct * 100}%` }} className="bg-[#1E293B] h-full" />
+                <div style={{ width: `${macroResult.fatPct * 100}%` }} className="bg-[#1E293B] h-full" />
+                <div style={{ width: `${macroResult.carbPct * 100}%` }} className="bg-[#0F766E] h-full" />
               </div>
             </div>
           </div>
@@ -603,34 +603,34 @@ export const HealthCalculators: React.FC = () => {
 
         {/* TAB 4: SLEEP CYCLE OPTIMIZER */}
         {activeTab === 'sleep' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50 dark:bg-slate-950/60 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F9FAFB] dark:bg-[#0F172A] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] dark:border-[#334155]">
             <div className="lg:col-span-6 space-y-5">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+              <h3 className="text-xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                 Circadian Rhythm Synchronization
               </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-xs text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
                 Human sleep consists of 90-minute ultradian cycles transitioning through Light Sleep, Deep Slow-Wave Sleep (Stage 3/4), and REM. Waking in the middle of a deep cycle causes sleep inertia and morning grogginess.
               </p>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
                   What time do you need to wake up?
                 </label>
                 <input
                   type="time"
                   value={wakeHour}
                   onChange={e => setWakeHour(e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base font-bold border border-slate-200 dark:border-slate-700 outline-none"
+                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-base font-semibold border border-[#E2E8F0] dark:border-[#334155] outline-none"
                 />
               </div>
 
-              <div className="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-xs text-indigo-900 dark:text-indigo-200 leading-relaxed">
+              <div className="p-4 rounded-xl bg-[#F1F5F9] dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] text-xs text-[#1E293B] dark:text-[#E2E8F0] leading-relaxed">
                 🌙 <strong>Dr. Arif's Sleep Rule:</strong> Allow 15 minutes to fall asleep and avoid all screen blue light 60 minutes before your target bedtime.
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 space-y-4">
-              <h4 className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+            <div className="lg:col-span-6 bg-white dark:bg-[#1E293B] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0] dark:border-[#334155] space-y-4">
+              <h4 className="text-xs uppercase font-semibold text-[#64748B] dark:text-[#94A3B8] tracking-wider">
                 Recommended Bedtimes for {wakeHour} Wakeup:
               </h4>
 
@@ -638,34 +638,34 @@ export const HealthCalculators: React.FC = () => {
                 {sleepTimes.map((t, idx) => (
                   <div
                     key={idx}
-                    className={`flex items-center justify-between p-4 rounded-xl border transition-all ${
-                      idx === 0
-                        ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200'
-                        : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200'
-                    }`}
+                    className={`flex items-center justify-between p-4 rounded-xl border transition-colors ${
+idx === 0
+? 'bg-[#E6F4F1] dark:bg-[#134E4A] border-[#0F766E] text-[#0F766E] dark:text-[#14B8A6]'
+: 'bg-[#F9FAFB] dark:bg-[#0F172A] border-[#E2E8F0] dark:border-[#334155] text-[#1E293B] dark:text-[#E2E8F0]'
+}`}
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-2xl font-extrabold font-mono">
+                        <span className="text-2xl font-semibold font-mono">
                           {t.timeString}
                         </span>
                         {idx === 0 && (
-                          <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold">
+                          <span className="px-2 py-0.5 rounded-full bg-[#0F766E] text-white text-[10px] font-semibold">
                             BEST (9.0h)
                           </span>
                         )}
                         {idx === 1 && (
-                          <span className="px-2 py-0.5 rounded-full bg-teal-600 text-white text-[10px] font-bold">
+                          <span className="px-2 py-0.5 rounded-full bg-[#0F766E] text-white text-[10px] font-semibold">
                             RECOMMENDED (7.5h)
                           </span>
                         )}
                       </div>
-                      <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                      <span className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">
                         {t.cycles} Full Cycles ({t.hours} hours of restorative sleep)
                       </span>
                     </div>
 
-                    <Clock className="w-5 h-5 text-slate-400" />
+                    <Clock className="w-5 h-5 text-[#64748B] dark:text-[#94A3B8]" />
                   </div>
                 ))}
               </div>

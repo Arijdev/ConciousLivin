@@ -28,90 +28,39 @@ const features = [
     icon: BookOpen,
     title: 'Clinical Health Guides',
     description: 'Evidence-based PDF guides on nutrition, longevity, heart health, fasting & detox by Dr. Arif Chowdhury',
-    href: '/guides',
-    color: 'emerald',
+    href: '/guides',
   },
   {
     icon: Calculator,
     title: 'Health Calculators',
     description: 'Interactive clinical tools for BMI, BMR, body fat, macro tracking, hydration & cardiovascular risk',
-    href: '/calculators',
-    color: 'teal',
+    href: '/calculators',
   },
   {
     icon: Brain,
     title: 'Health Assessment Quiz',
     description: '60-second personalized health assessment with tailored recommendations & action plans',
-    href: '/quiz',
-    color: 'cyan',
+    href: '/quiz',
   },
   {
     icon: FileText,
     title: 'Clinical Articles',
     description: 'Peer-reviewed medical articles, research summaries & protocol masterclasses',
-    href: '/articles',
-    color: 'indigo',
+    href: '/articles',
   },
   {
     icon: Stethoscope,
     title: 'Virtual Consultations',
     description: 'Book 1-on-1 video consultations with Dr. Arif for personalized clinical guidance',
-    href: '/consultation',
-    color: 'rose',
+    href: '/consultation',
   },
   {
     icon: HeartPulse,
     title: 'About Dr. Arif',
     description: 'Learn about Dr. Arif Chowdhury\'s clinical philosophy, credentials & patient success stories',
-    href: '/about',
-    color: 'amber',
+    href: '/about',
   },
 ] as const;
-
-const featureStyles = {
-  emerald: {
-    card: 'hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/10',
-    bar: 'from-emerald-500 to-emerald-400',
-    icon: 'bg-emerald-100 dark:bg-emerald-950/30',
-    iconText: 'text-emerald-600 dark:text-emerald-400',
-    title: 'group-hover:text-emerald-600 dark:group-hover:text-emerald-400',
-  },
-  teal: {
-    card: 'hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10',
-    bar: 'from-teal-500 to-teal-400',
-    icon: 'bg-teal-100 dark:bg-teal-950/30',
-    iconText: 'text-teal-600 dark:text-teal-400',
-    title: 'group-hover:text-teal-600 dark:group-hover:text-teal-400',
-  },
-  cyan: {
-    card: 'hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10',
-    bar: 'from-cyan-500 to-cyan-400',
-    icon: 'bg-cyan-100 dark:bg-cyan-950/30',
-    iconText: 'text-cyan-600 dark:text-cyan-400',
-    title: 'group-hover:text-cyan-600 dark:group-hover:text-cyan-400',
-  },
-  indigo: {
-    card: 'hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10',
-    bar: 'from-indigo-500 to-indigo-400',
-    icon: 'bg-indigo-100 dark:bg-indigo-950/30',
-    iconText: 'text-indigo-600 dark:text-indigo-400',
-    title: 'group-hover:text-indigo-600 dark:group-hover:text-indigo-400',
-  },
-  rose: {
-    card: 'hover:border-rose-500/50 hover:shadow-xl hover:shadow-rose-500/10',
-    bar: 'from-rose-500 to-rose-400',
-    icon: 'bg-rose-100 dark:bg-rose-950/30',
-    iconText: 'text-rose-600 dark:text-rose-400',
-    title: 'group-hover:text-rose-600 dark:group-hover:text-rose-400',
-  },
-  amber: {
-    card: 'hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10',
-    bar: 'from-amber-500 to-amber-400',
-    icon: 'bg-amber-100 dark:bg-amber-950/30',
-    iconText: 'text-amber-600 dark:text-amber-400',
-    title: 'group-hover:text-amber-600 dark:group-hover:text-amber-400',
-  },
-} as const;
 
 const trustMarkers = [
   { icon: Users, value: '12,480+', label: 'Patients Guided', desc: 'Across 42+ Countries' },
@@ -130,112 +79,84 @@ export default function HomePage() {
       <StatsBar stats={trustMarkers} />
 
       {/* Features Grid - Quick Access to All Pages */}
-      <section className="py-20 bg-slate-50 dark:bg-slate-950/50" id="features">
+      <section className="py-20 bg-[#F9FAFB] dark:bg-[#0F172A]" id="features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>EXPLORE ZELOVITA ACADEMY</span>
+              <span>EXPLORE ConciousLivin ACADEMY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] tracking-tight">
               Your Complete Clinical Health Platform
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
+            <p className="text-[#64748B] dark:text-[#94A3B8] text-base sm:text-lg">
               Access science-backed medical protocols, interactive tools, and personalized guidance — all curated by Dr. Arif Chowdhury.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => {
-              const style = featureStyles[feature.color];
-
-              return (
+            {features.map((feature) => (
                 <Link
                   key={feature.title}
                   href={feature.href}
-                  className={`group relative p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 ${style.card} transition-all duration-300 overflow-hidden`}
+                  className="group flex h-full flex-col p-6 sm:p-8 rounded-2xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] transition-colors hover:border-[#0F766E]"
                 >
-                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${style.bar} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
-
-                  <div className="relative space-y-4">
-                    <div className={`w-14 h-14 rounded-xl ${style.icon} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className={`w-7 h-7 ${style.iconText}`} />
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F1F5F9] dark:bg-[#0F172A] flex items-center justify-center">
+                      <feature.icon className="w-6 h-6 text-[#0F766E] dark:text-[#14B8A6]" />
                     </div>
 
-                    <h3 className={`text-xl font-bold text-slate-900 dark:text-white ${style.title} transition-colors`}>
+                    <h3 className="text-xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
                       {feature.title}
                     </h3>
 
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {feature.description}
-                  </p>
+                    <p className="text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+                      {feature.description}
+                    </p>
 
-                    <div className="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 pt-2">
-                      <span>Explore →</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-[#0F766E] dark:text-[#14B8A6] pt-2">
+                      <span>Explore</span>
+                      <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
                 </Link>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>
 
       {/* Featured Guides Preview */}
-      <section className="py-20 bg-white dark:bg-slate-950" id="featured-guides">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>FEATURED GUIDES</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-                Popular Free & Premium Guides
-              </h2>
-            </div>
-            <Link
-              href="/guides"
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
-            >
-              View All Guides →
-            </Link>
-          </div>
-
-          <ResourceLibrary />
-        </div>
-      </section>
+      <ResourceLibrary />
 
       {/* Patient Success Stories */}
       <Testimonials />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white">
+      <section className="py-20 bg-[#1E293B] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-xs font-bold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold">
             <Shield className="w-3.5 h-3.5" />
             <span>MEDICAL DISCLAIMER</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold">
+          <h2 className="text-3xl sm:text-4xl font-semibold">
             Ready to Transform Your Health?
           </h2>
-          <p className="text-emerald-100 text-lg sm:text-xl max-w-2xl mx-auto">
+          <p className="text-[#E2E8F0] text-lg sm:text-xl max-w-2xl mx-auto">
             Join 12,000+ patients using Dr. Arif&apos;s clinical protocols. Start with free guides or book a personalized consultation.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
               href="/guides"
-              className="px-8 py-3.5 rounded-xl bg-white text-emerald-800 font-bold text-sm hover:bg-emerald-50 transition-all shadow-lg"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white font-semibold text-sm transition-colors"
             >
-              <CheckCircle2 className="w-4 h-4 inline mr-2" />
+              <CheckCircle2 className="w-4 h-4 mr-2" />
               Browse Free Guides
             </Link>
             <Link
               href="/consultation"
-              className="px-8 py-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm hover:bg-white/20 transition-all"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-transparent text-white border border-white/30 font-semibold text-sm hover:bg-white/10 transition-colors"
             >
-              <Stethoscope className="w-4 h-4 inline mr-2" />
+              <Stethoscope className="w-4 h-4 mr-2" />
               Book Consultation
             </Link>
           </div>

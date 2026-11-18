@@ -133,18 +133,18 @@ function ConsultationBookingContent() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 pb-16 pt-28 dark:bg-slate-950 sm:px-6 sm:pt-32 lg:px-8">
+    <main className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A] px-4 pb-16 pt-28 sm:px-6 sm:pt-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 flex items-center gap-3 text-sm text-emerald-700 dark:text-emerald-400">
+        <div className="mb-8 flex items-center gap-3 text-sm text-[#0F766E] dark:text-[#14B8A6]">
           <Stethoscope className="h-5 w-5" />
           <span>1-on-1 Consultation Booking</span>
         </div>
 
         <div className="mb-8 text-center sm:mb-10">
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-[#1E293B] dark:text-[#E2E8F0] sm:text-4xl">
             Book Your Private Consultation
           </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-base text-slate-600 dark:text-slate-300">
+          <p className="mx-auto mt-4 max-w-3xl text-base text-[#64748B] dark:text-[#94A3B8]">
             Select a 15-minute, 30-minute, or 1-hour session, then choose an available time. All times are India Standard Time.
           </p>
         </div>
@@ -163,89 +163,89 @@ function ConsultationBookingContent() {
                     setSelectedSlot(getAvailableSlots(pkg.durationMinutes)[0]);
                   }}
                   className={`w-full rounded-2xl border p-3 text-left transition-all sm:p-4 lg:p-5 ${
-                    isSelected
-                      ? 'border-emerald-500 bg-emerald-50 shadow-lg shadow-emerald-500/10 dark:border-emerald-400 dark:bg-emerald-950/30'
-                      : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700'
-                  }`}
+isSelected
+? 'border-[#0F766E] bg-[#E6F4F1] dark:bg-[#134E4A]'
+: 'border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] hover:border-[#E2E8F0] dark:hover:border-[#334155]'
+}`}
                 >
                   <div className="mb-3 flex items-center justify-between gap-3">
-                    <h2 className="text-base font-bold text-slate-900 dark:text-white lg:text-xl">{pkg.title}</h2>
+                    <h2 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0] lg:text-xl">{pkg.title}</h2>
                   </div>
 
                   <div className="mb-3 flex items-baseline gap-2">
-                    <span className="text-2xl font-extrabold text-slate-900 dark:text-white lg:text-3xl">{formatPrice(pkg.price)}</span>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 lg:text-sm">{pkg.duration}</span>
+                    <span className="text-2xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] lg:text-3xl">{formatPrice(pkg.price)}</span>
+                    <span className="text-xs text-[#64748B] dark:text-[#94A3B8] lg:text-sm">{pkg.duration}</span>
                   </div>
 
-                  <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300 lg:text-sm">{pkg.description}</p>
+                  <p className="text-xs leading-relaxed text-[#64748B] dark:text-[#94A3B8] lg:text-sm">{pkg.description}</p>
                 </button>
               );
             })}
           </aside>
 
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+          <section className="rounded-3xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-emerald-100 p-2 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+                <div className="rounded-xl bg-[#E6F4F1] dark:bg-[#134E4A] p-2 text-[#0F766E] dark:text-[#14B8A6]">
                   <CalendarCheck className="h-5 w-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">Choose your session</h2>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">Selected package: {selectedPackage.title}</p>
+                  <h2 className="text-xl font-semibold text-[#1E293B] dark:text-[#E2E8F0]">Choose your session</h2>
+                  <p className="text-sm text-[#64748B] dark:text-[#94A3B8]">Selected package: {selectedPackage.title}</p>
                 </div>
               </div>
 
               <div className="grid gap-5 md:grid-cols-2">
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                <label className="block text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                   Full name
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Your full name"
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800"
+                    className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] px-3 py-2.5 text-sm outline-none transition focus:border-[#0F766E]"
                     required
                   />
                 </label>
 
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                <label className="block text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                   Email address
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800"
+                    className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] px-3 py-2.5 text-sm outline-none transition focus:border-[#0F766E]"
                     required
                   />
                 </label>
 
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                <label className="block text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                   Phone (optional)
                   <input
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+1 (555) 123-4567"
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800"
+                    className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] px-3 py-2.5 text-sm outline-none transition focus:border-[#0F766E]"
                   />
                 </label>
 
-                <div className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                <div className="block text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                   Booking price
-                  <div className="mt-2 flex h-[46px] items-center rounded-xl border border-slate-200 bg-slate-50 px-3 text-base font-bold text-emerald-700 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400">
+                  <div className="mt-2 flex h-[46px] items-center rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] px-3 text-base font-semibold text-[#0F766E] dark:text-[#14B8A6]">
                     {formatPrice(selectedPackage.price)}
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                <label className="block text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                   Preferred date
                   <select
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800"
+                    className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] px-3 py-2.5 text-sm outline-none transition focus:border-[#0F766E]"
                   >
                     {availableDates.map((date) => (
                       <option key={date.value} value={date.value}>
@@ -256,18 +256,18 @@ function ConsultationBookingContent() {
                 </label>
 
                 <div>
-                  <p className="mb-2 text-sm font-medium text-slate-700 dark:text-slate-200">Available start times (IST)</p>
+                  <p className="mb-2 text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">Available start times (IST)</p>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {availableSlots.map((slot) => (
                       <button
                         key={slot}
                         type="button"
                         onClick={() => setSelectedSlot(slot)}
-                        className={`rounded-xl border px-3 py-2 text-sm font-medium transition ${
-                          selectedSlot === slot
-                            ? 'border-emerald-500 bg-emerald-500 text-white shadow-md'
-                            : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-emerald-300 hover:text-emerald-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-emerald-500'
-                        }`}
+                        className={`rounded-xl border px-3 py-2 text-sm font-normal transition ${
+selectedSlot === slot
+? 'border-[#0F766E] bg-[#0F766E] text-white'
+: 'border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] hover:border-[#0F766E] hover:text-[#0F766E] dark:hover:text-[#14B8A6]'
+}`}
                       >
                         {slot}
                       </button>
@@ -276,39 +276,39 @@ function ConsultationBookingContent() {
                 </div>
               </div>
 
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+              <label className="block text-sm font-normal text-[#1E293B] dark:text-[#E2E8F0]">
                 Primary health concern
                 <textarea
                   value={primaryConcern}
                   onChange={(e) => setPrimaryConcern(e.target.value)}
                   rows={3}
                   placeholder="Tell us the main goal or health concern for the consultation"
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800"
+                  className="mt-2 w-full rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] px-3 py-2.5 text-sm outline-none transition focus:border-[#0F766E]"
                 />
               </label>
 
               {error ? (
-                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
+                <div className="rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F1F5F9] dark:bg-[#1E293B] px-4 py-3 text-sm text-[#1E293B] dark:text-[#E2E8F0]">
                   {error}
                 </div>
               ) : null}
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                  <Clock3 className="h-4 w-4 text-emerald-500" />
+                <div className="flex items-center gap-2 text-sm text-[#64748B] dark:text-[#94A3B8]">
+                  <Clock3 className="h-4 w-4 text-[#0F766E] dark:text-[#14B8A6]" />
                   <span>
                     Selected: {selectedDate} at {selectedSlot}
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-500 dark:text-slate-400 sm:ml-auto">
+                <p className="text-xs text-[#64748B] dark:text-[#94A3B8] sm:ml-auto">
                   Local price is an estimate. PayPal charges in USD ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(selectedPackage.price)}).
                 </p>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-600/25 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex items-center justify-center rounded-xl bg-[#0F766E] px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isSubmitting ? 'Connecting to PayPal…' : 'Continue to PayPal'}
                 </button>
@@ -324,7 +324,7 @@ function ConsultationBookingContent() {
 
 export default function ConsultationBookingPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50 px-4 py-16 dark:bg-slate-950" /> }>
+    <Suspense fallback={<div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A] px-4 py-16" /> }>
       <ConsultationBookingContent />
     </Suspense>
   );

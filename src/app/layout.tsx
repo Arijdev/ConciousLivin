@@ -37,11 +37,23 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('conciouslivin_theme')==='dark'){document.documentElement.classList.add('dark')}}catch(e){}",
+          }}
+        />
+        <title>ConciousLivin Health Academy | Dr. Arif Chowdhury</title>
+        <meta name="description" content="ConciousLivin Health Academy by Dr. Arif Chowdhury offers clinical health guides, consultations, calculators, and evidence-based wellness resources." />
+        <meta property="og:title" content="ConciousLivin Health Academy | Dr. Arif Chowdhury" />
+        <meta property="og:description" content="Clinical health guides, consultations, calculators, and evidence-based wellness resources by Dr. Arif Chowdhury." />
+        <meta property="og:site_name" content="ConciousLivin Health Academy" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ConciousLivin Health Academy | Dr. Arif Chowdhury" />
+        <meta name="twitter:description" content="Clinical health guides, consultations, calculators, and evidence-based wellness resources by Dr. Arif Chowdhury." />
       </head>
-      <body 
-        className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-emerald-500 selection:text-white font-sans antialiased transition-colors duration-300"
+      <body
+        className="min-h-screen bg-[#F9FAFB] text-[#1E293B] antialiased dark:bg-[#0F172A] dark:text-[#E2E8F0]"
         suppressHydrationWarning
       >
         <CountryCurrencyProvider>

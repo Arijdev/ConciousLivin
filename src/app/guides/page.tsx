@@ -2,15 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ResourceLibrary } from '@/components/ResourceLibrary';
 import { ArrowRight, BookOpen, ShieldCheck } from 'lucide-react';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Health Guides & eBooks | ConciousLivin Health Academy',
+export const metadata: Metadata = pageMetadata({
+  title: 'Health Guides & eBooks',
   description:
     'Evidence-based health guides and clinical eBooks by Dr. Arif Chowdhury. Download free PDF guides or purchase premium longevity protocols with lifetime digital access.',
-  alternates: {
-    canonical: '/guides',
-  },
-};
+  path: '/guides',
+});
 
 export default function GuidesPage() {
   return (

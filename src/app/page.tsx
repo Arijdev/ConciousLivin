@@ -126,7 +126,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Guides Preview */}
-      <ResourceLibrary />
+      <ResourceLibrary showSearch={false} />
 
       {/* Patient Success Stories */}
       <Testimonials />

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 72" fill="none" role="img" aria-label="ConciousLivin Health Academy">
+  <path d="M47.32 19.15A20 20 0 1 0 47.32 44.85" stroke="#1E293B" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="47.5" cy="32" r="5" fill="#0F766E"/>
+  <text x="68" y="36" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="-0.6" fill="#1E293B">Concious<tspan fill="#0F766E">Livin</tspan></text>
+  <text x="69" y="54" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" letter-spacing="2.2" fill="#64748B">HEALTH ACADEMY</text>
+</svg>

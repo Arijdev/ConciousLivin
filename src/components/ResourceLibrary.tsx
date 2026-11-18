@@ -31,11 +31,15 @@ import { useCountryCurrency } from '@/context/CountryCurrencyContext';
 interface ResourceLibraryProps {
   searchQuery?: string;
   onClearSearch?: () => void;
+  showSearch?: boolean;
+  showHeader?: boolean;
 }
 
-export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({ 
-  searchQuery: externalQuery = '', 
-  onClearSearch 
+export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
+  searchQuery: externalQuery = '',
+  onClearSearch,
+  showSearch = true,
+  showHeader = true,
 }) => {
   const { formatPrice } = useCountryCurrency();
   const { resources, addToCart, isResourceUnlocked, openReader, downloadResourceDoc } = useCart();
@@ -96,10 +100,11 @@ export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
   }, [resources, activeCategory, activeSearch, sortBy]);
 
   return (
-    <section id="guides" className="py-20 bg-[#F9FAFB] dark:bg-[#0F172A] relative scroll-mt-20">
+    <section id="guides" className={`bg-[#F9FAFB] dark:bg-[#0F172A] relative scroll-mt-20 ${showHeader ? 'py-20' : 'pb-0'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
+        {showHeader && (
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] text-xs font-semibold uppercase tracking-wider">
             <BookOpen className="w-3.5 h-3.5" />
@@ -112,11 +117,13 @@ export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
             Dive into science-backed medical protocols. Access our complimentary free PDF guides or purchase comprehensive clinical masterclasses with instant lifetime digital access.
           </p>
         </div>
+        )}
 
         {/* Controls Bar: Search, Category Tabs, Sort */}
         <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-4 border border-[#E2E8F0] dark:border-[#334155] mb-10 space-y-4">
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-            {/* Search Input */}
+            {/* Search Input (Guides page only) */}
+            {showSearch && (
             <div className="relative w-full sm:w-72">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B] dark:text-[#94A3B8]" />
               <input
@@ -138,6 +145,7 @@ export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
                 </button>
               )}
             </div>
+            )}
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2 w-full sm:w-auto justify-end">

@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import {
   X, User, Stethoscope, Lock, Mail, ArrowRight, Sparkles,
-  HeartPulse, CheckCircle2, Eye, EyeOff, Shield, AlertCircle,
+  CheckCircle2, Eye, EyeOff, Shield, AlertCircle,
   Loader2, KeyRound
 } from 'lucide-react';
+import { LogoMark } from '@/components/Logo';
 
 // ─── Password Strength Checker ────────────────────────────────────────────────
 function getPasswordStrength(password: string): { score: number; label: string; color: string } {
@@ -323,11 +324,9 @@ export const AuthModal: React.FC = () => {
           </button>
 
           <div className="flex items-center gap-2.5 mb-2">
-            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-              <HeartPulse className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#0F766E] dark:text-[#14B8A6]">
-              ConciousLivin HEALTH ACADEMY
+            <LogoMark variant="onInk" className="h-8 w-8 shrink-0" />
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/80">
+              ConciousLivin <span className="text-[#14B8A6]">Health Academy</span>
             </span>
           </div>
 

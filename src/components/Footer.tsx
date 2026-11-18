@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { DOCTOR_INFO, FAQS } from '@/data/healthData';
 import { useCart } from '@/context/CartContext';
 import { 
-  HeartPulse, 
   ChevronDown, 
   Mail, 
   Send, 
@@ -17,6 +16,7 @@ import {
   Radio,
   Globe
 } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 
 export const Footer: React.FC = () => {
   const { addToast } = useCart();
@@ -119,19 +119,12 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Doctor Info */}
           <div className="space-y-3 md:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#0F766E] flex items-center justify-center text-white">
-                <HeartPulse className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0] block leading-tight">
-                  ConciousLivin HEALTH ACADEMY
-                </span>
-                <span className="text-xs text-[#0F766E] dark:text-[#14B8A6] font-semibold">
-                  {DOCTOR_INFO.name}, MD
-                </span>
-              </div>
-            </div>
+            <Logo
+              markClassName="h-9 w-9"
+              textClassName="text-base leading-tight text-[#1E293B] dark:text-[#E2E8F0]"
+              descriptor="Health Academy"
+              byline={`${DOCTOR_INFO.name}, MD`}
+            />
             <p className="text-[#64748B] dark:text-[#94A3B8] leading-relaxed max-w-md">
               {DOCTOR_INFO.tagline}
             </p>

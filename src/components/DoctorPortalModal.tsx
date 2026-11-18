@@ -7,11 +7,12 @@ import { useCart } from '@/context/CartContext';
 import { supabase } from '@/lib/supabase';
 import { HealthResource } from '@/types/health';
 import {
-  X, Stethoscope, Upload, Plus, Sparkles,
+  X, Upload, Plus, Sparkles,
   CheckCircle2, BookOpen, Trash2, TrendingUp, LogOut,
   FileText, Gift, Loader2, Image as ImageIcon, AlertCircle,
   RefreshCw, Edit3
 } from 'lucide-react';
+import { LogoMark } from '@/components/Logo';
 
 // ─── Analytics Stats ──────────────────────────────────────────────────────────
 const ANALYTICS_STATS = [
@@ -322,9 +323,7 @@ export const DoctorPortalModal: React.FC = () => {
         {/* Top Header */}
         <div className="p-6 bg-[#1E293B] text-white flex items-center justify-between border-b border-[#E2E8F0] dark:border-[#334155]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#0F766E] flex items-center justify-center">
-              <Stethoscope className="w-6 h-6 text-white" />
-            </div>
+            <LogoMark variant="onInk" className="h-10 w-10 shrink-0" />
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-lg font-semibold text-white">Dr. Arif Chowdhury MD</h3>

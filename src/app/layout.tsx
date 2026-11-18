@@ -10,7 +10,6 @@ import { InteractiveReaderModal } from '@/components/InteractiveReaderModal';
 import { CartDrawer } from '@/components/CartDrawer';
 import { CheckoutModal } from '@/components/CheckoutModal';
 import { MyLibraryModal } from '@/components/MyLibraryModal';
-import { SearchModal } from '@/components/SearchModal';
 import { AuthModal } from '@/components/AuthModal';
 import { CustomerDashboardModal } from '@/components/CustomerDashboardModal';
 import { DoctorPortalModal } from '@/components/DoctorPortalModal';
@@ -24,13 +23,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [selectedSearchQuery, setSelectedSearchQuery] = useState('');
-
-  const handleSelectSearch = (query: string) => {
-    setSelectedSearchQuery(query);
-    setIsSearchOpen(false);
-  };
 
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
@@ -64,7 +56,6 @@ export default function RootLayout({
             {/* Navigation Header */}
             <Header
               onOpenMyLibrary={() => setIsLibraryOpen(true)}
-              onOpenSearch={() => setIsSearchOpen(true)}
             />
 
             {/* Main Content */}
@@ -85,11 +76,6 @@ export default function RootLayout({
             <MyLibraryModal
               isOpen={isLibraryOpen}
               onClose={() => setIsLibraryOpen(false)}
-            />
-            <SearchModal
-              isOpen={isSearchOpen}
-              onClose={() => setIsSearchOpen(false)}
-              onSelectResourceSearch={handleSelectSearch}
             />
             <Chatbot />
             <ToastContainer />

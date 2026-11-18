@@ -6,25 +6,23 @@ import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { 
-  HeartPulse, 
   ShoppingBag, 
   Moon, 
   Sun, 
   Menu, 
   X, 
-  Search, 
   User, 
   Stethoscope,
   Globe2
 } from 'lucide-react';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
+import { LogoMark } from '@/components/Logo';
 
 interface HeaderProps {
   onOpenMyLibrary: () => void;
-  onOpenSearch: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary }) => {
   const { cartCount, setIsCartOpen } = useCart();
   const { selectedCountry, countries, setSelectedCountry } = useCountryCurrency();
   const { 
@@ -72,12 +70,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
   };
 
   const navLinks = [
-    { name: 'Health Guides', href: '/guides' },
-    { name: 'Health Tools', href: '/calculators' },
-    { name: 'Health Quiz', href: '/quiz' },
-    { name: 'Articles', href: '/articles' },
-    { name: 'About Dr. Arif', href: '/about' },
-    { name: 'Consultations', href: '/consultation' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Guides', href: '/guides' },
+    { name: 'Tools', href: '/calculators' },
+    { name: 'Consult', href: '/consultation' },
+    { name: 'Article', href: '/articles' },
+    { name: 'Quiz', href: '/quiz' },
   ];
 
   return (
@@ -104,17 +103,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
                 </button>
               </div>
 
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenSearch();
-                }}
-                className="flex w-full items-center gap-3 rounded-xl border border-[#E2E8F0] dark:border-[#334155] px-4 py-3 text-left text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#F9FAFB] dark:hover:bg-[#0F172A]"
-              >
-                <Search className="h-4 w-4 text-[#0F766E] dark:text-[#14B8A6]" />
-                <span>Search health guides and articles</span>
-              </button>
-              
               {/* Nav Links */}
               <nav className="space-y-1">
                 {navLinks.map(link => (
@@ -196,13 +184,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand / Doctor Title */}
           <Link href="/" className="flex min-w-0 items-center gap-2 sm:shrink-0 sm:gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0F766E] text-white sm:h-10 sm:w-10">
-              <HeartPulse className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+            <LogoMark className="h-9 w-9 shrink-0 sm:h-10 sm:w-10" />
             <div className="flex min-w-0 flex-col">
               <div className="flex items-center gap-1.5">
                 <span className="truncate font-semibold text-base tracking-tight text-[#1E293B] dark:text-[#E2E8F0] sm:text-lg">
-                  ConciousLivin
+                  Concious<span className="text-[#0F766E] dark:text-[#14B8A6]">Livin</span>
                 </span>
                 <span className="hidden rounded-full border border-[#0F766E] bg-[#E6F4F1] dark:bg-[#134E4A] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#0F766E] dark:text-[#14B8A6] xl:inline-flex">
                   DR. ARIF MD
@@ -254,15 +240,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary, onOpenSearch })
               className="p-2 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
             >
               {isDarkMode ? <Sun className="w-5 h-5 text-[#E2E8F0]" /> : <Moon className="w-5 h-5" />}
-            </button>
-
-            {/* Quick Search */}
-            <button
-              onClick={onOpenSearch}
-              aria-label="Search resources"
-              className="hidden sm:inline-flex p-2 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
-            >
-              <Search className="w-5 h-5" />
             </button>
 
             {/* Auth & Account Button */}

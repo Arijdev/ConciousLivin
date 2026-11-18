@@ -15,6 +15,7 @@ import {
   Volume2,
   X
 } from 'lucide-react';
+import { LogoMark } from '@/components/Logo';
 import { DOCTOR_INFO } from '@/data/healthData';
 
 export const Hero: React.FC = () => {
@@ -34,7 +35,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             {/* Super Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] text-[#0F766E] dark:text-[#14B8A6] text-xs font-semibold tracking-wide">
-              <span className="flex h-2 w-2 rounded-full bg-[#0F766E]" />
+              <LogoMark className="h-4 w-4 shrink-0" />
               <span>ConciousLivin HEALTH ACADEMY • DR. ARIF CHOWDHURY</span>
             </div>
 

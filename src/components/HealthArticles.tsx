@@ -13,6 +13,7 @@ import {
   BookOpen,
   Search
 } from 'lucide-react';
+import { LogoMark } from '@/components/Logo';
 
 function renderInlineContent(text: string) {
   return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
@@ -239,7 +240,10 @@ selectedCategory === category
               </div>
 
               <div className="flex items-center justify-between gap-3 border-t border-[#E2E8F0] dark:border-[#334155] pt-5">
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8]">ConciousLivin Health Academy</div>
+                <div className="flex items-center gap-1.5 text-xs text-[#64748B] dark:text-[#94A3B8]">
+                  <LogoMark className="h-4 w-4 shrink-0" />
+                  <span>ConciousLivin Health Academy</span>
+                </div>
                 <button
                   onClick={() => setSelectedArticle(null)}
                   className="rounded-xl bg-[#0F766E] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#115E59]"

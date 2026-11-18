@@ -1,14 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
 import { validatePasswordStrength } from '@/lib/password-utils';
+import {
+  boundedString,
+  getClientIp,
+  isRateLimited,
+  isSameOriginRequest,
+  rateLimitResponse,
+  readJsonObject,
+} from '@/lib/api-security';
+
+const EMAIL_PATTERN = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, fullName, phone, role } = await request.json();
+    if (!isSameOriginRequest(request)) {
+      return NextResponse.json({ error: 'Request origin is not allowed.' }, { status: 403 });
+    }
+    if (isRateLimited(`signup:${getClientIp(request)}`, 10)) {
+      return rateLimitResponse();
+    }
 
-    if (!email || !password) {
+    const body = await readJsonObject(request);
+    if (!body) {
+      return NextResponse.json({ error: 'Invalid signup request.' }, { status: 400 });
+    }
+
+    const email = boundedString(body.email, 254)?.toLowerCase();
+    const password = typeof body.password === 'string' && body.password.length <= 128 ? body.password : null;
+    const fullName = typeof body.fullName === 'string' ? body.fullName.trim().slice(0, 120) : '';
+    const phone = typeof body.phone === 'string' ? body.phone.trim().slice(0, 32) : '';
+
+    if (!email || !EMAIL_PATTERN.test(email) || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: 'Email and password are required.' },
         { status: 400 }
       );
     }
@@ -30,8 +55,10 @@ export async function POST(request: NextRequest) {
       options: {
         data: {
           full_name: fullName || email.split('@')[0],
-          phone: phone || '',
-          role: role || 'customer',
+          phone,
+          // Privileges are never taken from user input; doctors are promoted
+          // manually against the profiles table by an administrator.
+          role: 'customer',
         },
       },
     });

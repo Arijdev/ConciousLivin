@@ -118,12 +118,14 @@ PAYPAL_CLIENT_SECRET=your_sandbox_client_secret
 
 Keep `PAYPAL_CLIENT_SECRET` server-only. Create a sandbox REST app and test buyer in the PayPal Developer Dashboard. PayPal order amounts are charged in USD; local currency is a display estimate.
 
+For production, set `NEXT_PUBLIC_SITE_URL=https://conciouslivin.in` (no trailing slash) and `PAYPAL_MODE=live`, and add `https://conciouslivin.in/auth/callback` to the Supabase Auth redirect allow-list. Only `NEXT_PUBLIC_` values are shipped to browsers; `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, and `PAYPAL_CLIENT_SECRET` must stay server-side.
+
 ### 4. Database Setup
 
 For a new project, execute [`SUPABASE_SETUP.sql`](./SUPABASE_SETUP.sql) inside the Supabase SQL Editor. For an existing project, run the additive [`PAYPAL_SETUP.sql`](./PAYPAL_SETUP.sql) migration instead. The setup provisions:
-- `resources` table (Health guides, pricing, ratings, download links)
-- `purchases`, `payment_orders`, and user profiles
-- Storage buckets (`guides-pdf`) with appropriate RLS policies
+- `health_resources` and `profiles` tables with role-guarded RLS policies
+- `purchases`, `payment_orders`, `download_history`, and `consultation_bookings`
+- Private `pdfs` bucket (free guides and paid-guide buyers only) and public `thumbnails` bucket
 
 The script also adds the `payment_orders` table and paid-consultation ownership columns used by PayPal. Existing projects must rerun the script after deploying this payment flow.
 

@@ -44,10 +44,12 @@ export default function RootLayout({
           }}
         />
         <title>ConciousLivin Health Academy | Dr. Arif Chowdhury</title>
+        <link rel="canonical" href="https://conciouslivin.in" />
         <meta name="description" content="ConciousLivin Health Academy by Dr. Arif Chowdhury offers clinical health guides, consultations, calculators, and evidence-based wellness resources." />
         <meta property="og:title" content="ConciousLivin Health Academy | Dr. Arif Chowdhury" />
         <meta property="og:description" content="Clinical health guides, consultations, calculators, and evidence-based wellness resources by Dr. Arif Chowdhury." />
         <meta property="og:site_name" content="ConciousLivin Health Academy" />
+        <meta property="og:url" content="https://conciouslivin.in" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ConciousLivin Health Academy | Dr. Arif Chowdhury" />
         <meta name="twitter:description" content="Clinical health guides, consultations, calculators, and evidence-based wellness resources by Dr. Arif Chowdhury." />

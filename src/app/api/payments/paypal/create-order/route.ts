@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseAdminClient, createSupabaseServerClient } from '@/lib/supabase-server';
 import { paypalRequest, getPayPalAccessToken } from '@/lib/paypal';
 import { CONSULTATION_PACKAGES, DISCOUNT_COUPONS, HEALTH_RESOURCES } from '@/data/healthData';
+import { isSameOriginRequest, readJsonObject } from '@/lib/api-security';
 
 type PayPalOrderResponse = {
   id: string;
@@ -29,11 +30,16 @@ function availableSlots(durationMinutes: number) {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isSameOriginRequest(request)) {
+      return NextResponse.json({ error: 'Request origin is not allowed.' }, { status: 403 });
+    }
+
     const supabase = await createSupabaseServerClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: 'Sign in before starting a payment.' }, { status: 401 });
 
-    const body = await request.json();
+    const body = await readJsonObject(request, 32_768);
+    if (!body) return NextResponse.json({ error: 'Unsupported payment type.' }, { status: 400 });
     let kind: 'resources' | 'consultation';
     let amount = 0;
     let description = '';

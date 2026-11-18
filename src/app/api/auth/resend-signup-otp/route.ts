@@ -1,17 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
+import {
+  getClientIp,
+  isRateLimited,
+  isSameOriginRequest,
+  rateLimitResponse,
+  readJsonObject,
+} from '@/lib/api-security';
+
+const EMAIL_PATTERN = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
-    if (typeof email !== 'string' || !email.trim() || !email.includes('@')) {
+    if (!isSameOriginRequest(request)) {
+      return NextResponse.json({ error: 'Request origin is not allowed.' }, { status: 403 });
+    }
+
+    if (isRateLimited(`resend-otp:${getClientIp(request)}`, 5, 300_000)) {
+      return rateLimitResponse(300);
+    }
+
+    const body = await readJsonObject(request, 2_048);
+    const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
+
+    if (!email || email.length > 254 || !EMAIL_PATTERN.test(email)) {
       return NextResponse.json({ error: 'Enter a valid email address.' }, { status: 400 });
+    }
+
+    if (isRateLimited(`resend-otp-account:${email}`, 3, 300_000)) {
+      return rateLimitResponse(300);
     }
 
     const supabase = await createSupabaseServerClient();
     const { error } = await supabase.auth.resend({
       type: 'signup',
-      email: email.trim(),
+      email,
     });
 
     if (error) {

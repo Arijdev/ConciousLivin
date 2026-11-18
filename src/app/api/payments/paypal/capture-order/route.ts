@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseAdminClient, createSupabaseServerClient } from '@/lib/supabase-server';
 import { paypalRequest, getPayPalAccessToken } from '@/lib/paypal';
 import { CONSULTATION_PACKAGES } from '@/data/healthData';
+import { isSameOriginRequest, readJsonObject } from '@/lib/api-security';
 
 type PayPalOrder = {
   id: string;
@@ -16,12 +17,19 @@ type PayPalOrder = {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isSameOriginRequest(request)) {
+      return NextResponse.json({ error: 'Request origin is not allowed.' }, { status: 403 });
+    }
+
     const supabase = await createSupabaseServerClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: 'Sign in to complete this payment.' }, { status: 401 });
 
-    const { draftId } = await request.json();
-    if (typeof draftId !== 'string') return NextResponse.json({ error: 'Missing payment reference.' }, { status: 400 });
+    const body = await readJsonObject(request, 2_048);
+    const draftId = typeof body?.draftId === 'string' ? body.draftId : null;
+    if (!draftId || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(draftId)) {
+      return NextResponse.json({ error: 'Missing payment reference.' }, { status: 400 });
+    }
 
     const admin = createSupabaseAdminClient();
     const { data: draft, error: draftError } = await admin

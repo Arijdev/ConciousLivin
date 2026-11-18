@@ -244,7 +244,7 @@ export const DoctorPortalModal: React.FC = () => {
     const { data: dbResource, error: dbError } = await supabase
       .from('health_resources')
       .insert(resourceData)
-      .select()
+      .select('id')
       .single();
 
     if (dbError) {

@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { TESTIMONIALS } from '@/data/healthData';
-import { Star, ShieldCheck, HeartHandshake, Quote, CheckCircle2 } from 'lucide-react';
+import { Star, ShieldCheck, HeartHandshake, CheckCircle2 } from 'lucide-react';
 
 export const Testimonials: React.FC = () => {
   return (
@@ -40,6 +40,7 @@ export const Testimonials: React.FC = () => {
                         src={t.avatar}
                         alt={t.name}
                         fill
+                        sizes="48px"
                         className="object-cover"
                       />
                     </div>

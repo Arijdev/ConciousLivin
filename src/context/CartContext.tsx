@@ -104,7 +104,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   // Load resources on mount
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     fetchResources();
   }, []);
@@ -138,7 +137,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   // Load cart and unlocked resources from localStorage on mount
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     try {
       const savedCart = localStorage.getItem('conciouslivin_cart');

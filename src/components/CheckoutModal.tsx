@@ -28,13 +28,12 @@ export const CheckoutModal: React.FC = () => {
   const { formatPrice } = useCountryCurrency();
 
   // Customer info
-  const [name, setName] = useState(user ? user.name : 'Alex Rahman');
-  const [email, setEmail] = useState(user ? user.email : 'alex.rahman@example.com');
+  const [name, setName] = useState(user ? user.name : '');
+  const [email, setEmail] = useState(user ? user.email : '');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [paymentError, setPaymentError] = useState('');
 
   // Sync user details if logged in
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   React.useEffect(() => {
     if (user) {
       setName(user.name);
@@ -103,7 +102,7 @@ export const CheckoutModal: React.FC = () => {
           <button
             onClick={handleClose}
             aria-label="Close checkout"
-            className="p-1.5 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white transition-colors"
+            className="p-2 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

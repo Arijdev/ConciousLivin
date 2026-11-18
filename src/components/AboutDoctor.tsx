@@ -4,15 +4,10 @@ import React from 'react';
 import Image from 'next/image';
 import { DOCTOR_INFO } from '@/data/healthData';
 import { 
-  Award, 
-  CheckCircle2, 
   GraduationCap, 
   MapPin, 
-  Phone, 
-  Mail, 
   Clock, 
   HeartHandshake, 
-  BookOpen, 
   Sparkles,
   Stethoscope,
   ShieldCheck
@@ -51,6 +46,7 @@ export const AboutDoctor: React.FC = () => {
                 src="/images/dr_arif.jpg"
                 alt="Dr. Arif Chowdhury MD"
                 fill
+                sizes="(min-width: 1024px) 480px, 100vw"
                 className="object-cover object-top"
               />
               

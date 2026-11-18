@@ -41,7 +41,6 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pdfDocRef = useRef<unknown>(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const renderPage = async (pageNum: number) => {
     if (!pdfDocRef.current || rendering) return;
     
@@ -102,7 +101,6 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
     }
   };
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     loadPdf();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,30 +122,6 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
     const newScale = Math.max(scale - 0.25, 0.5);
     setScale(newScale);
     renderPage(pageNumber);
-  };
-
-  const rotateLeft = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    ctx.save();
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(-Math.PI / 2);
-    ctx.translate(-canvas.width / 2, -canvas.height / 2);
-    ctx.restore();
-  };
-
-  const rotateRight = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    ctx.save();
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(Math.PI / 2);
-    ctx.translate(-canvas.width / 2, -canvas.height / 2);
-    ctx.restore();
   };
 
   if (!pdfUrl) {
@@ -183,7 +157,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             {!isFullscreen && (
               <button
                 onClick={() => setIsFullscreen(true)}
-                className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
+                className="p-2 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
                 title="Fullscreen"
               >
                 <Maximize2 className="w-5 h-5" />
@@ -193,7 +167,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             {isFullscreen && (
               <button
                 onClick={() => setIsFullscreen(false)}
-                className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
+                className="p-2 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
                 title="Exit Fullscreen"
               >
                 <Minimize2 className="w-5 h-5" />
@@ -202,7 +176,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             
             <button
               onClick={onDownload}
-              className="p-1.5 rounded-lg bg-[#0F766E] hover:bg-[#115E59] text-white transition-colors"
+              className="p-2 rounded-lg bg-[#0F766E] hover:bg-[#115E59] text-white transition-colors"
               title="Download PDF"
             >
               <Download className="w-5 h-5" />
@@ -210,7 +184,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
             
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
+              className="p-2 rounded-lg bg-[#334155] hover:bg-[#334155] dark:hover:bg-[#0F172A] text-[#94A3B8] hover:text-white transition-colors"
               title="Close"
             >
               <X className="w-5 h-5" />
@@ -234,7 +208,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({
                 <span className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0]">Pages ({numPages})</span>
                 <button
                   onClick={() => setShowThumbnails(false)}
-                  className="p-1 rounded text-[#64748B] dark:text-[#94A3B8] hover:text-[#64748B] dark:hover:text-[#94A3B8]"
+                  className="p-2 rounded text-[#64748B] dark:text-[#94A3B8] hover:text-[#64748B] dark:hover:text-[#94A3B8]"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -249,7 +223,7 @@ pageNumber === idx + 1
 ? 'border-[#0F766E]' 
 : 'border-transparent hover:border-[#E2E8F0] dark:hover:border-[#334155]'
 }`}>
-                    <Image src={thumb} alt={`Page ${idx + 1}`} fill className="object-cover" />
+                    <Image src={thumb} alt={`Page ${idx + 1}`} fill sizes="120px" className="object-cover" />
                   </button>
                 ))}
                 {thumbnailUrls.length === 0 && numPages > 0 && (

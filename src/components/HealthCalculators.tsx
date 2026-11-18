@@ -7,12 +7,9 @@ import {
   Flame, 
   Moon, 
   Sparkles, 
-  CheckCircle2, 
   Scale, 
-  HeartPulse, 
   Plus, 
   Minus,
-  ArrowRight,
   Clock
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';

@@ -9,25 +9,18 @@ import {
   Search, 
   X, 
   BookOpen, 
-  FileText, 
-  ArrowRight, 
-  ShoppingBag, 
-  Download,
-  Sparkles
-} from 'lucide-react';
+  FileText} from 'lucide-react';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelectResourceSearch: (query: string) => void;
 }
 
 export const SearchModal: React.FC<SearchModalProps> = ({ 
   isOpen, 
-  onClose,
-  onSelectResourceSearch 
+  onClose
 }) => {
-  const { openReader, addToCart } = useCart();
+  const { openReader } = useCart();
   const { formatPrice } = useCountryCurrency();
   const [query, setQuery] = useState('');
 
@@ -73,7 +66,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           )}
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-[#F1F5F9] dark:bg-[#1E293B] text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
+            aria-label="Close search"
+            className="p-2 rounded-lg bg-[#F1F5F9] dark:bg-[#1E293B] text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -115,6 +109,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                         src={r.coverImage}
                         alt={r.title}
                         fill
+                        sizes="40px"
                         className="object-cover"
                       />
                     </div>

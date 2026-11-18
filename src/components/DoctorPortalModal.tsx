@@ -347,7 +347,7 @@ export const DoctorPortalModal: React.FC = () => {
             </button>
             <button
               onClick={() => setIsDoctorPortalOpen(false)}
-              className="p-1.5 rounded-lg bg-[#334155] hover:bg-[#475569] text-[#E2E8F0] transition-colors"
+              className="p-2 rounded-lg bg-[#334155] hover:bg-[#475569] text-[#E2E8F0] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -478,7 +478,7 @@ activeTab === tab.key
                     {/* Preview */}
                     <div className="relative w-20 h-28 rounded-xl overflow-hidden bg-[#E2E8F0] shrink-0 border border-[#E2E8F0] dark:border-[#334155]">
                       {thumbPreview || thumbUrl ? (
-                        <Image src={thumbPreview || thumbUrl} alt="Thumbnail preview" fill className="object-cover" />
+                        <Image src={thumbPreview || thumbUrl} alt="Thumbnail preview" fill sizes="80px" className="object-cover" />
                       ) : (
                         <div className="w-full h-full flex flex-col items-center justify-center text-[#64748B] dark:text-[#94A3B8] gap-1">
                           <ImageIcon className="w-6 h-6" />
@@ -706,7 +706,7 @@ isFree === isF
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="relative w-12 h-16 rounded-lg overflow-hidden bg-[#E2E8F0] shrink-0">
-                        <Image src={res.coverImage} alt={res.title} fill className="object-cover" />
+                        <Image src={res.coverImage} alt={res.title} fill sizes="48px" className="object-cover" />
                       </div>
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">

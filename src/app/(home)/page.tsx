@@ -126,7 +126,9 @@ export default function HomePage() {
       </section>
 
       {/* Featured Guides Preview */}
-      <ResourceLibrary showSearch={false} />
+      <div id="guides" className="scroll-mt-24">
+        <ResourceLibrary showSearch={false} />
+      </div>
 
       {/* Patient Success Stories */}
       <Testimonials />

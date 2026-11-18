@@ -316,10 +316,11 @@ export const AuthModal: React.FC = () => {
 
         {/* Top Header */}
         <div className="p-6 bg-[#1E293B] text-white relative">
-          <button
-            onClick={closeAuthModal}
-            className="absolute top-4 right-4 p-1.5 rounded-lg bg-black/20 text-white/80 hover:text-white hover:bg-black/30 transition-colors"
-          >
+                <button
+                  onClick={closeAuthModal}
+                  aria-label="Close"
+                  className="absolute top-4 right-4 p-1.5 rounded-lg bg-black/20 text-white/80 hover:text-white hover:bg-black/30 transition-colors"
+                >
             <X className="w-5 h-5" />
           </button>
 

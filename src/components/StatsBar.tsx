@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Users, BookOpenCheck, Award, HeartHandshake, ShieldCheck, Sparkles } from 'lucide-react';
+import { Users, BookOpenCheck, Award, HeartHandshake} from 'lucide-react';
 import { DOCTOR_INFO } from '@/data/healthData';
 import type { LucideIcon } from 'lucide-react';
 

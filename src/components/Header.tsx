@@ -18,11 +18,7 @@ import {
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
 import { LogoMark } from '@/components/Logo';
 
-interface HeaderProps {
-  onOpenMyLibrary: () => void;
-}
-
-export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary }) => {
+export const Header: React.FC = () => {
   const { cartCount, setIsCartOpen } = useCart();
   const { selectedCountry, countries, setSelectedCountry } = useCountryCurrency();
   const { 
@@ -266,6 +262,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMyLibrary }) => {
                         alt={user.name}
                         fill
                         unoptimized
+                        sizes="24px"
                         className="object-cover"
                       />
                     </div>

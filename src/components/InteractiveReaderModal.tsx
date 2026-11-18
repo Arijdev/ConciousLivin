@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
-import { HealthResource } from '@/types/health';
+
 import { 
   X, 
   BookOpen, 
@@ -14,16 +14,10 @@ import {
   ChevronLeft, 
   ChevronRight, 
   CheckCircle2, 
-  ZoomIn, 
-  ZoomOut, 
   Sun, 
   Moon, 
   Coffee,
-  Bookmark,
-  Share2,
-  Lock,
-  Printer
-} from 'lucide-react';
+  Lock} from 'lucide-react';
 
 export const InteractiveReaderModal: React.FC = () => {
   const { formatPrice } = useCountryCurrency();
@@ -149,7 +143,7 @@ export const InteractiveReaderModal: React.FC = () => {
             <button
               onClick={closeReader}
               aria-label="Close reader"
-              className="p-1.5 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white hover:bg-[#334155] dark:hover:bg-[#0F172A] transition-colors ml-1"
+              className="p-2 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white hover:bg-[#334155] dark:hover:bg-[#0F172A] transition-colors ml-1"
             >
               <X className="w-5 h-5" />
             </button>
@@ -201,6 +195,7 @@ activeTab === 'protocol'
                   src={resource.coverImage}
                   alt={resource.title}
                   fill
+                  sizes="48px"
                   className="object-cover"
                 />
               </div>

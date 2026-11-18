@@ -1,21 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { DOCTOR_INFO, FAQS } from '@/data/healthData';
+import Link from 'next/link';import { DOCTOR_INFO, FAQS } from '@/data/healthData';
 import { useCart } from '@/context/CartContext';
 import { 
   ChevronDown, 
   Mail, 
   Send, 
   ShieldAlert, 
-  CheckCircle2, 
-  Phone, 
-  MapPin,
-  ExternalLink,
-  Radio,
-  Globe
-} from 'lucide-react';
+  CheckCircle2} from 'lucide-react';
 import { Logo } from '@/components/Logo';
 
 export const Footer: React.FC = () => {
@@ -140,11 +133,11 @@ export const Footer: React.FC = () => {
               Quick Navigation
             </h4>
             <ul className="space-y-2 text-[#64748B] dark:text-[#94A3B8] font-normal">
-              <li><a href="#guides" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">Free PDF Downloads</a></li>
-              <li><a href="#guides" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">Premium Health eBooks</a></li>
-              <li><a href="/calculators" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">BMI & Hydration Calculators</a></li>
-              <li><a href="/quiz" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">Health Diagnostic Quiz</a></li>
-              <li><a href="/consultation" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">1-on-1 Consultation Booking</a></li>
+              <li><Link href="/#guides" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">Free PDF Downloads</Link></li>
+              <li><Link href="/#guides" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">Premium Health eBooks</Link></li>
+              <li><Link href="/calculators" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">BMI &amp; Hydration Calculators</Link></li>
+              <li><Link href="/quiz" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">Health Diagnostic Quiz</Link></li>
+              <li><Link href="/consultation" className="hover:text-[#0F766E] dark:hover:text-[#14B8A6] transition-colors">1-on-1 Consultation Booking</Link></li>
             </ul>
           </div>
 
@@ -178,11 +171,11 @@ export const Footer: React.FC = () => {
               © {new Date().getFullYear()} ConciousLivin Health Academy — Dr. Arif Chowdhury. All Rights Reserved.
             </p>
             <div className="flex items-center gap-4 text-[#64748B] dark:text-[#94A3B8]">
-              <span className="hover:text-[#1E293B] dark:hover:text-[#E2E8F0] cursor-pointer">Privacy Policy</span>
+              <Link href="/privacy" className="hover:text-[#1E293B] dark:hover:text-[#E2E8F0]">Privacy Policy</Link>
               <span>•</span>
-              <span className="hover:text-[#1E293B] dark:hover:text-[#E2E8F0] cursor-pointer">Terms of Service</span>
+              <Link href="/terms" className="hover:text-[#1E293B] dark:hover:text-[#E2E8F0]">Terms of Service</Link>
               <span>•</span>
-              <span className="hover:text-[#1E293B] dark:hover:text-[#E2E8F0] cursor-pointer">Digital Product Refund Policy</span>
+              <Link href="/refund" className="hover:text-[#1E293B] dark:hover:text-[#E2E8F0]">Digital Product Refund Policy</Link>
             </div>
           </div>
         </div>

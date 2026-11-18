@@ -1,17 +1,14 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { QUIZ_QUESTIONS, HEALTH_RESOURCES } from '@/data/healthData';
+import type { LucideIcon } from 'lucide-react';import { QUIZ_QUESTIONS, HEALTH_RESOURCES } from '@/data/healthData';
 import { useCart } from '@/context/CartContext';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
 import { 
   Sparkles, 
   CheckCircle2, 
-  ArrowRight, 
   RotateCcw, 
   Award, 
-  BookOpen, 
   ShoppingBag,
   HeartPulse,
   Flame,
@@ -31,7 +28,7 @@ import {
 } from 'lucide-react';
 
 // Icon map helper
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Leaf,
   Zap,
   HeartPulse,

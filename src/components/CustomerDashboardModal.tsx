@@ -11,15 +11,8 @@ import {
   Download, 
   BookOpen, 
   Receipt, 
-  Clock, 
-  CheckCircle2, 
   ShieldCheck, 
-  LogOut, 
-  FileText, 
-  Sparkles,
-  Printer,
-  ShoppingBag,
-  HeartPulse,
+  LogOut,
   Camera,
   Pencil,
   Save
@@ -103,6 +96,7 @@ export const CustomerDashboardModal: React.FC = () => {
                 alt={user.name}
                 fill
                 unoptimized
+                sizes="48px"
                 className="object-cover"
               />
             </div>
@@ -129,7 +123,7 @@ export const CustomerDashboardModal: React.FC = () => {
             </button>
             <button
               onClick={() => setIsCustomerDashboardOpen(false)}
-              className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -216,6 +210,7 @@ activeTab === 'profile'
                           src={resource.coverImage}
                           alt={resource.title}
                           fill
+                          sizes="56px"
                           className="object-cover"
                         />
                       </div>

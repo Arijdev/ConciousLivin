@@ -25,6 +25,8 @@ export default function Image() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+          {/* Satori (ImageResponse) only supports a plain img element. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={markSrc} width={92} height={92} alt="" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', fontSize: 52, fontWeight: 700, letterSpacing: -1 }}>

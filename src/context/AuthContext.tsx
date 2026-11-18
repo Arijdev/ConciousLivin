@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { Session, User as SupabaseUser, AuthError } from '@supabase/supabase-js';
+import { Session, User as SupabaseUser} from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 import { User, UserRole, DownloadHistoryItem, PurchaseHistoryItem, HealthResource } from '@/types/health';
 
@@ -351,7 +351,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       closeAuthModal();
       return { error: null };
-    } catch (err) {
+    } catch {
       return { error: 'Network error. Please try again.' };
     }
   };
@@ -373,7 +373,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       closeAuthModal();
       return { error: null };
-    } catch (err) {
+    } catch {
       return { error: 'Network error. Please try again.' };
     }
   };

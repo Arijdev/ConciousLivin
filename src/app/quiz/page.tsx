@@ -4,7 +4,6 @@ import React from 'react';
 import { HealthQuiz } from '@/components/HealthQuiz';
 import { 
   Brain, 
-  Sparkles, 
   ShieldCheck,
   ClipboardList,
   Target,

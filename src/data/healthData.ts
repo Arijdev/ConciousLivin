@@ -23,7 +23,6 @@ export const DOCTOR_INFO = {
   clinicLocation: "ConciousLivin Medical & Longevity Institute",
   hours: "Monday – Saturday: 9:00 AM – 7:00 PM (EST)",
   email: "dr.arif@conciouslivin.in",
-  phone: "+1 (800) 555-ARIF",
   socials: {
     youtube: "https://youtube.com/@fitnessguruji-v2h?si=gCC3cyIDcEbgxTcE",
     instagram: "https://www.instagram.com/drarif25/",

@@ -3,22 +3,6 @@ import React, { useState } from 'react';
 
 type Msg = { role: 'user' | 'assistant'; text: string };
 
-const answers: Record<string, string> = {
-  'consultation': 'You can book a free consultation from the Consultation page. Tell us your goals and preferred time.',
-  'resources': 'Health resources are available in Resource Library; many are free and premium guides have discounted prices.',
-  'payment': 'We accept secure online payments; prices update by country/currency automatically.',
-  'supplements': 'Premium supplements and health programs are listed on the home page under Products.',
-  'contact': 'Use the book consultation form or footer contact links, and our team replies within one business day.',
-};
-
-function reply(q: string) {
-  const lower = q.toLowerCase();
-  for (const k of Object.keys(answers)) {
-    if (lower.includes(k)) return answers[k];
-  }
-  return 'A team member will follow up shortly. Could you share your email and main health goal?';
-}
-
 export function Chatbot() {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([{ role: 'assistant', text: 'Hi! Ask me about consultations, resources, pricing, or supplements.' }]);

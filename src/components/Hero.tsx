@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   HeartPulse,
   ShieldCheck,
@@ -70,14 +71,14 @@ export const Hero: React.FC = () => {
 
             {/* CTA Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-              <a
-                href="#guides"
+              <Link
+                href="/#guides"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-[#0F766E] text-white font-semibold text-base transition-colors hover:bg-[#115E59]"
               >
                 <BookOpen className="w-5 h-5" />
                 <span>Explore Health Guides & Store</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
 
               <a
                 href="/quiz"
@@ -197,7 +198,7 @@ export const Hero: React.FC = () => {
               </div>
               <button
                 onClick={() => setIsVideoModalOpen(false)}
-                className="p-1 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]"
+                className="p-2 rounded-lg text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -227,12 +228,13 @@ export const Hero: React.FC = () => {
               </div>
 
               <div className="flex justify-center gap-4">
-                <button
+                <Link
+                  href="/guides"
                   onClick={() => setIsVideoModalOpen(false)}
                   className="px-6 py-2.5 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-sm font-semibold transition-colors"
                 >
                   Start Exploring Guides
-                </button>
+                </Link>
               </div>
             </div>
           </div>

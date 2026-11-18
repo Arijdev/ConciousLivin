@@ -2,9 +2,10 @@
 
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { HealthResource } from '@/types/health';
-import { HEALTH_RESOURCES } from '@/data/healthData';
+
 import { 
   BookOpen, 
   Download, 
@@ -16,10 +17,7 @@ import {
   FileText, 
   Search, 
   Filter, 
-  Check, 
-  Tag, 
-  ExternalLink,
-  ShieldCheck,
+  Check,
   Eye,
   Lock
 } from 'lucide-react';
@@ -43,7 +41,7 @@ export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
 }) => {
   const { formatPrice } = useCountryCurrency();
   const { resources, addToCart, isResourceUnlocked, openReader, downloadResourceDoc } = useCart();
-  const { isDoctor, setIsDoctorPortalOpen, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [internalQuery, setInternalQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'popular' | 'rating' | 'price-low' | 'price-high'>('popular');
@@ -155,7 +153,7 @@ export const ResourceLibrary: React.FC<ResourceLibraryProps> = ({
               </span>
               <select
                 value={sortBy}
-                onChange={e => setSortBy(e.target.value as any)}
+                onChange={e => setSortBy(e.target.value as 'popular' | 'rating' | 'price-low' | 'price-high')}
                 className="px-3 py-2 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-normal border border-[#E2E8F0] dark:border-[#334155] focus:outline-none focus:ring-2 focus:ring-[#0F766E]"
               >
                 <option value="popular">Most Popular</option>
@@ -242,6 +240,7 @@ activeCategory === cat.id
                         src={resource.coverImage}
                         alt={resource.title}
                         fill
+                        sizes="192px"
                         className="object-cover"
                       />
                     </div>
@@ -420,12 +419,12 @@ isAuthenticated
             <div className="px-4 py-2.5 bg-white/10 rounded-xl border border-white/25 text-sm font-mono font-semibold tracking-widest text-white">
               ARIF50
             </div>
-            <a
-              href="#guides"
+            <Link
+              href="/#guides"
               className="px-5 py-2.5 rounded-xl bg-[#0F766E] text-white font-semibold text-xs hover:bg-[#115E59] transition-colors"
             >
               Browse Books
-            </a>
+            </Link>
           </div>
         </div>
 

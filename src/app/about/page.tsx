@@ -3,9 +3,7 @@
 import React from 'react';
 import { AboutDoctor } from '@/components/AboutDoctor';
 import { 
-  Award, 
-  ShieldCheck,
-  HeartPulse,
+  Award,
   BookOpen,
   Users,
   GraduationCap,

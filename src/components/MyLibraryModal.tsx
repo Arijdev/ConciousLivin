@@ -7,12 +7,7 @@ import { HEALTH_RESOURCES } from '@/data/healthData';
 import { 
   X, 
   BookOpen, 
-  Download, 
-  Sparkles, 
-  CheckCircle2, 
-  ShoppingBag,
-  ExternalLink
-} from 'lucide-react';
+  Download} from 'lucide-react';
 
 interface MyLibraryModalProps {
   isOpen: boolean;
@@ -51,7 +46,7 @@ export const MyLibraryModal: React.FC<MyLibraryModalProps> = ({ isOpen, onClose 
           <button
             onClick={onClose}
             aria-label="Close my library"
-            className="p-1.5 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white transition-colors"
+            className="p-2 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -82,6 +77,7 @@ export const MyLibraryModal: React.FC<MyLibraryModalProps> = ({ isOpen, onClose 
                         src={resource.coverImage}
                         alt={resource.title}
                         fill
+                        sizes="64px"
                         className="object-cover"
                       />
                     </div>

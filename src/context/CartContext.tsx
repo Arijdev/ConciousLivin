@@ -46,6 +46,8 @@ interface CartContextType {
   removeToast: (id: string) => void;
   downloadResourceDoc: (resource: HealthResource) => void;
   refreshResources: () => Promise<void>;
+  claimBook: (resourceId: string) => void;
+  isBookClaimed: (resourceId: string) => boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -60,6 +62,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
   const [unlockedResources, setUnlockedResources] = useState<string[]>([]);
+  const [claimedResources, setClaimedResources] = useState<string[]>([]);
   const [activeReaderResource, setActiveReaderResource] = useState<HealthResource | null>(null);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
@@ -287,6 +290,42 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return unlockedResources.includes(resourceId);
   };
 
+  // Load claimed resources from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedClaimed = localStorage.getItem('conciouslivin_claimed');
+      if (savedClaimed) {
+        setClaimedResources(JSON.parse(savedClaimed));
+      }
+    } catch (e) {
+      console.error('Error loading claimed resources from storage', e);
+    }
+  }, []);
+
+  // Save claimed changes
+  useEffect(() => {
+    try {
+      if (claimedResources.length > 0) {
+        localStorage.setItem('conciouslivin_claimed', JSON.stringify(claimedResources));
+      }
+    } catch (e) {
+      console.error('Error saving claimed resources', e);
+    }
+  }, [claimedResources]);
+
+  const claimBook = (resourceId: string) => {
+    setClaimedResources(prev => {
+      if (!prev.includes(resourceId)) {
+        return [...prev, resourceId];
+      }
+      return prev;
+    });
+  };
+
+  const isBookClaimed = (resourceId: string) => {
+    return claimedResources.includes(resourceId);
+  };
+
   const openReader = (resource: HealthResource) => {
     setActiveReaderResource(resource);
   };
@@ -310,24 +349,28 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const total = Math.max(0, subtotal - discountAmount);
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
-  // Download PDF Document with strict Auth Guard
+// Download PDF Document with Auth Guard (allows preview downloads)
   const downloadResourceDoc = async (resource: HealthResource) => {
     if (!isAuthenticated) {
       openAuthModal('customer-login', `Please sign in or create a free patient account to download "${resource.title}".`);
       return;
     }
 
-    // If real PDF URL is available (from Supabase Storage), open/download it directly
-    if (resource.pdfFileName && (resource.pdfFileName.startsWith('http') || resource.pdfFileName.startsWith('/'))) {
+    // Generate PDF from full content on-the-fly
+    try {
+      const response = await fetch(`/api/download-pdf/${resource.id}`);
+      if (!response.ok) throw new Error('Failed to generate PDF');
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = resource.pdfFileName;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+      link.href = url;
       link.download = `${resource.title.replace(/[^a-zA-Z0-9]/g, '_')}_Dr_Arif_Chowdhury.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+      URL.revokeObjectURL(url);
+
       // Record download to Supabase
       try {
         await fetch('/api/download', {
@@ -344,185 +387,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       } catch (err) {
         console.error('Failed to record download:', err);
       }
-      
+
       recordDownload(resource);
       unlockResource(resource.id);
-      addToast('Download Started!', `"${resource.title}" PDF is opening from ConciousLivin Vault.`, 'success');
-      return;
+      addToast('Download Complete!', `"${resource.title}" PDF generated with full content.`, 'success');
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+      addToast('Download Failed', 'Could not generate PDF. Please try again.', 'error');
     }
-
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <title>${resource.title} — Dr. Arif Chowdhury (ConciousLivin Health Academy)</title>
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
-          body {
-            font-family: 'Lora', Georgia, serif;
-            line-height: 1.7;
-            color: #1a202c;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 40px;
-            background: #ffffff;
-          }
-          h1, h2, h3, h4 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #0f172a;
-          }
-          .header {
-            border-bottom: 3px solid #10b981;
-            padding-bottom: 24px;
-            margin-bottom: 32px;
-            text-align: center;
-          }
-          .badge {
-            display: inline-block;
-            background: #ecfdf5;
-            color: #059669;
-            padding: 4px 14px;
-            border-radius: 9999px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-          }
-          .title {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 8px 0;
-            color: #064e3b;
-          }
-          .subtitle {
-            font-size: 18px;
-            color: #4b5563;
-            font-style: italic;
-          }
-          .author {
-            margin-top: 16px;
-            font-weight: 700;
-            color: #0f766e;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-          }
-          .chapter {
-            margin: 36px 0;
-            padding: 24px;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 5px solid #10b981;
-          }
-          .chapter-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-top: 0;
-            color: #0f172a;
-          }
-          .takeaways {
-            background: #ecfdf5;
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin-top: 16px;
-          }
-          .takeaways h4 {
-            margin-top: 0;
-            color: #065f46;
-          }
-          .doctor-tip {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            color: #1e40af;
-            padding: 14px 18px;
-            border-radius: 8px;
-            margin-top: 16px;
-            font-weight: 600;
-            font-size: 14px;
-          }
-          .footer {
-            margin-top: 60px;
-            text-align: center;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 24px;
-            font-size: 13px;
-            color: #64748b;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="header">
-          <div class="badge">ConciousLivin HEALTH ACADEMY • OFFICIAL CLINICAL GUIDE</div>
-          <h1 class="title">${resource.title}</h1>
-          <div class="subtitle">${resource.subtitle}</div>
-          <div class="author">Authored by Dr. Arif Chowdhury, MBBS, M.S. Clinical Nutrition</div>
-        </div>
-
-        <div>
-          <h2>Introduction</h2>
-          <p>${resource.fullContent.introduction}</p>
-        </div>
-
-        <div>
-          <h2>Core Clinical Protocol & Chapters</h2>
-          ${resource.fullContent.chapters.map(ch => `
-            <div class="chapter">
-              <h3 class="chapter-title">${ch.title}</h3>
-              <p>${ch.content}</p>
-              
-              <div class="takeaways">
-                <h4>Key Action Steps:</h4>
-                <ul>
-                  ${ch.keyTakeaways.map(t => `<li>${t}</li>`).join('')}
-                </ul>
-              </div>
-
-              ${ch.doctorTip ? `
-                <div class="doctor-tip">
-                  💡 <strong>Clinical Pearl:</strong> ${ch.doctorTip}
-                </div>
-              ` : ''}
-            </div>
-          `).join('')}
-        </div>
-
-        <div>
-          <h2>Dr. Arif's Actionable Daily Checklist</h2>
-          <ul>
-            ${resource.fullContent.protocolSummary.map(p => `<li><strong>✔</strong> ${p}</li>`).join('')}
-          </ul>
-        </div>
-
-        <div>
-          <h2>Conclusion</h2>
-          <p>${resource.fullContent.conclusion}</p>
-        </div>
-
-        <div class="footer">
-          <p><strong>Medical Disclaimer:</strong> This publication is for educational purposes and is not a substitute for individualized clinical diagnosis. Always consult your qualified healthcare practitioner before implementing new protocols.</p>
-          <p>© ${new Date().getFullYear()} ConciousLivin Health Academy — Dr. Arif Chowdhury. All Rights Reserved.</p>
-        </div>
-      </body>
-      </html>
-    `;
-
-    const blob = new Blob([htmlContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${resource.title.replace(/[^a-zA-Z0-9]/g, '_')}_Dr_Arif_Chowdhury.html`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-
-    // Record in user's download history
-    recordDownload(resource);
-    unlockResource(resource.id);
-
-    addToast('Download Started!', `"${resource.title}" guide downloaded and saved to your account history.`, 'success');
   };
 
   return (
@@ -559,7 +431,9 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         addToast,
         removeToast,
         downloadResourceDoc,
-        refreshResources: fetchResources
+        refreshResources: fetchResources,
+        claimBook,
+        isBookClaimed,
       }}
     >
       {children}

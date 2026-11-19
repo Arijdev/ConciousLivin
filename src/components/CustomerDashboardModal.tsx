@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
 import { useCart } from '@/context/CartContext';
+import { HealthResource } from '@/types/health';
 import { 
   X, 
   User, 
@@ -15,7 +16,8 @@ import {
   LogOut,
   Camera,
   Pencil,
-  Save
+  Save,
+  Bookmark
 } from 'lucide-react';
 
 export const CustomerDashboardModal: React.FC = () => {
@@ -34,7 +36,8 @@ export const CustomerDashboardModal: React.FC = () => {
     resources, 
     unlockedResources, 
     openReader, 
-    downloadResourceDoc 
+    downloadResourceDoc,
+    isBookClaimed
   } = useCart();
 
   const [activeTab, setActiveTab] = useState<'library' | 'downloads' | 'orders' | 'profile'>('library');
@@ -56,6 +59,16 @@ export const CustomerDashboardModal: React.FC = () => {
   const unlockedList = resources.filter(r => 
     r.isFree || unlockedResources.includes(r.id)
   );
+
+  const claimedList = resources.filter(r => 
+    r.isFree && isBookClaimed(r.id)
+  );
+
+  // Combine unlocked and claimed, deduplicate
+  const allLibraryBooksMap = new Map<string, HealthResource>();
+  unlockedList.forEach(r => allLibraryBooksMap.set(r.id, r));
+  claimedList.forEach(r => allLibraryBooksMap.set(r.id, r));
+  const allLibraryBooks = Array.from(allLibraryBooksMap.values());
 
   const cancelProfileEdit = () => {
     setEditName(user.name);
@@ -141,7 +154,7 @@ activeTab === 'library'
 }`}
           >
             <BookOpen className="w-3.5 h-3.5" />
-            <span>My Unlocked Library ({unlockedList.length})</span>
+            <span>My Library ({allLibraryBooks.length})</span>
           </button>
 
           <button
@@ -185,73 +198,160 @@ activeTab === 'profile'
         <div className="p-6 sm:p-8 max-h-[65vh] overflow-y-auto space-y-6">
           
           {/* TAB 1: UNLOCKED LIBRARY */}
-          {activeTab === 'library' && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
-                    Available Health Guides & Masterclasses
-                  </h4>
-                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
-                    Access your free and purchased digital guides anytime.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {unlockedList.map(resource => (
-                  <div
-                    key={resource.id}
-                    className="p-4 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] flex flex-col justify-between space-y-3"
-                  >
-                    <div className="flex gap-3">
-                      <div className="relative w-14 h-18 rounded-lg overflow-hidden bg-[#E2E8F0] shrink-0">
-                        <Image
-                          src={resource.coverImage}
-                          alt={resource.title}
-                          fill
-                          sizes="56px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full ${
-resource.isFree ? 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]' : 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]'
-}`}>
-                          {resource.isFree ? 'Free Digital Guide' : 'Purchased Masterclass'}
-                        </span>
-                        <h5 className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mt-1 line-clamp-1">
-                          {resource.title}
-                        </h5>
-                        <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
-                          {resource.pages} Pages • Full Access
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
-                      <button
-                        onClick={() => {
-                          openReader(resource);
-                          setIsCustomerDashboardOpen(false);
-                        }}
-                        className="py-2 px-3 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] transition-colors flex items-center justify-center gap-1"
-                      >
-                        <BookOpen className="w-3.5 h-3.5" />
-                        <span>Read</span>
-                      </button>
-
-                      <button
-                        onClick={() => downloadResourceDoc(resource)}
-                        className="py-2 px-3 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-all flex items-center justify-center gap-1"
-                      >
-                        <Download className="w-3.5 h-3.5" />
-                        <span>Save PDF</span>
-                      </button>
-                    </div>
+{activeTab === 'library' && (
+            <div className="space-y-6">
+              {/* Unlocked Books Section */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
+                      Available Health Guides & Masterclasses
+                    </h4>
+                    <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+                      Access your free and purchased digital guides anytime.
+                    </p>
                   </div>
-                ))}
+                </div>
+
+                {unlockedList.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {unlockedList.map(resource => (
+                      <div
+                        key={resource.id}
+                        className="p-4 rounded-2xl bg-[#F9FAFB] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] flex flex-col justify-between space-y-3"
+                      >
+                        <div className="flex gap-3">
+                          <div className="relative w-14 h-18 rounded-lg overflow-hidden bg-[#E2E8F0] shrink-0">
+                            <Image
+                              src={resource.coverImage}
+                              alt={resource.title}
+                              fill
+                              sizes="56px"
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full ${
+                          resource.isFree ? 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]' : 'bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]'
+                        }`}>
+                              {resource.isFree ? 'Free Digital Guide' : 'Purchased Masterclass'}
+                            </span>
+                            <h5 className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mt-1 line-clamp-1">
+                              {resource.title}
+                            </h5>
+                            <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
+                              {resource.pages} Pages • Full Access
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
+                          <button
+                            onClick={() => {
+                              openReader(resource);
+                              setIsCustomerDashboardOpen(false);
+                            }}
+                            className="py-2 px-3 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] transition-colors flex items-center justify-center gap-1"
+                          >
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span>Read</span>
+                          </button>
+
+                          <button
+                            onClick={() => downloadResourceDoc(resource)}
+                            className="py-2 px-3 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-all flex items-center justify-center gap-1"
+                          >
+                            <Download className="w-3.5 h-3.5" />
+                            <span>Save PDF</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12 bg-[#F9FAFB] dark:bg-[#0F172A] rounded-2xl border border-[#E2E8F0] dark:border-[#334155] p-6 space-y-3">
+                    <BookOpen className="w-10 h-10 text-[#64748B] dark:text-[#94A3B8] mx-auto" />
+                    <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-normal">
+                      No unlocked guides yet. Browse the library to add free guides.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setIsCustomerDashboardOpen(false);
+                      }}
+                      className="px-4 py-2 rounded-xl bg-[#0F766E] text-white text-xs font-semibold"
+                    >
+                      Explore Library
+                    </button>
+                  </div>
+                )}
               </div>
+
+              {/* Claimed Books Section (Free books saved to library) */}
+              {claimedList.length > 0 && (
+                <div className="border-t border-[#E2E8F0] dark:border-[#334155] pt-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Bookmark className="w-5 h-5 text-[#14B8A6]" />
+                    <h4 className="text-base font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
+                      My Saved Library ({claimedList.length})
+                    </h4>
+                  </div>
+                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8] mb-4">
+                    Free guides you've saved to your personal library for quick access.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {claimedList.map(resource => (
+                      <div
+                        key={resource.id}
+                        className="p-4 rounded-2xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] flex flex-col justify-between space-y-3"
+                      >
+                        <div className="flex gap-3">
+                          <div className="relative w-14 h-18 rounded-lg overflow-hidden bg-[#E2E8F0] shrink-0">
+                            <Image
+                              src={resource.coverImage}
+                              alt={resource.title}
+                              fill
+                              sizes="56px"
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6]">
+                              Saved to Library
+                            </span>
+                            <h5 className="text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mt-1 line-clamp-1">
+                              {resource.title}
+                            </h5>
+                            <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] mt-0.5">
+                              {resource.pages} Pages • Free Guide
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
+                          <button
+                            onClick={() => {
+                              openReader(resource);
+                              setIsCustomerDashboardOpen(false);
+                            }}
+                            className="py-2 px-3 rounded-xl bg-white dark:bg-[#1E293B] text-[#1E293B] dark:text-[#E2E8F0] text-xs font-semibold hover:bg-[#F1F5F9] dark:hover:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] transition-colors flex items-center justify-center gap-1"
+                          >
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span>Read</span>
+                          </button>
+
+                          <button
+                            onClick={() => downloadResourceDoc(resource)}
+                            className="py-2 px-3 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-all flex items-center justify-center gap-1"
+                          >
+                            <Download className="w-3.5 h-3.5" />
+                            <span>Save PDF</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

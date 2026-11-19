@@ -1,7 +1,8 @@
 ﻿'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Markdown from 'react-markdown';
 import { useCart } from '@/context/CartContext';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
 
@@ -17,7 +18,21 @@ import {
   Sun, 
   Moon, 
   Coffee,
-  Lock} from 'lucide-react';
+  Lock,
+  Bookmark,
+  BookmarkCheck,
+  AlertCircle
+} from 'lucide-react';
+
+interface LibraryItem {
+  id: string;
+  user_id: string;
+  resource_id: string;
+  claimed_at: string;
+  last_read_at: string | null;
+  last_read_chapter: number;
+  reading_progress: Record<string, unknown>;
+}
 
 export const InteractiveReaderModal: React.FC = () => {
   const { formatPrice } = useCountryCurrency();
@@ -26,19 +41,94 @@ export const InteractiveReaderModal: React.FC = () => {
     closeReader, 
     isResourceUnlocked, 
     addToCart, 
-    downloadResourceDoc 
+    downloadResourceDoc,
+    claimBook,
+    isBookClaimed
   } = useCart();
 
   const [activeTab, setActiveTab] = useState<'reader' | 'toc' | 'protocol'>('reader');
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const [fontSize, setFontSize] = useState<'sm' | 'base' | 'lg' | 'xl'>('base');
   const [readerTheme, setReaderTheme] = useState<'light' | 'sepia' | 'dark'>('light');
+  const [isClaimed, setIsClaimed] = useState(false);
+  const [isClaiming, setIsClaiming] = useState(false);
+  const [claimError, setClaimError] = useState<string | null>(null);
+  const [lastReadChapter, setLastReadChapter] = useState(0);
+
+  // Check if book is claimed in library
+  useEffect(() => {
+    if (!resource) return;
+    const checkClaimed = async () => {
+      try {
+        const response = await fetch(`/api/library/claim?id=${resource.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setIsClaimed(data.inLibrary);
+          if (data.libraryItem) {
+            setLastReadChapter(data.libraryItem.last_read_chapter || 0);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to check library status:', error);
+      }
+    };
+    checkClaimed();
+  }, [resource?.id]);
+
+  // Save progress when chapter changes
+  useEffect(() => {
+    if (!resource || !isClaimed) return;
+    handleSaveProgress(activeChapterIndex);
+  }, [resource?.id, activeChapterIndex, isClaimed]);
 
   if (!resource) return null;
 
   const isUnlocked = isResourceUnlocked(resource.id);
   const chapters = resource.fullContent.chapters;
   const currentChapter = chapters[activeChapterIndex] || chapters[0];
+
+  const handleClaim = async () => {
+    if (isClaiming || isClaimed) return;
+    setIsClaiming(true);
+    setClaimError(null);
+    try {
+      const response = await fetch('/api/library/claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          resourceId: resource.id,
+          claimedFrom: 'reader'
+        }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setIsClaimed(true);
+        claimBook(resource.id);
+      } else {
+        setClaimError(data.message || 'Failed to claim book');
+      }
+    } catch (error) {
+      setClaimError('Failed to claim book. Please try again.');
+    } finally {
+      setIsClaiming(false);
+    }
+  };
+
+  const handleSaveProgress = async (chapterIndex: number) => {
+    setLastReadChapter(chapterIndex);
+    try {
+      await fetch('/api/library/claim', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          resourceId: resource.id,
+          lastReadChapter: chapterIndex,
+        }),
+      });
+    } catch (error) {
+      console.error('Failed to save reading progress:', error);
+    }
+  };
 
   const fontSizeClasses = {
     sm: 'text-sm leading-relaxed',
@@ -128,15 +218,52 @@ export const InteractiveReaderModal: React.FC = () => {
               </button>
             </div>
 
-            {/* Download Button */}
-            {(resource.isFree || isUnlocked) && (
+            {/* Download Button - Available for all books */}
+            <button
+              onClick={() => downloadResourceDoc(resource)}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-colors"
+              title="Download PDF"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Save PDF</span>
+            </button>
+
+            {/* Claim to Library Button */}
+            {!isClaimed && resource.isFree && (
               <button
-                onClick={() => downloadResourceDoc(resource)}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#0F766E] hover:bg-[#115E59] text-white text-xs font-semibold transition-colors"
+                onClick={handleClaim}
+                disabled={isClaiming}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#14B8A6] hover:bg-[#0F766E] text-white text-xs font-semibold transition-colors"
+                title="Add to My Library"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Save PDF</span>
+                {isClaiming ? (
+                  <>
+                    <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span className="hidden sm:inline">Adding...</span>
+                  </>
+                ) : (
+                  <>
+                    <Bookmark className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">Save to Library</span>
+                  </>
+                )}
               </button>
+            )}
+
+            {/* Claimed Badge */}
+            {isClaimed && (
+              <span className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] text-xs font-semibold">
+                <Bookmark className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">In Library</span>
+              </span>
+            )}
+
+            {/* Claim Error */}
+            {claimError && (
+              <span className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#FEF2F2] dark:bg-[#7F1D1D] text-[#DC2626] dark:text-[#FCA5A5] text-xs font-semibold">
+                <span className="w-3.5 h-3.5">⚠</span>
+                <span className="hidden sm:inline">{claimError}</span>
+              </span>
             )}
 
             {/* Close Button */}
@@ -155,30 +282,30 @@ export const InteractiveReaderModal: React.FC = () => {
           <button
             onClick={() => setActiveTab('reader')}
             className={`px-3 py-1.5 rounded-lg transition-colors ${
-activeTab === 'reader'
-? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]'
-: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
-}`}
+          activeTab === 'reader'
+            ? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]'
+            : 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+        }`}
           >
             📖 Book Reader
           </button>
           <button
             onClick={() => setActiveTab('toc')}
             className={`px-3 py-1.5 rounded-lg transition-colors ${
-activeTab === 'toc'
-? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]'
-: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
-}`}
+          activeTab === 'toc'
+            ? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]'
+            : 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+        }`}
           >
             📋 Table of Contents ({resource.tableOfContents.length})
           </button>
           <button
             onClick={() => setActiveTab('protocol')}
             className={`px-3 py-1.5 rounded-lg transition-colors ${
-activeTab === 'protocol'
-? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]'
-: 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
-}`}
+          activeTab === 'protocol'
+            ? 'bg-white dark:bg-[#1E293B] text-[#0F766E] dark:text-[#14B8A6]'
+            : 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#1E293B] dark:hover:text-[#E2E8F0]'
+        }`}
           >
             ⭐ Action Checklist
           </button>
@@ -215,7 +342,8 @@ activeTab === 'protocol'
 
             <div className="space-y-1">
               {chapters.map((ch, idx) => {
-                const isLockedChapter = !isUnlocked && idx > 0;
+                const isLockedChapter = !isUnlocked && !resource.isFree && idx > 0;
+                const isCurrentChapter = activeChapterIndex === idx && activeTab === 'reader';
                 return (
                   <button
                     key={idx}
@@ -227,12 +355,12 @@ activeTab === 'protocol'
                     }}
                     disabled={isLockedChapter}
                     className={`w-full text-left p-2.5 rounded-xl text-xs font-normal transition-all flex items-start gap-2 ${
-activeChapterIndex === idx && activeTab === 'reader'
-? 'bg-[#0F766E] text-white font-semibold'
-: isLockedChapter
-? 'text-[#64748B] dark:text-[#94A3B8] cursor-not-allowed opacity-70'
-: 'text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#E2E8F0]/60'
-}`}
+                  isCurrentChapter
+                    ? 'bg-[#0F766E] text-white font-semibold'
+                    : isLockedChapter
+                    ? 'text-[#64748B] dark:text-[#94A3B8] cursor-not-allowed opacity-70'
+                    : 'text-[#1E293B] dark:text-[#E2E8F0] hover:bg-[#E2E8F0]/60'
+                }`}
                   >
                     {isLockedChapter ? (
                       <Lock className="w-3.5 h-3.5 text-[#64748B] dark:text-[#94A3B8] shrink-0 mt-0.5" />
@@ -247,7 +375,7 @@ activeChapterIndex === idx && activeTab === 'reader'
               })}
             </div>
 
-            {!isUnlocked && (
+            {!isUnlocked && !resource.isFree && (
               <div className="mt-auto pt-4 border-t border-[#E2E8F0] dark:border-[#334155]">
                 <div className="p-3 rounded-xl bg-[#0F766E] border border-[#0F766E] text-center space-y-2">
                   <Lock className="w-5 h-5 text-[#0F766E] dark:text-[#14B8A6] mx-auto" />
@@ -303,9 +431,7 @@ activeChapterIndex === idx && activeTab === 'reader'
 
                 {/* Chapter Body Content */}
                 <div className={` space-y-4 ${fontSizeClasses[fontSize]}`}>
-                  <p className="leading-relaxed">
-                    {currentChapter.content}
-                  </p>
+                  <Markdown>{currentChapter.content}</Markdown>
                 </div>
 
                 {/* Key Clinical Takeaways */}
@@ -340,7 +466,7 @@ activeChapterIndex === idx && activeTab === 'reader'
                 )}
 
                 {/* Locked Chapter Notice for Paid Guides */}
-                {!isUnlocked && (
+                {!isUnlocked && !resource.isFree && (
                   <div className="mt-10 p-8 rounded-3xl bg-[#0F766E] text-white text-center space-y-4 border border-[#E2E8F0] dark:border-[#334155]">
                     <div className="w-12 h-12 rounded-full bg-[#0F766E]/20 text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center mx-auto">
                       <Lock className="w-6 h-6" />
@@ -383,11 +509,11 @@ activeChapterIndex === idx && activeTab === 'reader'
 
                   <button
                     onClick={() => {
-                      if (isUnlocked || activeChapterIndex < 0) {
+                      if (isUnlocked || resource.isFree || activeChapterIndex < chapters.length - 1) {
                         setActiveChapterIndex(prev => Math.min(chapters.length - 1, prev + 1));
                       }
                     }}
-                    disabled={!isUnlocked || activeChapterIndex >= chapters.length - 1}
+                    disabled={(!isUnlocked && !resource.isFree) || activeChapterIndex >= chapters.length - 1}
                     className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0F766E] text-white text-xs font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#115E59] transition-colors"
                   >
                     <span>Next Chapter</span>
@@ -430,7 +556,7 @@ activeChapterIndex === idx && activeTab === 'reader'
             {activeTab === 'protocol' && (
               <div className="max-w-2xl mx-auto space-y-6">
                 <div className="border-b border-[#E2E8F0] dark:border-[#334155] pb-4">
-                  <h3 className="text-xl font-semibold">Dr. Arif’s Actionable Protocol Checklist</h3>
+                  <h3 className="text-xl font-semibold">Dr. Arif's Actionable Protocol Checklist</h3>
                   <p className="text-xs text-[#64748B] dark:text-[#94A3B8] mt-1">
                     Daily practical non-negotiable habits to implement from this guide.
                   </p>

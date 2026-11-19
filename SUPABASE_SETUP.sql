@@ -335,13 +335,46 @@ CREATE POLICY "Doctors can upload thumbnails" ON storage.objects
   );
 
 -- ===========================
--- 9. TO MAKE AN ACCOUNT A DOCTOR:
+-- 9. USER LIBRARY (CLAIMED BOOKS)
+-- ===========================
+CREATE TABLE IF NOT EXISTS public.user_library (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+  resource_id UUID REFERENCES public.health_resources(id) ON DELETE CASCADE NOT NULL,
+  claimed_at TIMESTAMPTZ DEFAULT NOW(),
+  claimed_from TEXT DEFAULT 'website', -- 'website', 'purchase', 'promo'
+  last_read_at TIMESTAMPTZ,
+  last_read_chapter INTEGER DEFAULT 0,
+  reading_progress JSONB DEFAULT '{}', -- {chapter: scroll_position}
+  UNIQUE(user_id, resource_id)
+);
+
+ALTER TABLE public.user_library ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own library" ON public.user_library
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own library items" ON public.user_library
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own library items" ON public.user_library
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Doctors can view all libraries" ON public.user_library
+  FOR SELECT USING (public.is_doctor());
+
+-- Index for faster lookups
+CREATE INDEX IF NOT EXISTS idx_user_library_user_id ON public.user_library(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_library_resource_id ON public.user_library(resource_id);
+
+-- ===========================
+-- 10. TO MAKE AN ACCOUNT A DOCTOR:
 -- After Dr. Arif registers with his email, run:
 -- ===========================
 -- UPDATE public.profiles SET role = 'doctor' WHERE email = 'dr.arif@conciouslivin.in';
 
 -- ===========================
--- 10. POST-DEPLOY AUDIT
+-- 11. POST-DEPLOY AUDIT
 -- Check for accounts that were promoted through the old client-controlled
 -- signup metadata field; demote anything that is not Dr. Arif.
 -- ===========================

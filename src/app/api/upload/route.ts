@@ -171,11 +171,10 @@ export async function POST(request: NextRequest) {
         price: isFree ? 0 : price,
         cover_image_url: thumbnailUrl,
         pdf_url: pdfUrl,
-        thumbnail_url: thumbnailUrl,
         description,
         uploaded_by: user.id,
       })
-      .select('id, title, category, is_free, price, pdf_url, thumbnail_url')
+      .select('id, title, category, is_free, price, pdf_url, cover_image_url')
       .single();
 
     if (resourceError) {

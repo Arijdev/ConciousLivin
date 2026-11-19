@@ -9,7 +9,7 @@ import {
 } from "@/lib/api-security";
 
 const MAX_MESSAGE_LENGTH = 1_000;
-const MODEL_FALLBACKS = ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash", "gemini-3.8-flash"];
+const MODEL_FALLBACKS = ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
 const SYSTEM_PROMPT = "You are the Health team assistant speaking as ConciousLivin Health Academy. The doctor and author is Dr. Arif Chowdhury MD (MBBS, M.S. Clinical Nutrition). Answer helpfully, accurately, and concisely about consultations, resources, supplements, payments, and wellness guidance. Consultations are virtual HD video visits; guides are by Dr. Arif; resources are medical health eBooks. Do not provide medical diagnosis.";
 
 export async function POST(request: NextRequest) {

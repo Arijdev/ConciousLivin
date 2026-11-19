@@ -33,16 +33,63 @@ function purchasedResourceIds(items: unknown): Set<string> {
   return ids;
 }
 
+async function getUserAccess(userId: string) {
+  const supabase = await createSupabaseServerClient();
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', userId)
+    .maybeSingle();
+  const isDoctor = profile?.role === 'doctor';
+
+  let owned = new Set<string>();
+  if (!isDoctor) {
+    const { data: purchases } = await supabase
+      .from('purchases')
+      .select('items')
+      .eq('user_id', userId)
+      .eq('status', 'completed');
+    owned = purchasedResourceIds((purchases || []).flatMap((purchase: { items: unknown[] }) => purchase.items));
+  }
+
+  return { isDoctor, owned, supabase };
+}
+
+async function checkResourceAccess(
+  supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>,
+  userId: string | null,
+  resourceId: string,
+  isDoctor: boolean,
+  owned: Set<string>
+): Promise<{ hasFullAccess: boolean; isFree: boolean }> {
+  const { data: resource } = await supabase
+    .from('health_resources')
+    .select('is_free')
+    .eq('id', resourceId)
+    .maybeSingle();
+
+  if (!resource) {
+    return { hasFullAccess: false, isFree: false };
+  }
+
+  const hasFullAccess = resource.is_free || isDoctor || owned.has(resourceId);
+  return { hasFullAccess, isFree: resource.is_free };
+}
+
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createSupabaseServerClient();
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
     const isFree = searchParams.get('isFree');
+    const resourceId = searchParams.get('id'); // Single resource fetch
     const requestedLimit = Number.parseInt(searchParams.get('limit') || '50', 10);
     const requestedOffset = Number.parseInt(searchParams.get('offset') || '0', 10);
     const limit = Number.isFinite(requestedLimit) ? Math.min(Math.max(requestedLimit, 1), 100) : 50;
     const offset = Number.isFinite(requestedOffset) ? Math.max(requestedOffset, 0) : 0;
+
+    const { data: { user } } = await createSupabaseServerClient().then(s => s.auth.getUser());
+    const userId = user?.id ?? null;
+    const { isDoctor, owned, supabase } = await getUserAccess(userId || '');
 
     // Service-role reader: paid book text is revoked from anon/authenticated
     // column privileges, so the catalogue must be projected on the server.
@@ -50,10 +97,40 @@ export async function GET(request: NextRequest) {
       ? createSupabaseAdminClient()
       : supabase;
 
+    // Single resource fetch with full content access control
+    if (resourceId) {
+      const { data: resource, error } = await reader
+        .from('health_resources')
+        .select(
+          'id, title, subtitle, category, is_free, price, original_price, rating, review_count, pages, reading_time, cover_image_url, badge, badge_color, description, highlights, table_of_contents, full_content, pdf_url, published_at'
+        )
+        .eq('id', resourceId)
+        .eq('is_active', true)
+        .maybeSingle();
+
+      if (error || !resource) {
+        return NextResponse.json({ error: 'Resource not found' }, { status: 404 });
+      }
+
+      const { hasFullAccess, isFree } = await checkResourceAccess(supabase, userId, resourceId, isDoctor, owned);
+
+      if (!hasFullAccess && !isFree) {
+        // Return preview content for paid books
+        return NextResponse.json({
+          ...resource,
+          full_content: previewContent(resource.full_content),
+          previewOnly: true,
+        });
+      }
+
+      return NextResponse.json({ resource });
+    }
+
+    // Catalogue listing
     let query = reader
       .from('health_resources')
       .select(
-        'id, title, subtitle, category, is_free, price, original_price, rating, review_count, pages, reading_time, cover_image_url, thumbnail_url, badge, badge_color, description, highlights, table_of_contents, full_content, pdf_url, published_at',
+        'id, title, subtitle, category, is_free, price, original_price, rating, review_count, pages, reading_time, cover_image_url, badge, badge_color, description, highlights, table_of_contents, full_content, pdf_url, published_at',
       )
       .eq('is_active', true)
       .order('published_at', { ascending: false })
@@ -72,27 +149,6 @@ export async function GET(request: NextRequest) {
     if (error) {
       console.warn('Supabase health_resources table query notice:', error.message);
       return NextResponse.json({ resources: [], total: 0 });
-    }
-
-    const { data: { user } } = await supabase.auth.getUser();
-    let owned = new Set<string>();
-    let isDoctor = false;
-    if (user) {
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .maybeSingle();
-      isDoctor = profile?.role === 'doctor';
-
-      if (!isDoctor && data && data.some((resource) => !resource.is_free)) {
-        const { data: purchases } = await supabase
-          .from('purchases')
-          .select('items')
-          .eq('user_id', user.id)
-          .eq('status', 'completed');
-        owned = purchasedResourceIds((purchases || []).flatMap((purchase) => purchase.items));
-      }
     }
 
     // Paid book text is only returned to buyers (and to the doctor who author

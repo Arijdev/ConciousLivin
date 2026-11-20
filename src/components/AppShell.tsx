@@ -20,9 +20,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <CountryCurrencyProvider>
       <AuthProvider>
         <CartProvider>
+          <a 
+            href="#main-content" 
+            className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-[#0F766E] focus:font-semibold focus:shadow-lg focus:outline-none"
+          >
+            Skip to main content
+          </a>
           <Header />
 
-          <main>{children}</main>
+          <main id="main-content" role="main" tabIndex={-1}>{children}</main>
 
           <Footer />
 

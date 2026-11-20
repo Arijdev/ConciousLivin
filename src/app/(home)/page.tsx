@@ -1,26 +1,13 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Hero } from '@/components/Hero';
 import { StatsBar } from '@/components/StatsBar';
-import { ResourceLibrary } from '@/components/ResourceLibrary';
 import { Testimonials } from '@/components/Testimonials';
-import {
-  BookOpen,
-  Calculator,
-  Brain,
-  FileText,
-  Stethoscope,
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
-  Shield,
-  HeartPulse,
-  Users,
-  Award,
-  BookOpenCheck,
-  HeartHandshake
-} from 'lucide-react';
+import { useCart } from '@/context/CartContext';
+import { useCountryCurrency } from '@/context/CountryCurrencyContext';
+import { BookOpen, CheckCircle2, Sparkles, Shield, HeartPulse, ArrowRight, Stethoscope, Star, Calculator, Brain, FileText, Users, Award, BookOpenCheck, HeartHandshake } from 'lucide-react';
 import Link from 'next/link';
 
 const features = [
@@ -28,37 +15,37 @@ const features = [
     icon: BookOpen,
     title: 'Clinical Health Guides',
     description: 'Evidence-based PDF guides on nutrition, longevity, heart health, fasting & detox by Dr. Arif Chowdhury',
-    href: '/guides',
+    href: '/guides',
   },
   {
     icon: Calculator,
     title: 'Health Calculators',
     description: 'Interactive clinical tools for BMI, BMR, body fat, macro tracking, hydration & cardiovascular risk',
-    href: '/calculators',
+    href: '/calculators',
   },
   {
     icon: Brain,
     title: 'Health Assessment Quiz',
     description: '60-second personalized health assessment with tailored recommendations & action plans',
-    href: '/quiz',
+    href: '/quiz',
   },
   {
     icon: FileText,
     title: 'Clinical Articles',
     description: 'Peer-reviewed medical articles, research summaries & protocol masterclasses',
-    href: '/articles',
+    href: '/articles',
   },
   {
     icon: Stethoscope,
     title: 'Virtual Consultations',
     description: 'Book 1-on-1 video consultations with Dr. Arif for personalized clinical guidance',
-    href: '/consultation',
+    href: '/consultation',
   },
   {
     icon: HeartPulse,
     title: 'About Dr. Arif',
     description: 'Learn about Dr. Arif Chowdhury\'s clinical philosophy, credentials & patient success stories',
-    href: '/about',
+    href: '/about',
   },
 ] as const;
 
@@ -68,6 +55,136 @@ const trustMarkers = [
   { icon: Award, value: '28', label: 'Clinical Protocols', desc: 'Published & Peer-Reviewed' },
   { icon: HeartHandshake, value: '4.96/5', label: 'Patient Rating', desc: 'Verified Clinical Outcomes' },
 ];
+
+function TrendingGuides() {
+  const { formatPrice } = useCountryCurrency();
+  const { resources } = useCart();
+
+  const trending = [...resources]
+    .sort((a, b) => (b.reviewCount * b.rating) - (a.reviewCount * a.rating))
+    .slice(0, 3);
+
+  const badgeStyle: Record<string, { bg: string; text: string }> = {
+    emerald: { bg: '#D1FAE5', text: '#065F46' },
+    indigo: { bg: '#E0E7FF', text: '#3730A3' },
+    rose: { bg: '#FFE4E6', text: '#9F1239' },
+    amber: { bg: '#FFEDD5', text: '#92400E' },
+    violet: { bg: '#F3E8FF', text: '#5B21B6' },
+    default: { bg: '#E6F4F1', text: '#0F766E' }
+  };
+
+  return (
+    <section className="py-20 bg-white dark:bg-[#0F172A]" id="guides">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E6F4F1] dark:bg-[#134E4A] text-[#0F766E] dark:text-[#14B8A6] text-xs font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>TRENDING GUIDES</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1E293B] dark:text-[#E2E8F0] tracking-tight mt-2">
+              Top 3 Clinical Guides This Month
+            </h2>
+          </div>
+          <Link
+            href="/guides"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-[#0F766E] dark:text-[#14B8A6] hover:bg-[#E6F4F1] dark:hover:bg-[#134E4A] transition-colors"
+          >
+            View All Guides
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {trending.map((resource) => {
+            const bStyle = badgeStyle[resource.badgeColor || 'default'] || badgeStyle.default;
+            return (
+              <article key={resource.id} className="group flex flex-col bg-white dark:bg-[#1E293B] rounded-2xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden transition-colors hover:border-[#0F766E]">
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={resource.coverImage}
+                    alt={resource.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {resource.badge && (
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="px-2 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+                            style={{ backgroundColor: bStyle.bg, color: bStyle.text }}>
+                        {resource.badge}
+                      </span>
+                    </div>
+                  )}
+                  {!resource.isFree && (
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className="px-2 py-1 rounded-full bg-[#FEF2F2] dark:bg-[#7F1D1D] text-[#DC2626] dark:text-[#FCA5A5] text-[10px] font-semibold uppercase tracking-wider">
+                        Premium
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-3.5 h-3.5 fill-current" style={{ color: '#F59E0B' }} />
+                      <span className="text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0]">{resource.rating}</span>
+                    </div>
+                    <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">({resource.reviewCount.toLocaleString()})</span>
+                    <span className="w-px h-4 mx-2 bg-[#E2E8F0] dark:bg-[#334155]" />
+                    <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">{resource.pages} pages</span>
+                    <span className="w-px h-4 mx-2 bg-[#E2E8F0] dark:bg-[#334155]" />
+                    <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">{resource.readingTime}</span>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-[#1E293B] dark:text-[#E2E8F0] line-clamp-2 group-hover:text-[#0F766E] transition-colors mb-1">
+                    {resource.title}
+                  </h3>
+                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8] line-clamp-2 mb-3">
+                    {resource.subtitle}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#E2E8F0] dark:border-[#334155]">
+                    <div className="flex items-center gap-1.5">
+                      {resource.isFree ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[#D1FAE5] dark:bg-[#064E3B] text-[#065F46] dark:text-[#A7F3D0] text-xs font-semibold">
+                          <BookOpen className="w-3 h-3" />
+                          Free
+                        </span>
+                      ) : (
+                        <span className="text-lg font-semibold text-[#1E293B] dark:text-[#E2E8F0]">
+                          {formatPrice(resource.price)}
+                        </span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => window.location.href = `/guides#${resource.id}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#0F766E] dark:text-[#14B8A6] hover:bg-[#E6F4F1] dark:hover:bg-[#134E4A] transition-colors"
+                    >
+                      View Details
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="text-center mt-10">
+          <Link
+            href="/guides"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-white font-semibold text-sm transition-colors"
+          >
+            View All Guides
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -125,10 +242,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Guides Preview */}
-      <div id="guides" className="scroll-mt-24">
-        <ResourceLibrary showSearch={false} />
-      </div>
+      {/* Trending Guides Preview - Top 3 */}
+      <TrendingGuides />
 
       {/* Patient Success Stories */}
       <Testimonials />

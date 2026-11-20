@@ -349,10 +349,17 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const total = Math.max(0, subtotal - discountAmount);
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
-// Download PDF Document with Auth Guard (allows preview downloads)
+// Download PDF Document with Auth & Purchase Guard
   const downloadResourceDoc = async (resource: HealthResource) => {
     if (!isAuthenticated) {
       openAuthModal('customer-login', `Please sign in or create a free patient account to download "${resource.title}".`);
+      return;
+    }
+
+    // Check if paid resource requires purchase
+    if (!resource.isFree && !isResourceUnlocked(resource.id)) {
+      addToast('Purchase Required', `"${resource.title}" is a premium guide. Please purchase it first to download the full PDF.`, 'error');
+      openReader(resource); // Open reader to show purchase option
       return;
     }
 

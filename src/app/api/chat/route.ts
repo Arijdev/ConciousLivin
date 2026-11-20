@@ -9,8 +9,8 @@ import {
 } from "@/lib/api-security";
 
 const MAX_MESSAGE_LENGTH = 1_000;
-const MODEL_FALLBACKS = ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
-const SYSTEM_PROMPT = "You are the Health team assistant speaking as ConciousLivin Health Academy. The doctor and author is Dr. Arif Chowdhury MD (MBBS, M.S. Clinical Nutrition). Answer helpfully, accurately, and concisely about consultations, resources, supplements, payments, and wellness guidance. Consultations are virtual HD video visits; guides are by Dr. Arif; resources are medical health eBooks. Do not provide medical diagnosis.";
+const MODEL_FALLBACKS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash", "gemini-1.5-flash"];
+const SYSTEM_PROMPT = "You are the Health team assistant for ConciousLivin Health Academy. Dr. Arif Chowdhury (MBBS, M.S. Clinical Nutrition) is the author/doctor. Answer helpfully and concisely about consultations (virtual HD video), health guides/eBooks, supplements, payments, and general wellness. Do not provide medical diagnosis. Be conversational and direct. No bullet-point welcome messages - just answer the user's question naturally.";
 
 export async function POST(request: NextRequest) {
   try {

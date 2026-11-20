@@ -1,3 +1,5 @@
+'use client';
+
 const OPEN_RING_PATH = 'M47.32 19.15A20 20 0 1 0 47.32 44.85';
 
 export function LogoMark({

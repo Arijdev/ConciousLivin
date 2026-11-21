@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Grid accents -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="800" height="420" rx="16" fill="url(#grid)" />
+
+  <!-- Header Banner -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="8" height="24" rx="4" fill="#14b8a6" />
+    <text x="18" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" letter-spacing="0.5">THE AMPK / mTOR METABOLIC SEESAW</text>
+    <text x="18" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#94a3b8">Balancing Cellular Housekeeping (Autophagy/Repair) vs Anabolic Synthesis (Growth)</text>
+    <rect x="610" y="2" width="130" height="22" rx="11" fill="rgba(20, 184, 166, 0.15)" stroke="#14b8a6" stroke-width="1" />
+    <text x="675" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">DR. ARIF CLINICAL CHART</text>
+  </g>
+
+  <!-- Main Visual Diagram Body -->
+  
+  <!-- Left Side: AMPK Repair Mode -->
+  <g transform="translate(50, 80)">
+    <rect width="330" height="260" rx="14" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+    <rect width="330" height="34" rx="14" fill="url(#emeraldGrad)" />
+    <text x="165" y="22" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">AMPK ON: "REPAIR & HOUSEKEEPING"</text>
+
+    <text x="20" y="60" font-family="sans-serif" font-size="11" font-weight="700" fill="#34d399">PRIMARY TRIGGERS:</text>
+    <text x="20" y="80" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Intermittent Fasting (16:8 or 24h)</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Zone 2 Cardio & Low Muscle Glycogen</text>
+    <text x="20" y="120" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Cold Thermogenesis, Berberine, Resveratrol</text>
+
+    <text x="20" y="150" font-family="sans-serif" font-size="11" font-weight="700" fill="#34d399">DOWNSTREAM BIOLOGICAL OUTPUTS:</text>
+    <text x="20" y="170" font-family="sans-serif" font-size="10" fill="#cbd5e1">✔ Activates Autophagy (ULK1 phosphorylation)</text>
+    <text x="20" y="190" font-family="sans-serif" font-size="10" fill="#cbd5e1">✔ Mitochondrial Biogenesis (PGC-1α)</text>
+    <text x="20" y="210" font-family="sans-serif" font-size="10" fill="#cbd5e1">✔ Fatty Acid Oxidation (Burns Visceral Fat)</text>
+    <text x="20" y="230" font-family="sans-serif" font-size="10" fill="#cbd5e1">✔ Downregulates mTORC1 via TSC2</text>
+  </g>
+
+  <!-- Right Side: mTOR Growth Mode -->
+  <g transform="translate(420, 80)">
+    <rect width="330" height="260" rx="14" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <rect width="330" height="34" rx="14" fill="url(#blueGrad)" />
+    <text x="165" y="22" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">mTOR ON: "BUILD & GROW"</text>
+
+    <text x="20" y="60" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8">PRIMARY TRIGGERS:</text>
+    <text x="20" y="80" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Dietary Amino Acids (Leucine &gt; 3g threshold)</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Heavy Resistance Training (Mechanical load)</text>
+    <text x="20" y="120" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Insulin and IGF-1 Spikes (Carb feeding)</text>
+
+    <text x="20" y="150" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8">DOWNSTREAM BIOLOGICAL OUTPUTS:</text>
+    <text x="20" y="170" font-family="sans-serif" font-size="10" fill="#cbd5e1">✔ Muscle Protein Synthesis (Prevents Sarcopenia)</text>
+    <text x="20" y="190" font-family="sans-serif" font-size="10" fill="#cbd5e1">✔ Bone Mineral Density & Connective Tissue</text>
+    <text x="20" y="210" font-family="sans-serif" font-size="10" fill="#cbd5e1">✘ Autophagy Suppressed (No cellular waste cleanup)</text>
+    <text x="20" y="230" font-family="sans-serif" font-size="10" fill="#cbd5e1">✘ Chronic elevation accelerates cellular senescence</text>
+  </g>
+
+  <!-- Bottom Recommendation Card -->
+  <g transform="translate(50, 355)">
+    <rect width="700" height="45" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1" />
+    <text x="350" y="27" font-family="sans-serif" font-size="11" font-weight="600" fill="#f8fafc" text-anchor="middle">OPTIMAL PROTOCOL: Night = AMPK Clean-up (Fasting) | Day = mTOR Pulses (Workout + Protein)</text>
+  </g>
+
+</svg>

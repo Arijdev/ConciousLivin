@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Grid accents -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="800" height="420" rx="16" fill="url(#grid)" />
+
+  <!-- Header Banner -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="8" height="24" rx="4" fill="#14b8a6" />
+    <text x="18" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" letter-spacing="0.5">ADVANCED CARDIOMETABOLIC BIOMARKER MATRIX</text>
+    <text x="18" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#94a3b8">Beyond Basic Cholesterol: Modern Functional Lab Targets for Absolute Risk Prevention</text>
+    <rect x="610" y="2" width="130" height="22" rx="11" fill="rgba(20, 184, 166, 0.15)" stroke="#14b8a6" stroke-width="1" />
+    <text x="675" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">DR. ARIF CLINICAL CHART</text>
+  </g>
+
+  <!-- Main Visual Diagram Body -->
+  
+  <!-- Grid Matrix Header -->
+  <g transform="translate(40, 80)">
+    <rect width="720" height="35" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="20" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8">BIOMARKER</text>
+    <text x="210" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#f87171">CONVENTIONAL</text>
+    <text x="390" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#34d399">DR. ARIF OPTIMAL</text>
+    <text x="560" y="22" font-family="sans-serif" font-size="11" font-weight="700" fill="#f59e0b">CLINICAL ACTION</text>
+  </g>
+
+  <!-- Row 1: ApoB -->
+  <g transform="translate(40, 125)">
+    <rect width="720" height="42" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.5" />
+    <text x="20" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#f8fafc">Apolipoprotein B (ApoB)</text>
+    <text x="210" y="25" font-family="sans-serif" font-size="10" fill="#cbd5e1">&lt; 90 mg/dL</text>
+    <text x="390" y="25" font-family="sans-serif" font-size="10" font-weight="700" fill="#34d399">&lt; 60 - 70 mg/dL</text>
+    <text x="560" y="25" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Soluble fiber, Berberine, Statins</text>
+  </g>
+
+  <!-- Row 2: hs-CRP -->
+  <g transform="translate(40, 175)">
+    <rect width="720" height="42" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5" />
+    <text x="20" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#f8fafc">High-Sensitivity CRP</text>
+    <text x="210" y="25" font-family="sans-serif" font-size="10" fill="#cbd5e1">&lt; 3.0 mg/L</text>
+    <text x="390" y="25" font-family="sans-serif" font-size="10" font-weight="700" fill="#34d399">&lt; 0.5 mg/L</text>
+    <text x="560" y="25" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Omega-3 EPA/DHA (3g), Curcumin</text>
+  </g>
+
+  <!-- Row 3: Fasting Insulin -->
+  <g transform="translate(40, 225)">
+    <rect width="720" height="42" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.5" />
+    <text x="20" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#f8fafc">Fasting Insulin</text>
+    <text x="210" y="25" font-family="sans-serif" font-size="10" fill="#cbd5e1">&lt; 25 μIU/mL</text>
+    <text x="390" y="25" font-family="sans-serif" font-size="10" font-weight="700" fill="#34d399">&lt; 5.0 μIU/mL</text>
+    <text x="560" y="25" font-family="sans-serif" font-size="9.5" fill="#94a3b8">16:8 Fasting, Low glycemic diet</text>
+  </g>
+
+  <!-- Row 4: Lipoprotein(a) -->
+  <g transform="translate(40, 275)">
+    <rect width="720" height="42" rx="6" fill="#1e293b" stroke="#334155" stroke-width="0.5" />
+    <text x="20" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#f8fafc">Lipoprotein(a) [Lp(a)]</text>
+    <text x="210" y="25" font-family="sans-serif" font-size="10" fill="#cbd5e1">&lt; 75 nmol/L</text>
+    <text x="390" y="25" font-family="sans-serif" font-size="10" font-weight="700" fill="#34d399">&lt; 30 nmol/L</text>
+    <text x="560" y="25" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Genetic risk; drive other risk to 0</text>
+  </g>
+
+  <!-- Row 5: CAC Score -->
+  <g transform="translate(40, 325)">
+    <rect width="720" height="42" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.5" />
+    <text x="20" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#f8fafc">Coronary Calcium (CAC)</text>
+    <text x="210" y="25" font-family="sans-serif" font-size="10" fill="#cbd5e1">Age-matched</text>
+    <text x="390" y="25" font-family="sans-serif" font-size="10" font-weight="700" fill="#34d399">Agatston = 0</text>
+    <text x="560" y="25" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Vit K2 (MK-7 200mcg), Magnesium</text>
+  </g>
+
+</svg>

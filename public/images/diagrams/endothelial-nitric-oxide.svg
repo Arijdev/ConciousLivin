@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Grid accents -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="800" height="400" rx="16" fill="url(#grid)" />
+
+  <!-- Header Banner -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="8" height="24" rx="4" fill="#14b8a6" />
+    <text x="18" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" letter-spacing="0.5">THE ENDOTHELIAL NITRIC OXIDE (NO) VASODILATION CASCADE</text>
+    <text x="18" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#94a3b8">The Molecular Miracle of Blood Pressure Normalization & Arterial Elasticity</text>
+    <rect x="610" y="2" width="130" height="22" rx="11" fill="rgba(20, 184, 166, 0.15)" stroke="#14b8a6" stroke-width="1" />
+    <text x="675" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">DR. ARIF CLINICAL CHART</text>
+  </g>
+
+  <!-- Main Visual Diagram Body -->
+  
+  <!-- L-Arginine / Nitrate Source -->
+  <g transform="translate(50, 90)">
+    <rect width="180" height="130" rx="12" fill="#1e293b" stroke="#14b8a6" stroke-width="2" />
+    <text x="90" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#2dd4bf" text-anchor="middle">NITRATE INPUTS</text>
+    <text x="15" y="50" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Beets & Beetroot juice</text>
+    <text x="15" y="70" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Arugula & Leafy Greens</text>
+    <text x="15" y="90" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• L-Arginine & L-Citrulline</text>
+    <text x="15" y="110" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Salivary oral bacteria convert</text>
+  </g>
+
+  <path d="M 240 155 L 280 155" stroke="#14b8a6" stroke-width="3" marker-end="url(#arrowTeal)" />
+
+  <!-- Endothelial Cell: eNOS -->
+  <g transform="translate(290, 80)">
+    <rect width="210" height="150" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <rect width="210" height="28" rx="12" fill="url(#blueGrad)" />
+    <text x="105" y="19" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">ENDOTHELIAL LAYER (eNOS)</text>
+    <text x="15" y="52" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Shear Stress (Zone 2 Cardio)</text>
+    <text x="15" y="72" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• BH4 Cofactor Activation</text>
+    <text x="15" y="92" font-family="sans-serif" font-size="10" font-weight="700" fill="#38bdf8">➔ Nitric Oxide Gas (NO) Release</text>
+    <text x="15" y="115" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Diffuses into vascular smooth muscle</text>
+    <text x="15" y="130" font-family="sans-serif" font-size="8.5" fill="#f87171">Blocked by antiseptic mouthwash!</text>
+  </g>
+
+  <path d="M 510 155 L 550 155" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)" />
+
+  <!-- Vascular Smooth Muscle -->
+  <g transform="translate(560, 80)">
+    <rect width="195" height="150" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+    <rect width="195" height="28" rx="12" fill="url(#emeraldGrad)" />
+    <text x="97" y="19" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">SMOOTH MUSCLE RELAXATION</text>
+    <text x="12" y="52" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Soluble Guanylyl Cyclase (sGC)</text>
+    <text x="12" y="72" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• GTP ➔ cyclic GMP (cGMP)</text>
+    <text x="12" y="92" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Intracellular Calcium drops</text>
+    <rect x="10" y="110" width="175" height="28" rx="6" fill="#064e3b" />
+    <text x="97" y="128" font-family="sans-serif" font-size="9.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">➔ ARTERIAL VASODILATION</text>
+  </g>
+
+  <!-- Bottom Result Banner -->
+  <g transform="translate(50, 260)">
+    <rect width="705" height="90" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+    <text x="352" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#2dd4bf" text-anchor="middle">CLINICAL IMPACT ON BLOOD PRESSURE & LONGEVITY</text>
+    <text x="30" y="52" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Reduces Systolic BP by 5-10 mmHg without pharmaceutical beta-blockers or ACE inhibitors</text>
+    <text x="30" y="72" font-family="sans-serif" font-size="10" fill="#e2e8f0">• Prevents platelet aggregation, arterial stiffness & microvascular ischemic strokes</text>
+  </g>
+
+</svg>

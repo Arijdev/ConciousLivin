@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Grid accents -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="800" height="420" rx="16" fill="url(#grid)" />
+
+  <!-- Header Banner -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="8" height="24" rx="4" fill="#14b8a6" />
+    <text x="18" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" letter-spacing="0.5">THE GUT-BRAIN AXIS: BIDIRECTIONAL COMMUNICATION</text>
+    <text x="18" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#94a3b8">80-90% Afferent Vagal Signals Travel from Gut to Brain | Serotonin, Dopamine & GABA Hub</text>
+    <rect x="610" y="2" width="130" height="22" rx="11" fill="rgba(20, 184, 166, 0.15)" stroke="#14b8a6" stroke-width="1" />
+    <text x="675" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">DR. ARIF CLINICAL CHART</text>
+  </g>
+
+  <!-- Main Visual Diagram Body -->
+  
+  <!-- Brain Node -->
+  <g transform="translate(60, 90)" filter="url(#shadow)">
+    <rect width="200" height="130" rx="14" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <rect width="200" height="30" rx="14" fill="url(#blueGrad)" />
+    <text x="100" y="20" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">CENTRAL NERVOUS SYSTEM</text>
+    <text x="15" y="55" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">• Hypothalamus & Amygdala</text>
+    <text x="15" y="75" font-family="sans-serif" font-size="10" fill="#94a3b8">• HPA Axis Stress Regulation</text>
+    <text x="15" y="95" font-family="sans-serif" font-size="10" fill="#94a3b8">• Cognitive Clarity & Mood</text>
+    <text x="15" y="115" font-family="sans-serif" font-size="10" fill="#38bdf8">• Nucleus Tractus Solitarius (NTS)</text>
+  </g>
+
+  <!-- Vagus Nerve Highway -->
+  <g transform="translate(290, 100)">
+    <!-- Pathway lines -->
+    <path d="M 0 35 C 100 20, 120 20, 220 35" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="6,4" marker-end="url(#arrowTeal)" />
+    <text x="110" y="15" font-family="sans-serif" font-size="10" font-weight="700" fill="#10b981" text-anchor="middle">80% AFFERENT FIBERS (GUT ➔ BRAIN)</text>
+    <text x="110" y="32" font-family="sans-serif" font-size="9" fill="#a7f3d0" text-anchor="middle">Nutrient signals, SCFAs, cytokines, satiety</text>
+
+    <path d="M 220 90 C 120 105, 100 105, 0 90" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrowAmber)" />
+    <text x="110" y="125" font-family="sans-serif" font-size="10" font-weight="700" fill="#f59e0b" text-anchor="middle">20% EFFERENT FIBERS (BRAIN ➔ GUT)</text>
+    <text x="110" y="140" font-family="sans-serif" font-size="9" fill="#fde68a" text-anchor="middle">Motility, enzyme secretion, acid production</text>
+
+    <!-- Center Vagus Badge -->
+    <rect x="65" y="50" width="90" height="26" rx="13" fill="#0f172a" stroke="#64748b" stroke-width="1.5" />
+    <text x="110" y="67" font-family="sans-serif" font-size="10" font-weight="700" fill="#38bdf8" text-anchor="middle">VAGUS NERVE</text>
+  </g>
+
+  <!-- Gut Node -->
+  <g transform="translate(540, 90)" filter="url(#shadow)">
+    <rect width="200" height="130" rx="14" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+    <rect width="200" height="30" rx="14" fill="url(#emeraldGrad)" />
+    <text x="100" y="20" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">ENTERIC NERVOUS SYSTEM</text>
+    <text x="15" y="55" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">• 500 Million Neurons ('2nd Brain')</text>
+    <text x="15" y="75" font-family="sans-serif" font-size="10" fill="#94a3b8">• 90% Body's Serotonin Synthesized</text>
+    <text x="15" y="95" font-family="sans-serif" font-size="10" fill="#94a3b8">• 50% Dopamine + GABA Synthesis</text>
+    <text x="15" y="115" font-family="sans-serif" font-size="10" fill="#10b981">• Gut Microbial Metabolites</text>
+  </g>
+
+  <!-- Bottom Row: 3 Key Mediators -->
+  <g transform="translate(60, 260)">
+    <rect x="0" y="0" width="200" height="100" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="100" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">1. NEUROTRANSMITTER AXIS</text>
+    <text x="15" y="50" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Tryptophan ➔ 5-HTP ➔ Serotonin</text>
+    <text x="15" y="68" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Bifidobacteria generate GABA</text>
+    <text x="15" y="86" font-family="sans-serif" font-size="9" fill="#64748b">Direct calming tone on amygdala</text>
+  </g>
+
+  <g transform="translate(300, 260)">
+    <rect x="0" y="0" width="200" height="100" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="100" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#10b981" text-anchor="middle">2. SHORT-CHAIN FATTY ACIDS</text>
+    <text x="15" y="50" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Butyrate, Acetate & Propionate</text>
+    <text x="15" y="68" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Crosses Blood-Brain Barrier (BBB)</text>
+    <text x="15" y="86" font-family="sans-serif" font-size="9" fill="#64748b">Upregulates BDNF & neuroplasticity</text>
+  </g>
+
+  <g transform="translate(540, 260)">
+    <rect x="0" y="0" width="200" height="100" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="100" y="25" font-family="sans-serif" font-size="11" font-weight="700" fill="#f43f5e" text-anchor="middle">3. IMMUNE & CYTOKINE PATH</text>
+    <text x="15" y="50" font-family="sans-serif" font-size="10" fill="#cbd5e1">• 70% Immune System in GALT</text>
+    <text x="15" y="68" font-family="sans-serif" font-size="10" fill="#cbd5e1">• LPS Leakage triggers Neuroinflammation</text>
+    <text x="15" y="86" font-family="sans-serif" font-size="9" fill="#64748b">Root cause of brain fog & anxiety</text>
+  </g>
+
+</svg>

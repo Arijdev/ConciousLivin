@@ -1,8 +1,9 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useCart } from '@/context/CartContext';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
 import { 
@@ -903,18 +904,74 @@ export const InteractiveReaderModal: React.FC = () => {
                   {/* Chapter Body Content */}
                   <div className={`prose prose-sm sm:prose-base lg:prose-lg max-w-none space-y-4 ${fontSizeClasses[fontSize]} dark:prose-invert`}>
                     <Markdown 
+                      remarkPlugins={[remarkGfm]}
                       components={{
-                        h2: (props) => <h2 {...props} className="text-xl font-semibold mt-8 mb-4 pb-2 border-b" style={{ color: tc.text, borderColor: tc.border }} />,
-                        h3: (props) => <h3 {...props} className="text-lg font-semibold mt-6 mb-3" style={{ color: tc.text }} />,
+                        h2: (props) => <h2 {...props} className="text-xl sm:text-2xl font-bold mt-8 mb-4 pb-2 border-b flex items-center gap-2" style={{ color: tc.text, borderColor: tc.border }} />,
+                        h3: (props) => <h3 {...props} className="text-lg sm:text-xl font-bold mt-6 mb-3" style={{ color: tc.accent }} />,
+                        h4: (props) => <h4 {...props} className="text-base font-semibold mt-4 mb-2" style={{ color: tc.text }} />,
                         p: (props) => <p {...props} className="leading-relaxed mb-4" style={{ color: tc.text }} />,
-                        ul: (props) => <ul {...props} className="list-disc list-inside space-y-2 mb-4" style={{ color: tc.text }} />,
-                        ol: (props) => <ol {...props} className="list-decimal list-inside space-y-2 mb-4" style={{ color: tc.text }} />,
-                        li: (props) => <li {...props} className="leading-relaxed" style={{ color: tc.text }} />,
-                        blockquote: (props) => <blockquote {...props} className="border-l-4 pl-4 italic my-4" style={{ borderColor: tc.accent, color: tc.textMuted }} />,
-                        code: (props) => <code {...props} className="px-1.5 py-0.5 rounded text-sm font-mono" style={{ backgroundColor: tc.bgTertiary, color: tc.accent }} />,
-                        pre: (props) => <pre {...props} className="p-4 rounded-xl overflow-x-auto mb-4" style={{ backgroundColor: tc.bgTertiary, color: tc.text }} />,
+                        ul: (props) => <ul {...props} className="list-disc list-outside ml-6 space-y-2 mb-4" style={{ color: tc.text }} />,
+                        ol: (props) => <ol {...props} className="list-decimal list-outside ml-6 space-y-2 mb-4" style={{ color: tc.text }} />,
+                        li: (props) => <li {...props} className="leading-relaxed pl-1" style={{ color: tc.text }} />,
+                        blockquote: (props) => <blockquote {...props} className="border-l-4 pl-4 py-2 italic my-4 rounded-r-xl" style={{ borderColor: tc.accent, backgroundColor: tc.accentBg, color: tc.text }} />,
+                        code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+                          const isDiagram = className?.includes('language-diagram') || className?.includes('language-flowchart') || className?.includes('language-ascii');
+                          if (isDiagram) {
+                            return (
+                              <div className="my-6 rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: tc.border, backgroundColor: tc.bgTertiary }}>
+                                <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider flex items-center gap-2 border-b" style={{ backgroundColor: tc.accentBg, color: tc.accent, borderColor: tc.border }}>
+                                  <span>📊 Clinical Flow Diagram</span>
+                                </div>
+                                <pre className="p-4 overflow-x-auto text-xs sm:text-sm font-mono leading-relaxed" style={{ color: tc.text }}>
+                                  <code>{children}</code>
+                                </pre>
+                              </div>
+                            );
+                          }
+                          return (
+                            <code {...props} className="px-1.5 py-0.5 rounded text-sm font-mono" style={{ backgroundColor: tc.bgTertiary, color: tc.accent }}>
+                              {children}
+                            </code>
+                          );
+                        },
+                        pre: ({ children }: React.HTMLAttributes<HTMLPreElement>) => <div className="my-4">{children}</div>,
                         strong: (props) => <strong {...props} className="font-semibold" style={{ color: tc.text }} />,
-                        a: (props) => <a {...props} className="underline hover:no-underline" style={{ color: tc.accent }} />,
+                        a: (props) => <a {...props} target="_blank" rel="noopener noreferrer" className="underline font-medium hover:opacity-80" style={{ color: tc.accent }} />,
+                        table: ({ children }) => (
+                          <div className="my-6 w-full overflow-x-auto rounded-2xl border shadow-sm" style={{ borderColor: tc.border, backgroundColor: tc.bgSecondary }}>
+                            <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[500px]">{children}</table>
+                          </div>
+                        ),
+                        thead: ({ children }) => (
+                          <thead className="border-b font-semibold text-xs uppercase tracking-wider" style={{ backgroundColor: tc.bgTertiary, borderColor: tc.border, color: tc.text }}>
+                            {children}
+                          </thead>
+                        ),
+                        tbody: ({ children }) => <tbody className="divide-y" style={{ borderColor: tc.border }}>{children}</tbody>,
+                        tr: ({ children }) => (
+                          <tr className="transition-colors hover:bg-black/5 dark:hover:bg-white/5">{children}</tr>
+                        ),
+                        th: ({ children }) => <th className="px-4 py-3 font-semibold" style={{ color: tc.text }}>{children}</th>,
+                        td: ({ children }) => <td className="px-4 py-3 align-top leading-normal" style={{ color: tc.textSecondary }}>{children}</td>,
+                        img: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+                          <figure className="my-6 rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: tc.border, backgroundColor: tc.bgSecondary }}>
+                            <div className="relative w-full max-h-[420px] overflow-hidden bg-slate-900/5 dark:bg-slate-900/40 flex items-center justify-center p-2 sm:p-4">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={src}
+                                alt={alt || 'Clinical illustration'}
+                                className="w-full max-h-[380px] object-contain rounded-lg transition-transform duration-300 hover:scale-[1.01]"
+                                {...props}
+                              />
+                            </div>
+                            {alt && (
+                              <figcaption className="px-4 py-2.5 text-xs text-center border-t italic font-medium flex items-center justify-center gap-1.5" style={{ borderColor: tc.border, color: tc.textMuted }}>
+                                <span>🔍</span>
+                                <span>{alt}</span>
+                              </figcaption>
+                            )}
+                          </figure>
+                        ),
                       }}
                     >{currentChapter.content}</Markdown>
                   </div>

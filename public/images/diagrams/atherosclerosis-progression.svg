@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Grid accents -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="800" height="420" rx="16" fill="url(#grid)" />
+
+  <!-- Header Banner -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="8" height="24" rx="4" fill="#14b8a6" />
+    <text x="18" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" letter-spacing="0.5">THE TRUE PATHOLOGY OF ATHEROSCLEROSIS: ApoB RETENTION & OXIDATION</text>
+    <text x="18" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#94a3b8">Why Cholesterol Itself Is Not the Cause — Endothelial Injury and Inflammation Are</text>
+    <rect x="610" y="2" width="130" height="22" rx="11" fill="rgba(20, 184, 166, 0.15)" stroke="#14b8a6" stroke-width="1" />
+    <text x="675" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">DR. ARIF CLINICAL CHART</text>
+  </g>
+
+  <!-- Main Visual Diagram Body -->
+  
+  <!-- Stage 1 -->
+  <g transform="translate(40, 90)">
+    <rect width="165" height="240" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="82" y="25" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#38bdf8" text-anchor="middle">1. ENDOTHELIAL INJURY</text>
+    <text x="12" y="55" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Smoking, toxins</text>
+    <text x="12" y="75" font-family="sans-serif" font-size="9" fill="#cbd5e1">• High blood pressure</text>
+    <text x="12" y="95" font-family="sans-serif" font-size="9" fill="#cbd5e1">• High glucose / AGEs</text>
+    <text x="12" y="115" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Systemic inflammation</text>
+    <rect x="10" y="170" width="145" height="50" rx="6" fill="#0f172a" />
+    <text x="82" y="190" font-family="sans-serif" font-size="8.5" fill="#94a3b8" text-anchor="middle">Barrier breached;</text>
+    <text x="82" y="205" font-family="sans-serif" font-size="8.5" fill="#94a3b8" text-anchor="middle">adhesion molecules rise</text>
+  </g>
+
+  <path d="M 210 210 L 225 210" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Stage 2 -->
+  <g transform="translate(230, 90)">
+    <rect width="165" height="240" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="82" y="25" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#f59e0b" text-anchor="middle">2. ApoB RETENTION</text>
+    <text x="12" y="55" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Small dense LDL particles</text>
+    <text x="12" y="75" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Enter sub-endothelial space</text>
+    <text x="12" y="95" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Trapped by proteoglycans</text>
+    <text x="12" y="115" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Particle count (ApoB) matters</text>
+    <rect x="10" y="170" width="145" height="50" rx="6" fill="#0f172a" />
+    <text x="82" y="190" font-family="sans-serif" font-size="8.5" fill="#fde68a" text-anchor="middle">Particles cannot escape</text>
+    <text x="82" y="205" font-family="sans-serif" font-size="8.5" fill="#fde68a" text-anchor="middle">intimal space</text>
+  </g>
+
+  <path d="M 400 210 L 415 210" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Stage 3 -->
+  <g transform="translate(420, 90)">
+    <rect width="165" height="240" rx="12" fill="#1e293b" stroke="#f43f5e" stroke-width="1.5" />
+    <text x="82" y="25" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#f43f5e" text-anchor="middle">3. OXIDATION & FOAM</text>
+    <text x="12" y="55" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Trapped LDL oxidizes</text>
+    <text x="12" y="75" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Monocytes ➔ Macrophages</text>
+    <text x="12" y="95" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Engulf oxLDL ➔ Foam cells</text>
+    <text x="12" y="115" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Fatty streak develops</text>
+    <rect x="10" y="170" width="145" height="50" rx="6" fill="#0f172a" />
+    <text x="82" y="190" font-family="sans-serif" font-size="8.5" fill="#fca5a5" text-anchor="middle">Inflammatory cascade</text>
+    <text x="82" y="205" font-family="sans-serif" font-size="8.5" fill="#fca5a5" text-anchor="middle">recruits more immune cells</text>
+  </g>
+
+  <path d="M 590 210 L 605 210" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Stage 4 -->
+  <g transform="translate(610, 90)">
+    <rect width="150" height="240" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <text x="75" y="25" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#34d399" text-anchor="middle">4. STABILIZE / REVERSE</text>
+    <text x="10" y="55" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Lower ApoB &lt; 70</text>
+    <text x="10" y="75" font-family="sans-serif" font-size="9" fill="#cbd5e1">• High Omega-3 (SPMs)</text>
+    <text x="10" y="95" font-family="sans-serif" font-size="9" fill="#cbd5e1">• K2 MK-7 + Vit D3</text>
+    <text x="10" y="115" font-family="sans-serif" font-size="9" fill="#cbd5e1">• Zone 2 Exercise</text>
+    <rect x="8" y="170" width="134" height="50" rx="6" fill="#064e3b" />
+    <text x="75" y="190" font-family="sans-serif" font-size="8.5" fill="#a7f3d0" text-anchor="middle">Fibrous cap thickens;</text>
+    <text x="75" y="205" font-family="sans-serif" font-size="8.5" fill="#a7f3d0" text-anchor="middle">Rupture risk eliminated</text>
+  </g>
+
+</svg>

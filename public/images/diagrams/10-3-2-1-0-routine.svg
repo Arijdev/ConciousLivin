@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="380" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Grid accents -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.25" />
+  </pattern>
+  <rect width="800" height="380" rx="16" fill="url(#grid)" />
+
+  <!-- Header Banner -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="8" height="24" rx="4" fill="#14b8a6" />
+    <text x="18" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" letter-spacing="0.5">THE 10-3-2-1-0 CLINICAL SLEEP ARCHITECTURE PROTOCOL</text>
+    <text x="18" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#94a3b8">The Step-by-Step Countdown to Flawless Sleep Quality and Morning Vigor</text>
+    <rect x="610" y="2" width="130" height="22" rx="11" fill="rgba(20, 184, 166, 0.15)" stroke="#14b8a6" stroke-width="1" />
+    <text x="675" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">DR. ARIF CLINICAL CHART</text>
+  </g>
+
+  <!-- Main Visual Diagram Body -->
+  
+  <!-- Step 1: 10 Hours -->
+  <g transform="translate(40, 90)">
+    <rect width="125" height="230" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+    <circle cx="62" cy="35" r="22" fill="#d97706" />
+    <text x="62" y="42" font-family="sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">10</text>
+    <text x="62" y="80" font-family="sans-serif" font-size="10" font-weight="700" fill="#fde68a" text-anchor="middle">HOURS BEFORE</text>
+    <text x="12" y="110" font-family="sans-serif" font-size="9" font-weight="600" fill="#f8fafc">No More Caffeine</text>
+    <text x="12" y="130" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Caffeine half-life = 5-8h; blocks adenosine receptors</text>
+  </g>
+
+  <!-- Step 2: 3 Hours -->
+  <g transform="translate(180, 90)">
+    <rect width="125" height="230" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+    <circle cx="62" cy="35" r="22" fill="#0284c7" />
+    <text x="62" y="42" font-family="sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="62" y="80" font-family="sans-serif" font-size="10" font-weight="700" fill="#bae6fd" text-anchor="middle">HOURS BEFORE</text>
+    <text x="12" y="110" font-family="sans-serif" font-size="9" font-weight="600" fill="#f8fafc">No Heavy Food/Alcohol</text>
+    <text x="12" y="130" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Preserves nocturnal core cooling & suppresses reflux</text>
+  </g>
+
+  <!-- Step 3: 2 Hours -->
+  <g transform="translate(320, 90)">
+    <rect width="125" height="230" rx="10" fill="#1e293b" stroke="#a855f7" stroke-width="1.5" />
+    <circle cx="62" cy="35" r="22" fill="#7c3aed" />
+    <text x="62" y="42" font-family="sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="62" y="80" font-family="sans-serif" font-size="10" font-weight="700" fill="#e9d5ff" text-anchor="middle">HOURS BEFORE</text>
+    <text x="12" y="110" font-family="sans-serif" font-size="9" font-weight="600" fill="#f8fafc">No Work Tasks</text>
+    <text x="12" y="130" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Close laptop; quiet down prefrontal cortex</text>
+  </g>
+
+  <!-- Step 4: 1 Hour -->
+  <g transform="translate(460, 90)">
+    <rect width="125" height="230" rx="10" fill="#1e293b" stroke="#f43f5e" stroke-width="1.5" />
+    <circle cx="62" cy="35" r="22" fill="#e11d48" />
+    <text x="62" y="42" font-family="sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="62" y="80" font-family="sans-serif" font-size="10" font-weight="700" fill="#fecdd3" text-anchor="middle">HOUR BEFORE</text>
+    <text x="12" y="110" font-family="sans-serif" font-size="9" font-weight="600" fill="#f8fafc">No Blue Light</text>
+    <text x="12" y="130" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Dim amber lamps; allow pineal melatonin rise</text>
+  </g>
+
+  <!-- Step 5: 0 Hits -->
+  <g transform="translate(600, 90)">
+    <rect width="140" height="230" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+    <circle cx="70" cy="35" r="22" fill="#059669" />
+    <text x="70" y="42" font-family="sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">0</text>
+    <text x="70" y="80" font-family="sans-serif" font-size="10" font-weight="700" fill="#a7f3d0" text-anchor="middle">SNOOZE HITS</text>
+    <text x="12" y="110" font-family="sans-serif" font-size="9" font-weight="600" fill="#f8fafc">Immediate Sunlight</text>
+    <text x="12" y="130" font-family="sans-serif" font-size="8.5" fill="#94a3b8">Step outdoors for 10 min; anchors circadian CAR</text>
+  </g>
+
+</svg>

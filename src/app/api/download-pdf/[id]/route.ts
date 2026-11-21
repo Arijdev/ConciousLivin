@@ -82,6 +82,8 @@ export async function GET(
 
     // Process markdown-like content
     const content = chapter.content
+      .replace(/!\[(.*?)\]\(.*?\)/g, "\n[Clinical Diagram: $1]\n")
+      .replace(/```[a-z]*\n([\s\S]*?)```/g, "\n$1\n")
       .replace(/\*\*(.+?)\*\*/g, "$1") // bold
       .replace(/\*(.+?)\*/g, "$1") // italic
       .replace(/`(.+?)`/g, "$1") // code

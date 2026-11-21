@@ -27,17 +27,20 @@ const categoryMap: Record<string, string> = {
 async function syncResources() {
   console.log(`Syncing ${HEALTH_RESOURCES.length} health resources to Supabase...`);
 
-  // First, clear existing resources (they'll get new UUIDs)
-  console.log('Clearing existing resources...');
-  const { error: deleteError } = await supabase
+  // Fetch existing resources to preserve IDs if already present
+  const { data: existingResources, error: fetchError } = await supabase
     .from('health_resources')
-    .delete()
-    .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all
+    .select('id, title');
 
-  if (deleteError) {
-    console.error('Error clearing table:', deleteError.message);
-  } else {
-    console.log('Cleared existing resources.');
+  if (fetchError) {
+    console.warn('Could not fetch existing resources, proceeding with upsert/insert:', fetchError.message);
+  }
+
+  const existingMap = new Map<string, string>();
+  if (existingResources) {
+    for (const r of existingResources) {
+      existingMap.set(r.title.trim().toLowerCase(), r.id);
+    }
   }
 
   for (const resource of HEALTH_RESOURCES) {
@@ -65,16 +68,35 @@ async function syncResources() {
       published_at: new Date().toISOString(),
     };
 
-    const { data, error } = await supabase
-      .from('health_resources')
-      .insert(dbResource)
-      .select('id')
-      .single();
+    const existingId = existingMap.get(resource.title.trim().toLowerCase());
 
-    if (error) {
-      console.error(`Failed to sync ${resource.title}:`, error.message);
+    if (existingId) {
+      // Update existing record to preserve foreign keys
+      const { data, error } = await supabase
+        .from('health_resources')
+        .update(dbResource)
+        .eq('id', existingId)
+        .select('id')
+        .single();
+
+      if (error) {
+        console.error(`Failed to update ${resource.title}:`, error.message);
+      } else {
+        console.log(`✓ Updated in Supabase: ${resource.title} [ID: ${data.id}]`);
+      }
     } else {
-      console.log(`✓ Synced: ${resource.title} (${resource.pages} pages, ${resource.readingTime}) [ID: ${data.id}]`);
+      // Insert new record
+      const { data, error } = await supabase
+        .from('health_resources')
+        .insert(dbResource)
+        .select('id')
+        .single();
+
+      if (error) {
+        console.error(`Failed to insert ${resource.title}:`, error.message);
+      } else {
+        console.log(`✓ Inserted into Supabase: ${resource.title} [ID: ${data.id}]`);
+      }
     }
   }
 

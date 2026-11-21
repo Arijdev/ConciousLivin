@@ -39,7 +39,6 @@ export async function POST(request: NextRequest) {
     let amount = 0;
     let description = '';
     let details: Record<string, unknown>;
-    let metadata: Record<string, string> = {};
 
     if (body.kind === 'consultation') {
       const pkg = CONSULTATION_PACKAGES.find((item) => item.id === body.packageId);

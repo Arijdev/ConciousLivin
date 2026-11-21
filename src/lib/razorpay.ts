@@ -1,4 +1,6 @@
 // Razorpay integration for UPI payments
+import Razorpay from 'razorpay';
+import crypto from 'crypto';
 export interface RazorpayOrder {
   id: string;
   entity: string;
@@ -49,7 +51,6 @@ let razorpayInstance: any = null;
 
 export function getRazorpayInstance() {
   if (!razorpayInstance) {
-    const Razorpay = require('razorpay');
     razorpayInstance = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID!,
       key_secret: process.env.RAZORPAY_KEY_SECRET!,
@@ -85,7 +86,6 @@ export function verifyRazorpaySignature(
   paymentId: string,
   signature: string
 ): boolean {
-  const crypto = require('crypto');
   const expectedSignature = crypto
     .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET!)
     .update(`${orderId}|${paymentId}`)

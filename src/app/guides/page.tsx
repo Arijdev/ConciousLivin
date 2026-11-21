@@ -3,12 +3,15 @@ import Link from 'next/link';
 import { ResourceLibrary } from '@/components/ResourceLibrary';
 import { ArrowRight, BookOpen, ShieldCheck } from 'lucide-react';
 import { pageMetadata } from '@/lib/seo';
+import { getPageKeywords } from '@/lib/keywords';
 
-export const metadata: Metadata = pageMetadata({
-  title: 'Health Guides & eBooks',
+export const metadata = pageMetadata({
+  title: 'Clinical Health Guides & eBooks',
   description:
-    'Evidence-based health guides and clinical eBooks by Dr. Arif Chowdhury. Download free PDF guides or purchase premium longevity protocols with lifetime digital access.',
+    'Evidence-based clinical health guides by Dr. Arif Chowdhury MD for conscious living. Download free PDF guides on nutrition, gut health, longevity, heart health, fasting & detox. Premium masterclasses with lifetime access.',
   path: '/guides',
+  ogImage: '/og-guides.png',
+  keywords: getPageKeywords('guides'),
 });
 
 export default function GuidesPage() {

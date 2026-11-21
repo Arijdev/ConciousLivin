@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { 
   X, 
@@ -9,7 +9,7 @@ import {
   ShieldCheck,
   ArrowRight, 
   Mail, 
-  Globe
+  Globe,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useCountryCurrency } from '@/context/CountryCurrencyContext';
@@ -27,14 +27,12 @@ export const CheckoutModal: React.FC = () => {
   const { user, isAuthenticated, openAuthModal } = useAuth();
   const { formatPrice } = useCountryCurrency();
 
-  // Customer info
   const [name, setName] = useState(user ? user.name : '');
   const [email, setEmail] = useState(user ? user.email : '');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [paymentError, setPaymentError] = useState('');
 
-  // Sync user details if logged in
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
@@ -47,7 +45,6 @@ export const CheckoutModal: React.FC = () => {
     e.preventDefault();
     if (!name || !email) return;
 
-    // If guest, prompt them to create an account
     if (!isAuthenticated) {
       openAuthModal('customer-register', `Create an account to complete your purchase and access your guides.`);
       return;
@@ -57,14 +54,13 @@ export const CheckoutModal: React.FC = () => {
     setPaymentError('');
 
     try {
+      const items = cart.map((item) => ({ resourceId: item.resource.id, quantity: item.quantity }));
+      const baseBody = { kind: 'resources', items, couponCode: appliedCoupon?.code };
+
       const response = await fetch('/api/payments/paypal/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          kind: 'resources',
-          items: cart.map((item) => ({ resourceId: item.resource.id, quantity: item.quantity })),
-          couponCode: appliedCoupon?.code,
-        }),
+        body: JSON.stringify(baseBody),
       });
       const result = await response.json();
       if (!response.ok || !result.approvalUrl) {
@@ -72,7 +68,7 @@ export const CheckoutModal: React.FC = () => {
       }
       window.location.assign(result.approvalUrl);
     } catch (error) {
-      setPaymentError(error instanceof Error ? error.message : 'Could not start PayPal checkout.');
+      setPaymentError(error instanceof Error ? error.message : 'Payment failed. Please try again.');
       setIsSubmitting(false);
     }
   };
@@ -86,14 +82,14 @@ export const CheckoutModal: React.FC = () => {
       <div className="relative w-full max-w-2xl bg-white dark:bg-[#1E293B] rounded-3xl overflow-hidden border border-[#E2E8F0] dark:border-[#334155] my-auto">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-[#1E293B] text-white border-b border-[#E2E8F0] dark:border-[#334155]">
+        <div className="flex items-center justify-between px-6 py-4 bg-[#0070BA] text-white border-b border-[#E2E8F0] dark:border-[#334155]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#0F766E]/20 text-[#0F766E] dark:text-[#14B8A6] flex items-center justify-center">
-              <Lock className="w-4 h-4" />
-            </div>
+<div className="w-8 h-8 rounded-lg bg-white/20 text-white flex items-center justify-center">
+            <Globe className="w-4 h-4" />
+          </div>
             <div>
               <h3 className="text-base font-semibold">Secure PayPal Checkout</h3>
-              <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+              <p className="text-xs text-white/70">
                 Dr. Arif Chowdhury — ConciousLivin Health Academy
               </p>
             </div>
@@ -102,117 +98,123 @@ export const CheckoutModal: React.FC = () => {
           <button
             onClick={handleClose}
             aria-label="Close checkout"
-            className="p-2 rounded-lg bg-[#334155] text-[#64748B] dark:text-[#94A3B8] hover:text-white transition-colors"
+            className="p-2 rounded-lg bg-white/10 text-white/70 hover:text-white hover:bg-white/20 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* STEP 1: Details & Payment Form */}
+        {/* Form */}
         <form onSubmit={handleProcessPayment} className="p-6 sm:p-8 space-y-6">
-            
-            {/* Customer Information */}
-            <div className="space-y-4">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1.5">
-                <Mail className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
-                <span>1. Digital Delivery Details</span>
-              </h4>
+          
+          {/* Customer Information */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1.5">
+              <Mail className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
+              <span>1. Digital Delivery Details</span>
+            </h4>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] focus:ring-2 focus:ring-[#0F766E] outline-none"
-                    placeholder="e.g. Alex Rahman"
-                  />
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] focus:ring-2 focus:ring-[#0F766E] outline-none"
+                  placeholder="e.g. Alex Rahman"
+                />
+              </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
-                    Email for Instant PDF Delivery
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] focus:ring-2 focus:ring-[#0F766E] outline-none"
-                    placeholder="alex@example.com"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-semibold text-[#1E293B] dark:text-[#E2E8F0] mb-1">
+                  Email for Instant PDF Delivery
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#F9FAFB] dark:bg-[#0F172A] text-[#1E293B] dark:text-[#E2E8F0] text-xs border border-[#E2E8F0] dark:border-[#334155] focus:ring-2 focus:ring-[#0F766E] outline-none"
+                  placeholder="alex@example.com"
+                />
               </div>
             </div>
+          </div>
 
-            {/* Payment Method Selector */}
-            <div className="space-y-4 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1.5">
-                <CreditCard className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
-                <span>2. Pay securely with PayPal</span>
-              </h4>
+          {/* Payment Info */}
+          <div className="space-y-4 pt-2 border-t border-[#E2E8F0] dark:border-[#334155]">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] flex items-center gap-1.5">
+              <Globe className="w-4 h-4 text-[#0F766E] dark:text-[#14B8A6]" />
+              <span>2. Pay securely with PayPal</span>
+            </h4>
 
-              <div className="flex items-center gap-3 rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] p-4 text-sm">
-                <Globe className="h-5 w-5 shrink-0 text-[#1E293B] dark:text-[#E2E8F0]" />
-                <div>
-                  <p className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">PayPal</p>
-                  <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">Secure payment approval through your PayPal account.</p>
-                </div>
+            <div className="flex items-center gap-3 rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#0F172A] p-4 text-sm">
+              <Globe className="h-6 w-6 shrink-0 text-[#0070BA]" />
+              <div>
+                <p className="font-semibold text-[#1E293B] dark:text-[#E2E8F0]">PayPal</p>
+                <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+                  Pay with your PayPal balance, linked bank account, or any major credit/debit card.
+                  PayPal securely processes all major cards (Visa, Mastercard, Amex, Discover).
+                </p>
               </div>
             </div>
+          </div>
 
-            {paymentError && (
-              <p role="alert" className="rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F1F5F9] dark:bg-[#1E293B] px-4 py-3 text-sm text-[#1E293B] dark:text-[#E2E8F0]">
-                {paymentError}
-              </p>
-            )}
-
-            <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
-              Local currency is an estimate. PayPal currently charges the order in USD ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total)}).
+          {paymentError && (
+            <p role="alert" className="rounded-xl border border-[#E2E8F0] dark:border-[#334155] bg-[#F1F5F9] dark:bg-[#1E293B] px-4 py-3 text-sm text-[#1E293B] dark:text-[#E2E8F0] flex items-center gap-2">
+              <Lock className="w-4 h-4 text-[#DC2626]" />
+              {paymentError}
             </p>
+          )}
 
-            {/* Order Summary Pill */}
-            <div className="p-4 rounded-2xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] space-y-2">
-              <div className="flex justify-between items-center text-xs text-[#1E293B] dark:text-[#E2E8F0]">
-                <span>Items in Order:</span>
-                <span className="font-semibold">{cart.length} eBooks / Guides</span>
-              </div>
-              {appliedCoupon && (
-                <div className="flex justify-between items-center text-xs text-[#0F766E] dark:text-[#14B8A6] font-semibold">
-                  <span>Coupon ({appliedCoupon.code}):</span>
-                  <span>-{formatPrice(discountAmount)}</span>
-                </div>
-              )}
-              <div className="flex justify-between items-center text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] pt-2 border-t border-[#0F766E]">
-                <span>Total Amount Due:</span>
-                <span className="text-[#0F766E] dark:text-[#14B8A6] text-base">{formatPrice(total)}</span>
-              </div>
+          <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+            Local currency is an estimate. PayPal currently charges the order in USD ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total)}).
+          </p>
+
+          {/* Order Summary Pill */}
+          <div className="p-4 rounded-2xl bg-[#E6F4F1] dark:bg-[#134E4A] border border-[#0F766E] space-y-2">
+            <div className="flex justify-between items-center text-xs text-[#1E293B] dark:text-[#E2E8F0]">
+              <span>Items in Order:</span>
+              <span className="font-semibold">{cart.length} eBooks / Guides</span>
             </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full py-4 rounded-2xl bg-[#1E293B] hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2"
-            >
-              <Lock className="w-4 h-4" />
-              <span>{isSubmitting ? 'Connecting to PayPal…' : `Continue to PayPal (${formatPrice(total)})`}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <div className="flex items-center justify-center gap-4 text-[11px] text-[#64748B] dark:text-[#94A3B8] font-normal pt-1">
-              <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#0F766E] dark:text-[#14B8A6]" />
-                256-Bit SSL Encrypted
-              </span>
-              <span>•</span>
-              <span>30-Day Money Back Guarantee</span>
+            {appliedCoupon && (
+              <div className="flex justify-between items-center text-xs text-[#0F766E] dark:text-[#14B8A6] font-semibold">
+                <span>Coupon ({appliedCoupon.code}):</span>
+                <span>-{formatPrice(discountAmount)}</span>
+              </div>
+            )}
+            <div className="flex justify-between items-center text-sm font-semibold text-[#1E293B] dark:text-[#E2E8F0] pt-2 border-t border-[#0F766E]">
+              <span>Total Amount Due:</span>
+              <span className="text-[#0F766E] dark:text-[#14B8A6] text-base">{formatPrice(total)}</span>
             </div>
-          </form>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-4 rounded-2xl bg-[#0070BA] hover:bg-[#005EA6] text-white font-semibold text-sm transition-all flex items-center justify-center gap-2"
+          >
+            <Lock className="w-4 h-4" />
+            <span>{isSubmitting ? 'Connecting to PayPal…' : `Continue to PayPal (${formatPrice(total)})`}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+
+          <div className="flex items-center justify-center gap-4 text-[11px] text-[#64748B] dark:text-[#94A3B8] font-normal pt-1">
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0F766E] dark:text-[#14B8A6]" />
+              256-Bit SSL Encrypted
+            </span>
+            <span>•</span>
+            <span>30-Day Money Back Guarantee</span>
+            <span>•</span>
+            <span>PayPal Buyer Protection</span>
+          </div>
+        </form>
 
       </div>
     </div>

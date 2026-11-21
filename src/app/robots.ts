@@ -1,4 +1,4 @@
-import type { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,9 +6,21 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/auth/', '/payment/'],
+      disallow: [
+        '/api/',
+        '/payment/',
+        '/cart',
+        '/checkout',
+        '/dashboard/',
+        '/doctor/',
+        '/auth/',
+        '/_next/',
+        '/static/',
+        '/*.json$',
+        '/*.xml$',
+      ],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    host: SITE_URL.replace(/^https?:\/\//, ''),
   };
 }

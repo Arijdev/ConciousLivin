@@ -906,15 +906,34 @@ export const InteractiveReaderModal: React.FC = () => {
                     <Markdown 
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        h2: (props) => <h2 {...props} className="text-xl sm:text-2xl font-bold mt-8 mb-4 pb-2 border-b flex items-center gap-2" style={{ color: tc.text, borderColor: tc.border }} />,
-                        h3: (props) => <h3 {...props} className="text-lg sm:text-xl font-bold mt-6 mb-3" style={{ color: tc.accent }} />,
-                        h4: (props) => <h4 {...props} className="text-base font-semibold mt-4 mb-2" style={{ color: tc.text }} />,
-                        p: (props) => <p {...props} className="leading-relaxed mb-4" style={{ color: tc.text }} />,
-                        ul: (props) => <ul {...props} className="list-disc list-outside ml-6 space-y-2 mb-4" style={{ color: tc.text }} />,
-                        ol: (props) => <ol {...props} className="list-decimal list-outside ml-6 space-y-2 mb-4" style={{ color: tc.text }} />,
-                        li: (props) => <li {...props} className="leading-relaxed pl-1" style={{ color: tc.text }} />,
-                        blockquote: (props) => <blockquote {...props} className="border-l-4 pl-4 py-2 italic my-4 rounded-r-xl" style={{ borderColor: tc.accent, backgroundColor: tc.accentBg, color: tc.text }} />,
-                        code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+                        h2: ({ node, ...props }: any) => <h2 {...props} className="text-xl sm:text-2xl font-bold mt-8 mb-4 pb-2 border-b flex items-center gap-2" style={{ color: tc.text, borderColor: tc.border }} />,
+                        h3: ({ node, ...props }: any) => <h3 {...props} className="text-lg sm:text-xl font-bold mt-6 mb-3" style={{ color: tc.accent }} />,
+                        h4: ({ node, ...props }: any) => <h4 {...props} className="text-base font-semibold mt-4 mb-2" style={{ color: tc.text }} />,
+                        p: ({ node, children, ...props }: any) => {
+                          const hasImage = (n: any): boolean => {
+                            if (!n) return false;
+                            if (n.tagName === 'img') return true;
+                            if (Array.isArray(n.children)) return n.children.some(hasImage);
+                            return false;
+                          };
+                          if (hasImage(node)) {
+                            return (
+                              <div className="leading-relaxed mb-4" style={{ color: tc.text }}>
+                                {children}
+                              </div>
+                            );
+                          }
+                          return (
+                            <p {...props} className="leading-relaxed mb-4" style={{ color: tc.text }}>
+                              {children}
+                            </p>
+                          );
+                        },
+                        ul: ({ node, ...props }: any) => <ul {...props} className="list-disc list-outside ml-6 space-y-2 mb-4" style={{ color: tc.text }} />,
+                        ol: ({ node, ...props }: any) => <ol {...props} className="list-decimal list-outside ml-6 space-y-2 mb-4" style={{ color: tc.text }} />,
+                        li: ({ node, ...props }: any) => <li {...props} className="leading-relaxed pl-1" style={{ color: tc.text }} />,
+                        blockquote: ({ node, ...props }: any) => <blockquote {...props} className="border-l-4 pl-4 py-2 italic my-4 rounded-r-xl" style={{ borderColor: tc.accent, backgroundColor: tc.accentBg, color: tc.text }} />,
+                        code: ({ className, children, node, ...props }: any) => {
                           const isDiagram = className?.includes('language-diagram') || className?.includes('language-flowchart') || className?.includes('language-ascii');
                           if (isDiagram) {
                             return (
@@ -934,26 +953,26 @@ export const InteractiveReaderModal: React.FC = () => {
                             </code>
                           );
                         },
-                        pre: ({ children }: React.HTMLAttributes<HTMLPreElement>) => <div className="my-4">{children}</div>,
-                        strong: (props) => <strong {...props} className="font-semibold" style={{ color: tc.text }} />,
-                        a: (props) => <a {...props} target="_blank" rel="noopener noreferrer" className="underline font-medium hover:opacity-80" style={{ color: tc.accent }} />,
-                        table: ({ children }) => (
+                        pre: ({ children, node, ...props }: any) => <div className="my-4">{children}</div>,
+                        strong: ({ node, ...props }: any) => <strong {...props} className="font-semibold" style={{ color: tc.text }} />,
+                        a: ({ node, ...props }: any) => <a {...props} target="_blank" rel="noopener noreferrer" className="underline font-medium hover:opacity-80" style={{ color: tc.accent }} />,
+                        table: ({ children, node, ...props }: any) => (
                           <div className="my-6 w-full overflow-x-auto rounded-2xl border shadow-sm" style={{ borderColor: tc.border, backgroundColor: tc.bgSecondary }}>
                             <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[500px]">{children}</table>
                           </div>
                         ),
-                        thead: ({ children }) => (
+                        thead: ({ children, node, ...props }: any) => (
                           <thead className="border-b font-semibold text-xs uppercase tracking-wider" style={{ backgroundColor: tc.bgTertiary, borderColor: tc.border, color: tc.text }}>
                             {children}
                           </thead>
                         ),
-                        tbody: ({ children }) => <tbody className="divide-y" style={{ borderColor: tc.border }}>{children}</tbody>,
-                        tr: ({ children }) => (
+                        tbody: ({ children, node, ...props }: any) => <tbody className="divide-y" style={{ borderColor: tc.border }}>{children}</tbody>,
+                        tr: ({ children, node, ...props }: any) => (
                           <tr className="transition-colors hover:bg-black/5 dark:hover:bg-white/5">{children}</tr>
                         ),
-                        th: ({ children }) => <th className="px-4 py-3 font-semibold" style={{ color: tc.text }}>{children}</th>,
-                        td: ({ children }) => <td className="px-4 py-3 align-top leading-normal" style={{ color: tc.textSecondary }}>{children}</td>,
-                        img: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+                        th: ({ children, node, ...props }: any) => <th className="px-4 py-3 font-semibold" style={{ color: tc.text }}>{children}</th>,
+                        td: ({ children, node, ...props }: any) => <td className="px-4 py-3 align-top leading-normal" style={{ color: tc.textSecondary }}>{children}</td>,
+                        img: ({ src, alt, node, ...props }: any) => (
                           <figure className="my-6 rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: tc.border, backgroundColor: tc.bgSecondary }}>
                             <div className="relative w-full max-h-[420px] overflow-hidden bg-slate-900/5 dark:bg-slate-900/40 flex items-center justify-center p-2 sm:p-4">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
